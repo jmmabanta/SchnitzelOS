@@ -23,7 +23,6 @@ dnf5 -y config-manager setopt "*terra*".priority=1 "*terra*".exclude="nerd-fonts
 # Install dmemcg-booster for low VRAM cards
 # Recently, NVIDIA supposedly added cgroups to their driver so I want to test it
 dnf5 -y install dmemcg-booster
-dnf5 -y swap --repo terra-extras uresourced uresourced-dmemcg
 dnf5 -y config-manager setopt "terra".enabled=0
 dnf5 -y config-manager setopt "terra-extras".enabled=0
 
