@@ -9,8 +9,7 @@ set -ouex pipefail
 dnf5 remove -y \
   gnome-software \
   firefox \
-  firefox-langpacks \
-  mangohud
+  firefox-langpacks
 
 # RPMFusion is enabled on ublueos main images
 dnf5 install -y \
@@ -26,10 +25,18 @@ dnf5 install -y \
 
 dnf5 install -y --setopt=install_weak_deps=False niri noctalia
 
-# Install mangohud from terra as fedora's version is buggy
 dnf5 -y install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release{,-extras}
 dnf5 -y config-manager setopt "*terra*".priority=1 "*terra*".exclude="nerd-fonts scx-tools scx-scheds python3-protobuf zlib-devel uupd"
-dnf5 --enable-repo=terra --enable-repo=terra-extras -y install terra-mangohud.x86_64 terra-mangohud.i686
+
+# Install mangohud from terra as fedora's version is buggy
+dnf5 --enable-repo=terra --enable-repo=terra-extras -y swap mangohud.x86_64 terra-mangohud.x86_64 --allowerasing
+dnf5 --enable-repo=terra --enable-repo=terra-extras -y swap mangohud.i686 terra-mangohud.i686 --allowerasing
+
+# Install dmemcg-booster for low VRAM cards
+# Recently, NVIDIA supposedly added cgroups to their driver so I want to test it
+dnf5 -y install dmemcg-booster
+dnf5 -y swap --repo terra-extras uresourced uresourced-dmemcg
+
 dnf5 -y config-manager setopt "terra".enabled=0
 dnf5 -y config-manager setopt "terra-extras".enabled=0
 
