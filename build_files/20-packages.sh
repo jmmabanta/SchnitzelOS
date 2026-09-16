@@ -53,3 +53,8 @@ dnf5 -y copr disable scottames/ghostty
 dnf5 -y copr enable ublue-os/packages
 dnf5 -y install uupd
 dnf5 -y copr disable ublue-os/packages
+
+# Patch grub2-mkconfig so it works with regenerate-grub
+# From https://github.com/ublue-os/bazzite/blob/6c108d6cb377d78c5e6484787180e7a741b58b84/Containerfile#L462
+# which might have something to do with https://github.com/ublue-os/bluefin/issues/2582#issuecomment-3476538251
+sed -i "s|grub_probe\} --target=device /\`|grub_probe} --target=device /sysroot\`|g" /usr/bin/grub2-mkconfig
