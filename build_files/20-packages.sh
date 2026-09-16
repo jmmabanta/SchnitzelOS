@@ -7,6 +7,13 @@ set -ouex pipefail
 # Copy the contents of system_files/ of the git repo to /
 cp -avf "/ctx/system_files"/. /
 
+# gnome-software -> replaced by Bazaar
+# firefox -> use built-in Helium browser instead or install firefox flatpak
+dnf5 remove -y \
+  gnome-software \
+  firefox \
+  firefox-langpacks \
+
 # RPMFusion is enabled on ublueos main images
 dnf5 install -y \
   fish \
@@ -20,9 +27,6 @@ dnf5 install -y \
   @virtualization
 
 dnf5 install -y --setopt=install_weak_deps=False niri noctalia
-
-# We will use Bazaar as the main Flatpak store
-dnf5 remove -y gnome-software
 
 dnf5 -y copr enable imput/helium
 dnf5 -y install helium-bin
@@ -40,5 +44,6 @@ dnf5 -y copr enable scottames/ghostty
 dnf5 -y install ghostty
 dnf5 -y copr disable scottames/ghostty
 
-dnf5 remove -y firefox showtime firefox-langpacks
-
+dnf5 -y copr enable ublue-os/packages
+dnf5 -y install uupd
+dnf5 -y copr disable ublue-os/packages
