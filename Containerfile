@@ -27,7 +27,9 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     /ctx/20-packages.sh && \
     /ctx/30-nvidia.sh && \
     /ctx/40-services.sh && \
-    /ctx/50-cleanup.sh
+    /ctx/50-cleanup.sh && \
+    /ctx/60-image-info.sh && \
+    /ctx/70-build-initramfs.sh
 
 ### LINTING
 ## Verify final image and contents are correct.
