@@ -6,10 +6,16 @@ set -ouex pipefail
 
 # gnome-software -> replaced by Bazaar
 # firefox -> use built-in Helium browser instead or install firefox flatpak
+# ptyxis -> ghostty
 dnf5 remove -y \
   gnome-software \
   firefox \
-  firefox-langpacks
+  firefox-langpacks \
+  ptyxis \
+  gnome-classic-session \
+  gnome-extensions-app \
+  gnome-tour \
+  yelp
 
 # RPMFusion is enabled on ublueos main images
 dnf5 install -y \
