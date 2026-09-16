@@ -1,0 +1,20 @@
+# From https://github.com/projectbluefin/common/blob/main/system_files/nvidia/usr/lib/systemd/system/ublue-nvidia-flatpak-runtime-sync.service
+[Unit]
+Description=Sync NVIDIA system drivers with Flatpak runtime and update system Flatpaks
+After=network-online.target flatpak-system-helper.service
+Wants=network-online.target
+ConditionPathExists=/sys/module/nvidia/version
+# To not run on live ISO
+ConditionPathExists=/run/ostree-booted
+
+[Service]
+Type=oneshot
+ExecCondition=/usr/libexec/sync-nvidia-flatpak check
+ExecStart=/usr/libexec/sync-nvidia-flatpak sync
+RemainAfterExit=yes
+Restart=on-failure
+RestartSec=30
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target

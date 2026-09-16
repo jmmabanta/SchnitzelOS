@@ -21,6 +21,9 @@ dnf5 install -y \
 
 dnf5 install -y --setopt=install_weak_deps=False niri noctalia
 
+# We will use Bazaar as the main Flatpak store
+dnf5 remove -y gnome-software
+
 dnf5 -y copr enable imput/helium
 dnf5 -y install helium-bin
 dnf5 -y copr disable imput/helium

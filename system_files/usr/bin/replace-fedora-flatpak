@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -oue pipefail
+
+TO_REPLACE=$(flatpak list --app-runtime=org.fedoraproject.Platform --columns=application | tail -n +1 )
+
+for app in $TO_REPLACE; do
+  echo "Replacing $app with its flathub version..."
+  flatpak uninstall -y --noninteractive "$app" </dev/null || true
+  flatpak install -y --noninteractive flathub "$app" </dev/null
+done
+
+# Only two fedora flatpaks with no flathub alternative
+flatpak uninstall -y --noninteractive org.fedoraproject.Platform </dev/null || true
+flatpak uninstall -y --noninteractive org.fedoraproject.Platform.GL.default </dev/null || true
+
+flatpak remote-delete fedora

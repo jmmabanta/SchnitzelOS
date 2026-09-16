@@ -12,6 +12,8 @@ Right now I'm not building any ISOs so to use it, first install any Fedora Atomi
 sudo bootc switch ghcr.io/jmmabanta/schnitzel-os
 ```
 
+After rebasing, if you wish to remove the fedora flatpak remote and instead replace all pre-installed fedora flatpaks with their Flathub equivalent, run `replace-fedora-flatpak`.
+
 ### Acknowledgements
 
 Since the documentation for the image template is not that clear (to me at least), I've referenced the following repos to see how they did things, especially with how they installed things like the NVIDIA driver:

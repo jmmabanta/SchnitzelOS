@@ -1,0 +1,5 @@
+# Wireless
+KERNEL=="hidraw*", ATTRS{idVendor}=="24ae", ATTRS{idProduct}=="1412", MODE="0666", TAG+="uaccess"
+
+# Wired
+KERNEL=="hidraw*", ATTRS{idVendor}=="24ae", ATTRS{idProduct}=="4612", MODE="0666", TAG+="uaccess"
