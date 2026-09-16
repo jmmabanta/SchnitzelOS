@@ -122,7 +122,7 @@ build $target_image=image_name $tag=default_tag:
     LABELS+=("--label" "org.opencontainers.image.vendor={{ repo_organization }}")
 
     # From https://github.com/ublue-os/bluefin/blob/7aafce49db08d8d965a827582ce5dc806ac9017e/Justfile#L170
-    ver="44.$(date +%Y%m%d)"
+    ver="$(date +%Y%m%d)"
     skopeo list-tags docker://ghcr.io/{{ repo_organization }}/${image_name} > /tmp/repotags.json
     if [[ $(jq "any(.Tags[]; contains(\"$ver\"))" < /tmp/repotags.json) == "true" ]]; then
         POINT="1"
