@@ -10,8 +10,6 @@ COPY --from=brew /system_files /system_files
 COPY system_files /system_files
 COPY build_files /
 
-# This is required for Helium Browser to install
-
 # Includes codecs + secureboot signing for akmods
 FROM ghcr.io/ublue-os/silverblue-main:${FEDORA_VERSION}
 # Helium needs access to /opt directly, not the symlink to /var/opt
