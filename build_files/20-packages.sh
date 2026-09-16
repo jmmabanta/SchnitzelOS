@@ -13,6 +13,7 @@ dnf5 remove -y \
   gnome-software \
   firefox \
   firefox-langpacks \
+  mangohud
 
 # RPMFusion is enabled on ublueos main images
 dnf5 install -y \
