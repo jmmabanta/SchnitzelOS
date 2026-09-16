@@ -23,3 +23,4 @@ systemctl --global enable dmemcg-booster-user.service
 
 systemctl enable lactd
 systemctl enable libvirtd
+systemctl enable podman.socket
