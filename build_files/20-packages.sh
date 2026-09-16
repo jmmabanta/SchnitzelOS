@@ -28,23 +28,11 @@ dnf5 install -y \
 
 dnf5 install -y --setopt=install_weak_deps=False niri noctalia
 
-# Install latest MangoHud binary from GitHub
-# The one currently packaged in fedora is bugged
-MANGOHUD_URL="$(
-  curl -fsSL https://api.github.com/repos/flightlessmango/MangoHud/releases/latest |
-  jq -r '.assets[]
-    | select(.browser_download_url | contains("r0"))
-    | select(.browser_download_url | endswith(".tar.gz"))
-    | .browser_download_url' |
-  head -n1
-)"
-MANGOHUD_TMP_DIR=$(mktemp -d)
-trap 'rm -rf "$MANGOHUD_TMP_DIR"' EXIT
-MANGOHUD_ARCHIVE="$MANGOHUD_TMP_DIR/mangohud.tar.gz"
-curl -fL "$MANGOHUD_URL" -o "$MANGOHUD_ARCHIVE"
-tar -xzf "$MANGOHUD_ARCHIVE" -C "$MANGOHUD_TMP_DIR"
-cd "$MANGOHUD_TMP_DIR/MangoHud"
-./mangohud-setup.sh install
+# Install mangohud from terra as fedora's version is buggy
+dnf5 install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
+dnf5 -y config-manager setopt "*terra*".priority=1 "*terra*".exclude="nerd-fonts scx-tools scx-scheds python3-protobuf zlib-devel uupd"
+dnf5 --enable-repo=terra -y install terra-mangohud.x86_64 terra-mangohud.i686
+dnf5 -y config-manager setopt "terra".enabled=0
 
 dnf5 -y copr enable imput/helium
 dnf5 -y install helium-bin
