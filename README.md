@@ -7,13 +7,14 @@ I found that the other Universal Blue images (Bluefin, Bazzite, Aurora) have too
 ## How to install
 
 Right now I'm not building any ISOs so to use it, first install any Fedora Atomic image with GNOME (Bluefin, Bazzite-Gnome, Fedora Silverblue). Then, rebase to this image with:
+
 ```sh
-sudo bootc switch ghcr.io/jmmabanta/SchnitzelOS
+sudo bootc switch ghcr.io/jmmabanta/schnitzel-os
 ```
 
 ### Acknowledgements
 
-Since the documentation for the image template is not that clear (to me at least), I've reference the following repos to see how they did things, especially with how they installed things like the NVIDIA driver:
+Since the documentation for the image template is not that clear (to me at least), I've referenced the following repos to see how they did things, especially with how they installed things like the NVIDIA driver:
 
 - https://github.com/ublue-os/bazzite
 - https://github.com/thiagojedi/kamino
