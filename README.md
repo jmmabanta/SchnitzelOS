@@ -57,7 +57,7 @@ sudo swapon /var/swap/swapfile
 4. Disable ZRAM:
 
 ```bash
-touch /etc/systemd/zram-generator.conf
+sudo touch /etc/systemd/zram-generator.conf
 ```
 
 5. Reboot
