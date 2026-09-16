@@ -25,6 +25,43 @@ If after rebasing the OS fails to boot due to secureboot, here is how to enroll 
 5. Continue the reboot back into SchnitzelOS
 6. Reboot back into bios and re-enable secure boot.
 
+## ZSWAP
+
+According to Chris Down, [zswap is better than zram](https://chrisdown.name/2026/03/24/zswap-vs-zram-when-to-use-what.html) in most cases. This image has already set the necessary kernel parameters to enable zswap but some manual work needs to be done by you after rebasing (since neither Fedora nor ublue-os images use a swap file by default).
+
+1. Create BTRFS subvolume for swap
+
+```bash
+sudo btrfs subvolume create /var/swap
+sudo semanage fcontext -a -t var_t /var/swap
+sudo restorecon /var/swap
+```
+
+2. Create the swapfile itself
+
+```bash
+SIZE=8G
+sudo btrfs filesystem mkswapfile --size $SIZE /var/swap/swapfile
+sudo semanage fcontext -a -t swapfile_t /var/swap/swapfile
+sudo restorecon /var/swap/swapfile
+
+sudo swapon /var/swap/swapfile
+```
+
+3. Add to `/etc/fstab`:
+
+```
+/var/swap/swapfile none swap defaults,nofail 0 0
+```
+
+4. Disable ZRAM:
+
+```bash
+touch /etc/systemd/zram-generator.conf
+```
+
+5. Reboot
+
 ### Acknowledgements
 
 Since the documentation for the image template is not that clear (to me at least), I've referenced the following repos to see how they did things, especially with how they installed things like the NVIDIA driver:
