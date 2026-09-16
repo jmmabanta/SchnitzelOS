@@ -19,19 +19,13 @@ FEDORA_MAJOR_VERSION=44
 IMAGE_INFO="/usr/share/ublue-os/image-info.json"
 IMAGE_REF="ostree-unverified-registry:ghcr.io/$IMAGE_VENDOR/$IMAGE_NAME"
 
-# Get image version
-# From https://github.com/ublue-os/bluefin/blob/7aafce49db08d8d965a827582ce5dc806ac9017e/Justfile#L170
+# Get image version (date.revision)
 ver="$(date +%Y%m%d)"
 skopeo list-tags docker://ghcr.io/${IMAGE_VENDOR}/${IMAGE_NAME} > /tmp/repotags.json
-if [[ $(jq "any(.Tags[]; contains(\"$ver\"))" < /tmp/repotags.json) == "true" ]]; then
-  POINT="1"
-  while $(jq -e "any(.Tags[]; contains(\"$ver.$POINT\"))" < /tmp/repotags.json)
-  do
-    (( POINT++ ))
-  done
-fi
-if [[ -n "${POINT:-}" ]]; then
-  ver="${ver}.$POINT"
+POINT="$(jq "[.Tags[] | select(contains(\"latest-${ver}-\"))] | length" < /tmp/repotags.json)"
+
+if [[ $POINT -gt 0 ]]; then
+  ver="${ver}.${POINT}"
 fi
 VERSION="${ver:-00.00000000}"
 
