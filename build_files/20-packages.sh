@@ -27,16 +27,10 @@ dnf5 install -y --setopt=install_weak_deps=False niri noctalia
 
 dnf5 -y install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release{,-extras}
 dnf5 -y config-manager setopt "*terra*".priority=1 "*terra*".exclude="nerd-fonts scx-tools scx-scheds python3-protobuf zlib-devel uupd"
-
-# Install mangohud from terra as fedora's version is buggy
-dnf5 --enable-repo=terra --enable-repo=terra-extras -y swap mangohud.x86_64 terra-mangohud.x86_64 --allowerasing
-dnf5 --enable-repo=terra --enable-repo=terra-extras -y swap mangohud.i686 terra-mangohud.i686 --allowerasing
-
 # Install dmemcg-booster for low VRAM cards
 # Recently, NVIDIA supposedly added cgroups to their driver so I want to test it
 dnf5 -y install dmemcg-booster
 dnf5 -y swap --repo terra-extras uresourced uresourced-dmemcg
-
 dnf5 -y config-manager setopt "terra".enabled=0
 dnf5 -y config-manager setopt "terra-extras".enabled=0
 
@@ -59,6 +53,11 @@ dnf5 -y copr disable scottames/ghostty
 dnf5 -y copr enable ublue-os/packages
 dnf5 -y install uupd
 dnf5 -y copr disable ublue-os/packages
+
+# Install mangohud from bazzite-multilib as the fedora version is buggy
+dnf5 -y copr enable ublue-os/bazzite-multilib
+dnf5 -y install mangohud.x86_64 mangohud.i686
+dnf5 -y copr disable ublue-os/bazzite-multilib
 
 # Patch grub2-mkconfig so it works with regenerate-grub
 # From https://github.com/ublue-os/bazzite/blob/6c108d6cb377d78c5e6484787180e7a741b58b84/Containerfile#L462
