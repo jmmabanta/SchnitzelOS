@@ -1,0 +1,36 @@
+#!/usr/bin/bash
+
+# From https://github.com/ublue-os/bazzite/blob/6c108d6cb377d78c5e6484787180e7a741b58b84/system_files/desktop/shared/usr/libexec/bazzite-boot-remount
+# and https://github.com/ublue-os/bazzite/blob/6c108d6cb377d78c5e6484787180e7a741b58b84/system_files/desktop/shared/usr/share/ublue-os/just/80-bazzite.just#L138
+# You modify /etc/default/grub then you run regenerate-grub
+
+set -oue pipefail
+
+# Boolean variable to track if /boot was initially mounted as read-only
+# Ensure compatibility with rpm-ostree where /boot is rw but in bootc /boot is ro
+boot_was_ro=false
+
+# Remount /boot as read-only if it was mounted as read-only ealier
+function remount_boot_ro {
+  if $boot_was_ro; then
+      mount -o remount,ro /boot || exit 13
+  fi
+  return
+}
+
+# Remount /boot as read-write if it was mounted as read-only
+function remount_boot_rw {
+  if grep -q " /boot .* ro," /proc/mounts; then
+    mount -o remount,rw /boot || exit 13
+    boot_was_ro=true
+  fi
+  return
+}
+
+remount_boot_rw
+if [ -d /sys/firmware/efi ]; then
+  sudo grub2-mkconfig -o /etc/grub2-efi.cfg
+else
+  sudo grub2-mkconfig -o /etc/grub2.cfg
+fi
+remount_boot_ro
