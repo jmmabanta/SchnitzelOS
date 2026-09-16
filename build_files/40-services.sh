@@ -17,5 +17,9 @@ systemctl enable sync-nvidia-flatpak.service
 systemctl enable uupd.timer
 systemctl disable rpm-ostreed-automatic.timer
 
+# dmemcg booster
+systemctl enable dmemcg-booster-system.service
+systemctl --global enable dmemcg-booster-user.service
+
 systemctl enable lactd
 systemctl enable libvirtd
