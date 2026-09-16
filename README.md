@@ -14,9 +14,22 @@ sudo bootc switch ghcr.io/jmmabanta/schnitzel-os
 
 After rebasing, if you wish to remove the fedora flatpak remote and instead replace all pre-installed fedora flatpaks with their Flathub equivalent, run `replace-fedora-flatpak`.
 
+## Secure Boot
+
+If after rebasing the OS fails to boot due to secureboot, here is how to enroll the key:
+
+1. Disable secure boot in bios
+2. After rebase, enter `ujust enroll-secure-boot-key`
+3. Reboot and then you should see MOK Manager. Choose 'Enroll Mok'
+4. Enter the password `universalblue`
+5. Continue the reboot back into SchnitzelOS
+6. Reboot back into bios and re-enable secure boot.
+
 ### Acknowledgements
 
 Since the documentation for the image template is not that clear (to me at least), I've referenced the following repos to see how they did things, especially with how they installed things like the NVIDIA driver:
 
 - https://github.com/ublue-os/bazzite
 - https://github.com/thiagojedi/kamino
+- https://github.com/get-aurora-dev/common
+- https://github.com/ublue-os/aurora/
