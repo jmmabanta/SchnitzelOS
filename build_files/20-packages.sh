@@ -28,6 +28,25 @@ dnf5 install -y \
 
 dnf5 install -y --setopt=install_weak_deps=False niri noctalia
 
+# Install latest MangoHud binary from GitHub
+# The one currently packaged in fedora is bugged
+MANGOHUD_URL="$(
+  curl -fsSL https://api.github.com/repos/flightlessmango/MangoHud/releases/latest |
+  jq -r '.assets[]
+    | select(.browser_download_url | contains("r0"))
+    | select(.browser_download_url | endswith(".tar.gz"))
+    | .browser_download_url' |
+  head -n1
+)"
+MANGOHUD_TMP_DIR=$(mktemp -d)
+trap 'rm -rf "$MANGOHUD_TMP_DIR"' EXIT
+MANGOHUD_ARCHIVE="$MANGOHUD_TMP_DIR/mangohud.tar.gz"
+curl -fL "$MANGOHUD_URL" -o "$MANGOHUD_ARCHIVE"
+tar -xzf "$MANGOHUD_ARCHIVE" -C "$MANGOHUD_TMP_DIR"
+cd "$MANGOHUD_TMP_DIR/MangoHud"
+./mangohud-setup.sh install
+cd
+
 dnf5 -y copr enable imput/helium
 dnf5 -y install helium-bin
 dnf5 -y copr disable imput/helium
