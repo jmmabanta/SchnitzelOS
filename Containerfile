@@ -1,5 +1,4 @@
 ARG FEDORA_VERSION=44
-ARG VERSION
 
 FROM ghcr.io/ublue-os/akmods:ogc-${FEDORA_VERSION} AS akmods
 FROM ghcr.io/ublue-os/akmods-nvidia-open:ogc-${FEDORA_VERSION} AS akmods-nvidia
