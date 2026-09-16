@@ -4,19 +4,6 @@
 
 set -ouex pipefail
 
-# gnome-software -> replaced by Bazaar
-# firefox -> use built-in Helium browser instead or install firefox flatpak
-# ptyxis -> ghostty
-dnf5 remove -y \
-  gnome-software \
-  firefox \
-  firefox-langpacks \
-  ptyxis \
-  gnome-classic-session \
-  gnome-extensions-app \
-  gnome-tour \
-  yelp
-
 # RPMFusion is enabled on ublueos main images
 dnf5 install -y \
   fish \
@@ -64,6 +51,19 @@ dnf5 -y copr disable ublue-os/packages
 dnf5 -y copr enable ublue-os/bazzite-multilib
 dnf5 -y install mangohud.x86_64 mangohud.i686
 dnf5 -y copr disable ublue-os/bazzite-multilib
+
+# gnome-software -> replaced by Bazaar
+# firefox -> use built-in Helium browser instead or install firefox flatpak
+# ptyxis -> ghostty
+dnf5 remove -y \
+  gnome-software \
+  firefox \
+  firefox-langpacks \
+  ptyxis \
+  gnome-classic-session \
+  gnome-extensions-app \
+  gnome-tour \
+  yelp
 
 # Patch grub2-mkconfig so it works with regenerate-grub
 # From https://github.com/ublue-os/bazzite/blob/6c108d6cb377d78c5e6484787180e7a741b58b84/Containerfile#L462
