@@ -45,7 +45,6 @@ curl -fL "$MANGOHUD_URL" -o "$MANGOHUD_ARCHIVE"
 tar -xzf "$MANGOHUD_ARCHIVE" -C "$MANGOHUD_TMP_DIR"
 cd "$MANGOHUD_TMP_DIR/MangoHud"
 ./mangohud-setup.sh install
-cd
 
 dnf5 -y copr enable imput/helium
 dnf5 -y install helium-bin
