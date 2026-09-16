@@ -4,9 +4,6 @@
 
 set -ouex pipefail
 
-# Copy the contents of system_files/ of the git repo to /
-cp -avf "/ctx/system_files"/. /
-
 # gnome-software -> replaced by Bazaar
 # firefox -> use built-in Helium browser instead or install firefox flatpak
 dnf5 remove -y \
