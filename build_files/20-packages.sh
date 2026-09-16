@@ -29,7 +29,7 @@ dnf5 install -y \
 dnf5 install -y --setopt=install_weak_deps=False niri noctalia
 
 # Install mangohud from terra as fedora's version is buggy
-dnf5 install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
+dnf5 -y install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
 dnf5 -y config-manager setopt "*terra*".priority=1 "*terra*".exclude="nerd-fonts scx-tools scx-scheds python3-protobuf zlib-devel uupd"
 dnf5 --enable-repo=terra -y install terra-mangohud.x86_64 terra-mangohud.i686
 dnf5 -y config-manager setopt "terra".enabled=0
