@@ -121,6 +121,21 @@ build $target_image=image_name $tag=default_tag:
     LABELS+=("--label" "org.opencontainers.image.title={{ image_name }}")
     LABELS+=("--label" "org.opencontainers.image.vendor={{ repo_organization }}")
 
+    # From https://github.com/ublue-os/bluefin/blob/7aafce49db08d8d965a827582ce5dc806ac9017e/Justfile#L170
+    ver="44.$(date +%Y%m%d)"
+    skopeo list-tags docker://ghcr.io/{{ repo_organization }}/${image_name} > /tmp/repotags.json
+    if [[ $(jq "any(.Tags[]; contains(\"$ver\"))" < /tmp/repotags.json) == "true" ]]; then
+        POINT="1"
+        while $(jq -e "any(.Tags[]; contains(\"$ver.$POINT\"))" < /tmp/repotags.json)
+        do
+            (( POINT++ ))
+        done
+    fi
+    if [[ -n "${POINT:-}" ]]; then
+        ver="${ver}.$POINT"
+    fi
+    BUILD_ARGS+=("--build-arg" "VERSION=${ver}")
+
     # This actually builds the image!
     PODMAN_BUILD_ARGS=("${BUILD_ARGS[@]}" "${LABELS[@]}" --pull=newer --tag "${target_image}:${tag}" --file Containerfile)
 
