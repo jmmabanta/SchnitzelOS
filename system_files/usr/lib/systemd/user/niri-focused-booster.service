@@ -1,0 +1,15 @@
+[Unit]
+Description=Prioritizes GPU VRAM to the currently focused app
+Documentation=https://github.com/1Naim/niri-focused-booster
+After=graphical-session.target
+StartLimitBurst=3
+
+[Service]
+Type=simple
+ExecCondition=/usr/bin/bash -c '[ "$XDG_CURRENT_DESKTOP" = "niri" ]'
+ExecStart=/usr/bin/niri-focused-booster
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=graphical-session.target
