@@ -9,6 +9,7 @@ systemctl preset brew-upgrade.timer
 
 # Setup Bazaar
 systemctl enable flatpak-preinstall.service
+systemctl --global enable bazaar-daemon.service
 
 # Setup NVIDIA driver flatpak sync
 systemctl enable sync-nvidia-flatpak.service
