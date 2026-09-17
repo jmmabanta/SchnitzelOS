@@ -7,6 +7,7 @@ set -ouex pipefail
 # RPMFusion is enabled on ublueos main images
 dnf5 install -y \
   fish \
+  foot \
   steam \
   xdg-terminal-exec \
   fuse-libs \
