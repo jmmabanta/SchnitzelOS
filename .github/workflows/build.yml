@@ -5,12 +5,13 @@ on:
     branches:
       - main
   schedule:
-    - cron: '05 10 * * *'  # 10:05am UTC everyday
+    - cron: '05 08 * * *'  # 08:05am UTC (02:05 MDT) everyday
   push:
     branches:
       - main
     paths-ignore:
       - '**/README.md'
+      - 'assets/**'
   workflow_dispatch:
 
 env:
