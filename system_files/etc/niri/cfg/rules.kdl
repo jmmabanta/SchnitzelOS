@@ -1,0 +1,133 @@
+window-rule {
+    geometry-corner-radius 15
+    clip-to-geometry true
+
+    background-effect {
+        blur true
+        xray false
+    }
+}
+
+blur {
+    passes 3
+    offset 3.0
+    noise 0
+    saturation 1.0
+}
+
+ // if you use steam you will probably like these
+window-rule {
+    match app-id="steam"
+    exclude title=r#"^[Ss]team$"#
+    open-floating true
+}
+
+window-rule {
+    match app-id="steam"
+    opacity 0.8
+    draw-border-with-background false
+}
+
+window-rule {
+   match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+   default-floating-position x=10 y=10 relative-to="bottom-right"
+   open-focused false
+}
+
+// VRR enabled for steam games
+window-rule {
+    match app-id=r#"^steam_app_[0-9]+$"#
+    variable-refresh-rate true
+}
+
+window-rule {
+    match app-id=r#"cs2"#
+    variable-refresh-rate true
+}
+
+window-rule {
+    match app-id=r#"^(com.mojang.minecraft|Minecraft*)"#
+    variable-refresh-rate true
+}
+
+window-rule {
+    match app-id=r#"^(discord|vesktop)"#
+    opacity 0.8
+    draw-border-with-background false
+}
+
+// Open Picture-in-picture window as floating.
+window-rule {
+    match title="Picture-in-picture"
+
+    open-floating true
+    open-maximized false
+}
+
+window-rule {
+    match title=r#"^(Apple Music*|Sidra)"#
+    opacity 0.8
+}
+
+window-rule {
+    match app-id="mpv"
+    open-floating true
+}
+
+window-rule {
+    match app-id="io.github.diegopvlk.Cine"
+    open-floating true
+}
+
+window-rule {
+    match app-id="org.gnome.Loupe"
+    open-floating true
+}
+
+window-rule {
+    match app-id="org.gnome.Nautilus"
+    opacity 0.8
+    draw-border-with-background false
+}
+
+window-rule {
+    match title="satty"
+    open-floating true
+}
+
+window-rule {
+    match title=r#".*arch-update.*"#
+    open-floating true
+    default-column-width { fixed 1080; }
+    default-window-height { fixed 920; }
+}
+
+// Floating Noctalia settings window.
+window-rule {
+    match app-id="dev.noctalia.Noctalia"
+    open-floating true
+    default-column-width { fixed 1080; }
+    default-window-height { fixed 920; }
+}
+
+
+layer-rule {
+  match namespace="^noctalia-backdrop"
+  place-within-backdrop true
+}
+
+layer-rule {
+  match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"
+  background-effect {
+    xray false
+    // blur false
+  }
+}
+
+layer-rule {
+    match namespace="noctalia-window-switcher"
+    background-effect {
+        blur true
+        xray false
+    }
+}
