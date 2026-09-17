@@ -45,10 +45,6 @@ dnf5 -y copr enable ublue-os/packages
 dnf5 -y install uupd
 dnf5 -y copr disable ublue-os/packages
 
-dnf5 -y copr enable bieszczaders/kernel-cachyos-addons
-dnf5 -y install scx-scheds scx-tools scx-manager
-dnf5 -y copr disable bieszczaders/kernel-cachyos-addons
-
 # Install mangohud from bazzite-multilib as the fedora version is buggy
 dnf5 -y copr enable ublue-os/bazzite-multilib
 dnf5 -y install mangohud.x86_64 mangohud.i686
