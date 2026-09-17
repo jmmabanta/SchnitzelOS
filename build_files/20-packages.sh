@@ -33,9 +33,9 @@ dnf5 -y copr enable ilyaz/LACT
 dnf5 -y install lact
 dnf5 -y copr disable ilyaz/LACT
 
-dnf5 -y copr enable lizardbyte/beta
+dnf5 -y copr enable lizardbyte/stable
 dnf5 -y install Sunshine
-dnf5 -y copr disable lizardbyte/beta
+dnf5 -y copr disable lizardbyte/stable
 
 dnf5 -y copr enable scottames/ghostty
 dnf5 -y install ghostty
