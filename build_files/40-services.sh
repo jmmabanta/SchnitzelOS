@@ -27,5 +27,8 @@ systemctl --global enable niri-focused-booster.service
 systemctl enable libvirtd.service
 systemctl enable libvirt-workarounds.service
 
+# ghostty
+systemctl --global enable app-com.mitchellh.ghostty.service
+
 systemctl enable lactd.service
 systemctl enable podman.socket
