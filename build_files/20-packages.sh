@@ -13,7 +13,8 @@ dnf5 install -y \
   nautilus-python \
   wlr-randr \
   wiremix \
-  gamemode
+  gamemode \
+  @virtualization
 
 dnf5 install -y --setopt=install_weak_deps=False niri noctalia
 

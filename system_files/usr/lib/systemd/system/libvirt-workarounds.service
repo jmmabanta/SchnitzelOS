@@ -1,0 +1,14 @@
+# From https://github.com/ublue-os/packages/blob/8f673f87be034ab7795f5d33235a1883a8077d7e/packages/ublue-os-libvirt-workarounds/src/usr/lib/systemd/system/ublue-os-libvirt-workarounds.service
+[Unit]
+Description=Workaround to relabel libvirt files and directories
+ConditionPathIsDirectory=/var/lib/libvirt/
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=-/usr/sbin/restorecon -R /var/log/libvirt/
+ExecStart=-/usr/sbin/restorecon -R /var/lib/libvirt/
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

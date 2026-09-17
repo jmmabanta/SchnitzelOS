@@ -21,5 +21,9 @@ systemctl disable rpm-ostreed-automatic.timer
 systemctl enable dmemcg-booster-system.service
 systemctl --global enable dmemcg-booster-user.service
 
+# libvirt
+systemctl enable libvirtd
+systemctl enable libvirt-workarounds
+
 systemctl enable lactd
 systemctl enable podman.socket
