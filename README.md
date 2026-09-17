@@ -1,4 +1,4 @@
-# SchnitzelOS
+![SchnitzelOS](system_files/usr/share/plymouth/themes/spinner/watermark.png)
 
 This is my personal Fedora Atomic image (using [Universal Blue's template](https://github.com/ublue-os/image-template/)) that I use on my desktop. It is basically Fedora Silverblue + [OGC Kernel](https://opengamingcollective.org/) + Codecs + NVIDIA open drivers + Niri + Noctalia + [some other programs](build_files/20-packages.sh) that I'd rather have installed at the image level instead of through Homebrew or Flatpak.
 
