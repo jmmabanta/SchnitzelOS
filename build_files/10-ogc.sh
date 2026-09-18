@@ -19,16 +19,16 @@ popd
 
 # Remove Existing Kernel
 for pkg in kernel kernel{-core,-modules,-modules-core,-modules-extra,-tools-libs,-tools}; do
-    rpm --erase "${pkg}" --nodeps
+  rpm --erase "${pkg}" --nodeps
 done
 
 # Install OGC kernel
 rm -rf /usr/lib/modules
 dnf5 -y install \
-    /tmp/kernel-rpms/kernel-[0-9]*.rpm \
-    /tmp/kernel-rpms/kernel-core-*.rpm \
-    /tmp/kernel-rpms/kernel-modules-*.rpm \
-    /tmp/kernel-rpms/kernel-devel-*.rpm
+  /tmp/kernel-rpms/kernel-[0-9]*.rpm \
+  /tmp/kernel-rpms/kernel-core-*.rpm \
+  /tmp/kernel-rpms/kernel-modules-*.rpm \
+  /tmp/kernel-rpms/kernel-devel-*.rpm
 
 dnf5 versionlock add kernel kernel-devel kernel-devel-matched kernel-core kernel-modules
 

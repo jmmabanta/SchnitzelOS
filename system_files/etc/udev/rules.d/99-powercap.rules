@@ -1,2 +1,2 @@
 SUBSYSTEM=="powercap", KERNEL=="intel-rapl*", \
-    RUN+="/usr/bin/chmod -R a+r /sys/%p/"
+  RUN+="/usr/bin/chmod -R a+r /sys/%p/"

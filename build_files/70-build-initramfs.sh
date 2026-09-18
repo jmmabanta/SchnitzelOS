@@ -5,9 +5,9 @@
 set -eoux pipefail
 
 if [[ "${KERNEL_FLAVOR:-}" == "surface" ]]; then
-    KERNEL_SUFFIX="surface"
+  KERNEL_SUFFIX="surface"
 else
-    KERNEL_SUFFIX=""
+  KERNEL_SUFFIX=""
 fi
 
 QUALIFIED_KERNEL="$(dnf5 repoquery --installed --queryformat='%{evr}.%{arch}' "kernel${KERNEL_SUFFIX:+-${KERNEL_SUFFIX}}")"
