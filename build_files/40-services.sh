@@ -4,8 +4,6 @@ set -ouex pipefail
 
 # Setup Homebrew
 systemctl preset brew-setup.service
-systemctl preset brew-update.timer
-systemctl preset brew-upgrade.timer
 
 # Setup Bazaar
 systemctl enable flatpak-preinstall.service
