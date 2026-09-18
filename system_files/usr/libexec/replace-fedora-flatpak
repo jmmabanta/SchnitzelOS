@@ -1,0 +1,31 @@
+#!/bin/bash
+
+set -oue pipefail
+
+if ! /usr/bin/flatpak remotes --columns=name | grep -qx fedora; then
+  echo "No fedora flatpak to be found!"
+  exit 0
+fi
+
+echo "Adding Flathub..."
+/usr/bin/flatpak remote-add --if-not-exists --system flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+echo "Replacing Fedora Flatpaks with Flathub"
+TO_REPLACE=$(flatpak list --app-runtime=org.fedoraproject.Platform --columns=application | tail -n +1 )
+
+for app in $TO_REPLACE; do
+  echo "Replacing $app with its Flathub version..."
+  /usr/bin/flatpak uninstall -y --noninteractive "$app" &>/dev/null </dev/null
+  if ! /usr/bin/flatpak install -y --noninteractive flathub "$app" &>/dev/null </dev/null; then
+    # Should ideally never be here
+    echo "$app cannot be found in Flathub!"
+  fi
+done
+
+echo "Removing flatpaks that were only from fedora flatpak"
+/usr/bin/flatpak list --system --columns=ref,origin |
+  /usr/bin/awk '$2 == "fedora" {print $1}' |
+  xargs -r /usr/bin/flatpak uninstall -y --noninteractive
+
+echo "Finally, remove fedora flatpak"
+/usr/bin/flatpak remote-delete --system fedora

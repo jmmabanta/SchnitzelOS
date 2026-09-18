@@ -1,0 +1,13 @@
+[Unit]
+Description=Replaces Fedora flatpaks with Flathub and removes the Fedora remote. This replaces a service included by Fedora that normally installs their repo.
+ConditionPathExists=!/var/lib/flatpak/.flathub-replaced-fedora
+Before=flatpak-system-helper.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/libexec/replace-fedora-flatpak
+ExecStartPost=/usr/bin/touch /var/lib/flatpak/.flathub-replaced-fedora
+
+[Install]
+WantedBy=multi-user.target
