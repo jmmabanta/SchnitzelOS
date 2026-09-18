@@ -1,0 +1,25 @@
+name: Cleanup Old Images
+on:
+  schedule:
+    # 12:14 UTC (06:14 MDT) every Tuesday
+    # (randomly generated time)
+    - cron: '14 12 * * 2'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  clean-old-images:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+    steps:
+      - name: Delete images older than 30 days
+        uses: dataaxiom/ghcr-cleanup-action@v1.2.2
+        with:
+          older-than: 30 days
+          delete-orphaned-images: true
+          keep-n-tagged: 7
+          keep-n-untagged: 7
