@@ -8,7 +8,24 @@ if ! /usr/bin/flatpak remotes --columns=name | grep -qx fedora; then
 fi
 
 echo "Adding Flathub..."
-/usr/bin/flatpak remote-add --if-not-exists --system flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+for i in {1..10}; do
+  if /usr/bin/flatpak remote-add \
+    --if-not-exists \
+    --system \
+    flathub \
+    https://dl.flathub.org/repo/flathub.flatpakrepo
+  then
+    break
+  fi
+
+  if [ "$i" -eq 10 ]; then
+    echo "Unable to fetch the Flathub repository."
+    exit 1
+  fi
+
+  echo "Flathub unavailable; retrying in 5 seconds..."
+  sleep 5
+done
 
 echo "Replacing Fedora Flatpaks with Flathub"
 TO_REPLACE=$(flatpak list --app-runtime=org.fedoraproject.Platform --columns=application | tail -n +1 )
