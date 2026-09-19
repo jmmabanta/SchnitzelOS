@@ -1,0 +1,3 @@
+docker:
+  ghcr.io/jmmabanta/schnitzel-os:
+    use-sigstore-attachments: true

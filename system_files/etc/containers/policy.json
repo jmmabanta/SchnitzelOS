@@ -1,0 +1,13 @@
+{
+  "transports": {
+    "docker": {
+      "ghcr.io/jmmabanta/schnitzel-os": [
+        {
+          "type": "sigstoreSigned",
+          "keyPath": "/etc/pki/containers/schnitzel-os.pub",
+          "signedIdentity": {"type": "matchRepository"}
+        }
+      ]
+    }
+  }
+}
