@@ -44,7 +44,7 @@ Niri config then you should make your Niri config in `~/.config/niri`. You can
 also use the provided Niri config as a start:
 
 ```bash
-cp -r /etc/niri/ ~/.config/
+cp -r /etc/niri/ ~/.config/niri/
 ```
 
 ## ZSWAP
