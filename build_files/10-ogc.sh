@@ -36,3 +36,7 @@ pushd /usr/lib/kernel/install.d
 mv -f 05-rpmostree.install.bak 05-rpmostree.install
 mv -f 50-dracut.install.bak 50-dracut.install
 popd
+
+# Download ublue secureboot signing key
+mkdir -p /etc/pki/akmods/certs
+curl -ssL https://github.com/ublue-os/akmods/raw/refs/heads/main/certs/public_key.der --retry 3 -Lo /etc/pki/akmods/certs/akmods-ublue.der

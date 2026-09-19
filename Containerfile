@@ -24,7 +24,7 @@ COPY system_files /system_files
 COPY build_files /
 
 # Includes codecs + secureboot signing for akmods
-FROM ghcr.io/ublue-os/silverblue-main:${FEDORA_VERSION}
+FROM quay.io/fedora-ostree-desktops/silverblue:${FEDORA_VERSION}
 # Helium needs access to /opt directly, not the symlink to /var/opt
 RUN rm /opt && mkdir /opt
 

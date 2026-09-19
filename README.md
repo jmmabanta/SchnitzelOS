@@ -27,11 +27,20 @@ If after rebasing the OS fails to boot due to secureboot, here is how to enroll
 the key:
 
 1. Disable secure boot in bios
-2. After rebase, enter `ujust enroll-secure-boot-key`
-3. Reboot and then you should see MOK Manager. Choose 'Enroll Mok'
-4. Enter the password `universalblue`
-5. Continue the reboot back into SchnitzelOS
-6. Reboot back into bios and re-enable secure boot.
+1. After rebase, enter:
+
+```bash
+sudo mokutil --import /etc/pki/akmods/certs/akmods-ublue.der
+```
+
+1. You will then be prompted to type a password. Type something simple like
+   `1234`. It will only be temporary and you'll need to use it in the next step.
+1. Reboot your computer. You will then be prompted with the MOK Manager. Choose
+   to enroll the key and use the same password that you entered in the previous
+   step.
+1. After entering the key, continue to reboot and now the OS should be secure
+   boot ready.
+1. Reboot back into bios and re-enable secure boot.
 
 ## Niri
 
