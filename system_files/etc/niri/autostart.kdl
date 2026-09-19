@@ -3,6 +3,3 @@
 
 // spawn-sh-at-startup "qs -c noctalia-shell"
 spawn-at-startup "noctalia"
-
-// Should speed up opening some GNOME apps
-spawn-sh-at-startup "nautilus --gapplication-service"
