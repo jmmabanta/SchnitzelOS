@@ -63,7 +63,8 @@ dnf5 remove -y \
   gnome-classic-session \
   gnome-extensions-app \
   gnome-tour \
-  yelp
+  yelp \
+  htop
 
 # Patch grub2-mkconfig so it works with regenerate-grub
 # From https://github.com/ublue-os/bazzite/blob/6c108d6cb377d78c5e6484787180e7a741b58b84/Containerfile#L462
