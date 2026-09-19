@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# This wrapper fixes cases were trying to open a directory in the terminal
+# would lead to a slow Nautilus launch + the terminal being locked to the
+# process until Nautilus exits.
+
+set -oue pipefail
+
+# On GNOME, xdg-open should be fine but on Niri it can be slow with
+# Nautilus
+if ! [ "${XDG_CURRENT_DESKTOP,,}" = "niri" ]; then
+  exec /usr/bin/xdg-open "$@"
+fi
+
+target="$1"
+
+if [[ "$target" == file://* || -e "$target" ]]; then
+  exec gio open "$@"
+else
+  # gio open has jank behaviour with all other apps
+  # where xdg-open works fine usually
+  exec /usr/bin/xdg-open "$@"
+fi
