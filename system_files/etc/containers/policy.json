@@ -1,4 +1,9 @@
 {
+  "default": [
+    {
+      "type": "insecureAcceptAnything"
+    }
+  ],
   "transports": {
     "docker": {
       "ghcr.io/jmmabanta/schnitzel-os": [
