@@ -17,9 +17,9 @@ rebase to this image with:
 sudo bootc switch ghcr.io/jmmabanta/schnitzel-os
 ```
 
-After rebasing, if you wish to remove the fedora flatpak remote and instead
-replace all pre-installed fedora flatpaks with their Flathub equivalent, run
-`replace-fedora-flatpak`.
+After rebasing, the Fedora flatpak remote will be removed in favour of
+Flathub. Any flatpaks previously installed from the Fedora remote will
+be automatically migrated to Flathub.
 
 ## Secure Boot
 
@@ -32,6 +32,20 @@ the key:
 4. Enter the password `universalblue`
 5. Continue the reboot back into SchnitzelOS
 6. Reboot back into bios and re-enable secure boot.
+
+## Niri
+
+By default, you will still boot into GNOME. If you want to switch to Niri then
+logout and choose Niri in the login screen by clicking the cog button on the
+bottom right.
+
+A starter Niri config is provided in `/etc/niri`. If you want to make your own
+Niri config then you should make your Niri config in `~/.config/niri`. You can
+also use the provided Niri config as a start:
+
+```bash
+cp -r /etc/niri/ ~/.config/
+```
 
 ## ZSWAP
 

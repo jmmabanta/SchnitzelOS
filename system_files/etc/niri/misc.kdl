@@ -2,12 +2,12 @@ prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 environment {
-    ELECTRON_OZONE_PLATFORM_HINT "auto"
-    QT_QPA_PLATFORM "wayland"
-    QT_QPA_PLATFORMTHEME "gtk3"
-    QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
-    XDG_CURRENT_DESKTOP "niri"
-    XDG_SESSION_TYPE "wayland"
+  ELECTRON_OZONE_PLATFORM_HINT "auto"
+  QT_QPA_PLATFORM "wayland"
+  QT_QPA_PLATFORMTHEME "gtk3"
+  QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+  XDG_CURRENT_DESKTOP "niri"
+  XDG_SESSION_TYPE "wayland"
 }
 
 cursor {
@@ -17,11 +17,11 @@ cursor {
 }
 
 debug {
-    // Allows notification actions and window activation from Noctalia.
-    honor-xdg-activation-with-invalid-serial
-    // enable-overlay-planes
-    // emulate-zero-presentation-time
-    skip-cursor-only-updates-during-vrr
+  // Allows notification actions and window activation from Noctalia.
+  honor-xdg-activation-with-invalid-serial
+  // enable-overlay-planes
+  // emulate-zero-presentation-time
+  skip-cursor-only-updates-during-vrr
 }
 
 hotkey-overlay {
