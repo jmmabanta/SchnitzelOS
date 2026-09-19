@@ -14,7 +14,8 @@ dnf5 install -y \
   wlr-randr \
   wiremix \
   gamemode \
-  @virtualization
+  @virtualization \
+  libayatana-appindicator
 
 dnf5 install -y --setopt=install_weak_deps=False niri noctalia
 
