@@ -9,17 +9,35 @@ add to it.
 
 ## How to install
 
-Right now I'm not building any ISOs so to use it, first install any Fedora
-Atomic image with GNOME (Bluefin, Bazzite-Gnome, Fedora Silverblue). Then,
-rebase to this image with:
+Right now I'm not building any ISOs so to use it:
 
-```sh
-sudo bootc switch ghcr.io/jmmabanta/schnitzel-os
-```
+1. Turn off secure boot (read [later section on how to re-enable
+   it](#secure-boot))
 
-After rebasing, the Fedora flatpak remote will be removed in favour of
-Flathub. Any flatpaks previously installed from the Fedora remote will
-be automatically migrated to Flathub.
+1. Install (or use existing) Fedora Silverblue or any Fedora Atomic distro that
+   uses GNOME (eg. Bluefin, Bazzite-GNOME).
+
+   Starting from a non-GNOME image like Kinoite might still work but since this
+   image use GNOME some configuration files may be messed up.
+
+1. Rebase to SchnitzelOS with:
+
+    ```bash
+    sudo bootc switch ghcr.io/jmmabanta/schnitzel-os
+    ```
+
+1. After a reboot, you will then boot into SchnitzelOS!
+
+   If you had Fedora's Flatpak remote enabled, then it will be deleted.
+   Any Flatpaks installed from Fedora's remote will migrate automatically to
+   Flathub.
+
+1. Once you have verified everything is working to your liking, rebase from the
+   unsigned image to the signed image for better security, then reboot:
+
+    ```bash
+    sudo bootc switch --enforce-container-sigpolicy ghcr.io/jmmabanta/schnitzel-os
+    ```
 
 ## Secure Boot
 
@@ -29,9 +47,9 @@ the key:
 1. Disable secure boot in bios
 1. After rebase, enter:
 
-```bash
-sudo mokutil --import /etc/pki/akmods/certs/akmods-ublue.der
-```
+    ```bash
+    sudo mokutil --import /etc/pki/akmods/certs/akmods-ublue.der
+    ```
 
 1. You will then be prompted to type a password. Type something simple like
    `1234`. It will only be temporary and you'll need to use it in the next step.
@@ -61,38 +79,39 @@ cp -r /etc/niri/ ~/.config/niri/
 According to Chris Down, [zswap is better than zram](https://chrisdown.name/2026/03/24/zswap-vs-zram-when-to-use-what.html)
 in most cases. This image has already set the necessary kernel parameters to
 enable zswap but some manual work needs to be done by you after rebasing (since
-neither Fedora nor ublue-os images use a swap file by default).
+neither Fedora nor ublue-os images use a swap file by default and instead use
+ZRAM).
 
 1. Create BTRFS subvolume for swap
 
-```bash
-sudo btrfs subvolume create /var/swap
-sudo semanage fcontext -a -t var_t /var/swap
-sudo restorecon /var/swap
-```
+    ```bash
+    sudo btrfs subvolume create /var/swap
+    sudo semanage fcontext -a -t var_t /var/swap
+    sudo restorecon /var/swap
+    ```
 
 1. Create the swapfile itself
 
-```bash
-SIZE=8G
-sudo btrfs filesystem mkswapfile --size $SIZE /var/swap/swapfile
-sudo semanage fcontext -a -t swapfile_t /var/swap/swapfile
-sudo restorecon /var/swap/swapfile
+    ```bash
+    SIZE=8G
+    sudo btrfs filesystem mkswapfile --size $SIZE /var/swap/swapfile
+    sudo semanage fcontext -a -t swapfile_t /var/swap/swapfile
+    sudo restorecon /var/swap/swapfile
 
-sudo swapon /var/swap/swapfile
-```
+    sudo swapon /var/swap/swapfile
+    ```
 
 1. Add the swapfile to `/etc/fstab` so it persists between reboots:
 
-```bash
-echo "/var/swap/swapfile none swap defaults,nofail 0 0" | sudo tee -a /etc/fstab
-```
+    ```bash
+    echo "/var/swap/swapfile none swap defaults,nofail 0 0" | sudo tee -a /etc/fstab
+    ```
 
 1. Disable ZRAM:
 
-```bash
-sudo touch /etc/systemd/zram-generator.conf
-```
+    ```bash
+    sudo touch /etc/systemd/zram-generator.conf
+    ```
 
 1. Reboot
 
