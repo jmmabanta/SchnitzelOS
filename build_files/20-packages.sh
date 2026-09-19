@@ -15,7 +15,7 @@ dnf5 install -y \
   wiremix \
   gamemode \
   @virtualization \
-  libayatana-appindicator
+  libayatana-appindicator-gtk3
 
 dnf5 install -y --setopt=install_weak_deps=False niri noctalia
 
