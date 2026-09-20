@@ -79,8 +79,13 @@ FEDORA_PACKAGES=(
 
 PACKAGES=( "${FEDORA_PACKAGES[@]}" "${NEGATIVO_PACKAGES[@]}" )
 dnf5 install -y --enablerepo='fedora-multimedia' "${PACKAGES[@]}"
-# No need for the extra deps these bring in
+
+# Install older version of xwayland-satellite as latest version is buggy
+dnf5 install -y xwayland-satellite-0.8.1
+dnf5 versionlock add xwayland-satellite
+# No need for the extra deps these bring in for niri+noctalia
 dnf5 install -y --setopt=install_weak_deps=False niri noctalia
+
 # Fix google cjk fonts
 ln -s "/usr/share/fonts/google-noto-sans-cjk-fonts" "/usr/share/fonts/noto-cjk"
 
