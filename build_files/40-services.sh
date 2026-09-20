@@ -33,3 +33,11 @@ systemctl --global enable app-com.mitchellh.ghostty.service
 
 systemctl enable lactd.service
 systemctl enable podman.socket
+
+# Disable unneeded services that can slowdown boot
+# https://github.com/ublue-os/bazzite/commit/d6334b34d3a75bd70082581d1337cbec849e695c
+systemctl mask iscsi
+# https://github.com/ublue-os/bazzite/pull/4279
+systemctl mask systemd-remount-fs.service
+# https://github.com/ublue-os/bazzite/pull/5449
+systemctl mask fedora-atomic-desktop-appstream-cache-refresh
