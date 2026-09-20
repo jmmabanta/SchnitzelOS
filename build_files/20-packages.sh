@@ -86,6 +86,10 @@ dnf5 versionlock add xwayland-satellite
 # No need for the extra deps these bring in for niri+noctalia
 dnf5 install -y --setopt=install_weak_deps=False niri noctalia
 
+# Replace tuneD with power-profiles-daemon
+# https://www.phoronix.com/review/fedora-pantherlake-thermald-tuned/4
+dnf5 swap -y tuned-ppd power-profiles-daemon
+
 # Fix google cjk fonts
 ln -s "/usr/share/fonts/google-noto-sans-cjk-fonts" "/usr/share/fonts/noto-cjk"
 
