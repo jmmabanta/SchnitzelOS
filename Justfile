@@ -180,7 +180,7 @@ ostree-rechunk $target_image=image_name $tag=default_tag:
       --entrypoint /usr/bin/rpm-ostree \
       "${RPM_OSTREE_CHUNKER_IMAGE}" \
       compose build-chunked-oci \
-      --max-layers 127 \
+      --max-layers 256 \
       --format-version=2 \
       --bootc \
       --rootfs /rpm-ostree \
