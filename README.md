@@ -1,4 +1,4 @@
-# ![SchnitzelOS](assets/SchnitzelOS.png)
+# ![SchnitzelOS](assets/SchnitzelOS.svg)
 
 This is my personal Fedora Atomic image (using
 [Universal Blue's template](https://github.com/ublue-os/image-template/))
