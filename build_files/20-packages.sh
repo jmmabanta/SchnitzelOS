@@ -71,8 +71,6 @@ FEDORA_PACKAGES=(
   lshw
   nautilus-python
   nvtop
-  tcpdump
-  traceroute
   vim
   wiremix
   wlr-randr
