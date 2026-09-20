@@ -44,7 +44,8 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
   /ctx/40-services.sh && \
   /ctx/50-cleanup.sh && \
   /ctx/60-image-info.sh && \
-  /ctx/70-build-initramfs.sh
+  /ctx/70-build-initramfs.sh && \
+  /ctx/80-chunkah.sh
 
 ### LINTING
 ## Verify final image and contents are correct.
