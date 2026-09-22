@@ -33,6 +33,12 @@ OVERRIDES=(
   mesa-libgbm
   mesa-vulkan-drivers
 )
+
+# Remove libheif-ffmpeg from Fedora to avoid conflicts
+# https://github.com/ublue-os/aurora/pull/2904
+# TODO: remove workaround once https://github.com/negativo17/libheif/commit/ba4f9196ab68d151e6024382271dd27b5795039a
+dnf5 remove -y libheif-ffmpeg || true
+
 dnf5 distro-sync --skip-unavailable -y --repo='fedora-multimedia' "${OVERRIDES[@]}"
 dnf5 versionlock add "${OVERRIDES[@]}"
 
