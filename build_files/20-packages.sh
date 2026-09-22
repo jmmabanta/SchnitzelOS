@@ -81,6 +81,7 @@ PACKAGES=( "${FEDORA_PACKAGES[@]}" "${NEGATIVO_PACKAGES[@]}" )
 dnf5 install -y --enablerepo='fedora-multimedia' "${PACKAGES[@]}"
 
 # Install older version of xwayland-satellite as latest version is buggy
+# TODO: Check back when 0.8.2 drops
 dnf5 install -y xwayland-satellite-0.8.1
 dnf5 versionlock add xwayland-satellite
 # No need for the extra deps these bring in for niri+noctalia
