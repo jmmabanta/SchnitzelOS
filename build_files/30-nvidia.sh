@@ -9,3 +9,7 @@ MULTILIB=1 \
 
 rm -f /usr/share/vulkan/icd.d/nouveau_icd.*.json
 ln -sf libnvidia-ml.so.1 /usr/lib64/libnvidia-ml.so
+
+# See "Test SELinux Policy" in
+# https://copr.fedorainfracloud.org/coprs/g/ai-ml/nvidia-container-toolkit/
+setsebool -P container_use_xserver_devices 1

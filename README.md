@@ -115,21 +115,6 @@ ZRAM).
 
 1. Reboot
 
-## NVIDIA Container Toolkit
-
-The NVIDIA Container Toolkit should be preinstalled but if you are getting
-`Failed to initialize NVML: Insufficient Permissions` then it means SELinux
-might be goofy.
-
-To fix this, run:
-
-```bash
-sudo setsebool -P container_use_devices 1
-```
-
-Note that there might be security implications that I don't know of with this
-setting. What I do know though it that it fixes the problem :)
-
 ### Acknowledgements
 
 Since the documentation for the image template is not that clear (to me at
