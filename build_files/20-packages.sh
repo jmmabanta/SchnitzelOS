@@ -97,9 +97,6 @@ dnf5 install -y --setopt=install_weak_deps=False niri noctalia
 # https://www.phoronix.com/review/fedora-pantherlake-thermald-tuned/4
 dnf5 swap -y tuned-ppd power-profiles-daemon
 
-# Fix google cjk fonts
-ln -s "/usr/share/fonts/google-noto-sans-cjk-fonts" "/usr/share/fonts/noto-cjk"
-
 # Install dmemcg-booster for low VRAM cards
 # Recently, NVIDIA supposedly added cgroups to their driver so I want to test it
 dnf5 -y install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release{,-extras}
