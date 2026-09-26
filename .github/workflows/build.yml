@@ -7,7 +7,7 @@ on:
   schedule:
     # 04:46 UTC (22:46 MDT prev day) every other day
     # (randomized minute + actions usually 2 hours delayed :/)
-    - cron: '46 04 */2 * *'
+    - cron: '46 04 * * *'
   push:
     branches:
       - main
