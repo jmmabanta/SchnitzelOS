@@ -1,16 +1,36 @@
 #!/usr/bin/bash
 
-# This is taken from https://github.com/ublue-os/bazzite/blob/main/build_files/build-initramfs
+# This is taken from https://github.com/ublue-os/aurora/blob/dbc58acc744a9ad178f7ea2a526d65b356e57cc5/build_scripts/base/19-initramfs.sh
 
-set -eoux pipefail
+set -ouex pipefail
 
-if [[ "${KERNEL_FLAVOR:-}" == "surface" ]]; then
-  KERNEL_SUFFIX="surface"
-else
-  KERNEL_SUFFIX=""
-fi
+KERNEL_VERSION=$(rpm -q --queryformat="%{evr}.%{arch}" kernel-core)
+INITRAMFS="/usr/lib/modules/${KERNEL_VERSION}/initramfs.img"
 
-QUALIFIED_KERNEL="$(dnf5 repoquery --installed --queryformat='%{evr}.%{arch}' "kernel${KERNEL_SUFFIX:+-${KERNEL_SUFFIX}}")"
-/usr/bin/dracut --no-hostonly --kver "$QUALIFIED_KERNEL" --reproducible --zstd -v --add ostree --add-drivers "lz4hc lz4hc_compress" -f "/usr/lib/modules/$QUALIFIED_KERNEL/initramfs.img"
+# https://github.com/ublue-os/aurora/issues/2568
+# these strings change with every build
+TMP_OS_RELEASE=$(mktemp --tmpdir 'os-release-XXXXXXXXXX')
+OS_RELEASE="/usr/lib/os-release"
+cp "${OS_RELEASE}" "${TMP_OS_RELEASE}"
+sed -Ei -e '/^((OSTREE_)?(IMAGE_)?VERSION|PRETTY_NAME|BUILD_ID)=/d' "${OS_RELEASE}"
 
-chmod 0600 /usr/lib/modules/"$QUALIFIED_KERNEL"/initramfs.img
+DRACUT_NO_XATTR=1 /usr/bin/dracut \
+  --kver "${KERNEL_VERSION}" \
+  --reproducible \
+  --verbose \
+  --force \
+  --zstd \
+  --add-drivers "lz4hc lz4hc_compress" \
+  "${INITRAMFS}"
+
+# mv causes permissions to change
+cp "${TMP_OS_RELEASE}" "${OS_RELEASE}"
+rm "${TMP_OS_RELEASE}"
+
+chmod 0600 "${INITRAMFS}"
+
+# for reproducibility
+touch -a -m -d "1970-01-01T00:00:00Z" "${INITRAMFS}"
+
+# for debugging
+sha256sum "${INITRAMFS}"
