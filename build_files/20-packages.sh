@@ -55,14 +55,11 @@ NEGATIVO_PACKAGES=(
 FEDORA_PACKAGES=(
   @virtualization
   adw-gtk3-theme
-  btop
   distrobox
-  fastfetch
   ffmpegthumbnailer
   fish
   flatpak-spawn
   fuse{,-libs}
-  fzf
   gamemode
   google-noto-sans-balinese-fonts
   google-noto-sans-cham-fonts
@@ -77,7 +74,6 @@ FEDORA_PACKAGES=(
   lshw
   nautilus-python
   nvtop
-  vim
   wiremix
   wlr-randr
   xdg-terminal-exec
