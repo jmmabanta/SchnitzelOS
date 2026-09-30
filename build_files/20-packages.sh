@@ -141,8 +141,14 @@ REMOVE=(
   firefox-langpacks
   gnome-classic-session
   gnome-extensions-app
+  gnome-shell-extension-apps-menu
+  gnome-shell-extension-background-logo
+  gnome-shell-extension-launch-new-instance
+  gnome-shell-extension-places-menu
+  gnome-shell-extension-window-list
   gnome-software
   gnome-software-rpm-ostree
+  gnome-system-monitor
   gnome-tour
   ptyxis
   totem-video-thumbnailer
