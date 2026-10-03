@@ -30,7 +30,6 @@ systemctl enable libvirt-workarounds.service
 # ghostty
 systemctl --global enable app-com.mitchellh.ghostty.service
 
-systemctl enable lactd.service
 systemctl enable podman.socket
 
 # Disable unneeded services that can slowdown boot
