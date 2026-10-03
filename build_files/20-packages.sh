@@ -121,6 +121,11 @@ dnf5 -y copr enable scottames/ghostty
 dnf5 -y install ghostty
 dnf5 -y copr disable scottames/ghostty
 
+# Allows for rounded dynamic blur on GNOME
+dnf5 -y copr enable aneagle/gnome-rounded-blur
+dnf5 -y install gnome-rounded-blur
+dnf5 -y copr disable aneagle/gnome-rounded-blur
+
 # uupd handles automatic image + flatpak + homebrew updates
 dnf5 -y copr enable ublue-os/packages
 dnf5 -y install uupd
