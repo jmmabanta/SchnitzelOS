@@ -49,7 +49,6 @@ NEGATIVO_PACKAGES=(
   libfdk-aac
   libva-utils
   pipewire-libs-extra
-  steam
 )
 
 FEDORA_PACKAGES=(
@@ -93,11 +92,18 @@ dnf5 install -y --setopt=install_weak_deps=False niri noctalia
 # https://www.phoronix.com/review/fedora-pantherlake-thermald-tuned/4
 dnf5 swap -y tuned-ppd power-profiles-daemon
 
-# Install dmemcg-booster for low VRAM cards
-# Recently, NVIDIA supposedly added cgroups to their driver so I want to test it
+TERRA_PACKAGES = (
+  dmemcg-booster
+  ghostty
+  steam
+  terra-mangohud.x86_64
+  terra-mangohud.i686
+)
 dnf5 -y install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release{,-extras}
 dnf5 -y config-manager setopt "*terra*".priority=1 "*terra*".exclude="nerd-fonts scx-tools scx-scheds python3-protobuf zlib-devel uupd"
-dnf5 -y install dmemcg-booster
+dnf5 -y install "${TERRA_PACKAGES[@]}"
+# VRAM Management for non-KDE DEs
+dnf5 -y swap --repo terra-extras uresourced uresourced-dmemcg
 dnf5 -y config-manager setopt "terra".enabled=0
 dnf5 -y config-manager setopt "terra-extras".enabled=0
 
@@ -106,20 +112,10 @@ dnf5 -y copr enable imput/helium
 dnf5 -y install helium-bin
 dnf5 -y copr disable imput/helium
 
-# LACT for GPU overclock
-dnf5 -y copr enable ilyaz/LACT
-dnf5 -y install lact
-dnf5 -y copr disable ilyaz/LACT
-
 # Sunshine for local game streaming
 dnf5 -y copr enable lizardbyte/stable
 dnf5 -y install Sunshine
 dnf5 -y copr disable lizardbyte/stable
-
-# Ghostty is fancier ptyxis + can share config with macOS
-dnf5 -y copr enable scottames/ghostty
-dnf5 -y install ghostty
-dnf5 -y copr disable scottames/ghostty
 
 # Allows for rounded dynamic blur on GNOME
 dnf5 -y copr enable aneagle/gnome-rounded-blur
@@ -130,11 +126,6 @@ dnf5 -y copr disable aneagle/gnome-rounded-blur
 dnf5 -y copr enable ublue-os/packages
 dnf5 -y install uupd
 dnf5 -y copr disable ublue-os/packages
-
-# Install mangohud from bazzite-multilib as the fedora version is buggy
-dnf5 -y copr enable ublue-os/bazzite-multilib
-dnf5 -y install mangohud.x86_64 mangohud.i686
-dnf5 -y copr disable ublue-os/bazzite-multilib
 
 REMOVE=(
   fedora-third-party

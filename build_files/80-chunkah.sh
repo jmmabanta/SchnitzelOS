@@ -14,7 +14,6 @@ setfattr -n user.component -v "flatpak-tweaks" /usr/share/flatpak/preinstall.d/b
 setfattr -n user.update-interval -v "yearly" /usr/lib/systemd/system/flatpak-add-fedora-repos.service
 
 setfattr -n user.component -v "nvidia-tweaks" /usr/lib/systemd/system/sync-nvidia-flatpak.service
-setfattr -n user.component -v "nvidia-tweaks" /usr/lib/systemd/user/niri-focused-booster.service
 setfattr -n user.component -v "nvidia-tweaks" /usr/lib/bootc/kargs.d/00-nvidia.toml
 setfattr -n user.component -v "nvidia-tweaks" /usr/libexec/sync-nvidia-flatpak
 setfattr -n user.component -v "nvidia-tweaks" /etc/nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool-in-wayland-compositors.json

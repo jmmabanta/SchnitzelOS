@@ -22,7 +22,6 @@ systemctl disable rpm-ostreed-automatic.timer
 # dmemcg booster
 systemctl enable dmemcg-booster-system.service
 systemctl --global enable dmemcg-booster-user.service
-systemctl --global enable niri-focused-booster.service
 
 # libvirt
 systemctl enable libvirtd.service
