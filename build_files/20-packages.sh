@@ -71,11 +71,8 @@ FEDORA_PACKAGES=(
   gvfs{,-fuse,-nfs}
   libayatana-appindicator-gtk3
   lshw
-  nautilus-python
   nvtop
-  wiremix
   wlr-randr
-  xdg-terminal-exec
 )
 
 PACKAGES=( "${FEDORA_PACKAGES[@]}" "${NEGATIVO_PACKAGES[@]}" )
@@ -107,11 +104,6 @@ dnf5 -y config-manager setopt "terra-extras".enabled=0
 dnf5 -y copr enable imput/helium
 dnf5 -y install helium-bin
 dnf5 -y copr disable imput/helium
-
-# Sunshine for local game streaming
-dnf5 -y copr enable lizardbyte/stable
-dnf5 -y install Sunshine
-dnf5 -y copr disable lizardbyte/stable
 
 # Allows for rounded dynamic blur on GNOME
 dnf5 -y copr enable aneagle/gnome-rounded-blur
