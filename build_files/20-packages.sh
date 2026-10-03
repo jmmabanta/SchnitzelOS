@@ -115,7 +115,7 @@ dnf5 -y copr disable lizardbyte/stable
 
 # Allows for rounded dynamic blur on GNOME
 dnf5 -y copr enable aneagle/gnome-rounded-blur
-dnf5 -y install gnome-rounded-blur
+dnf5 -y install --setopt=install_weak_deps=False gnome-rounded-blur
 dnf5 -y copr disable aneagle/gnome-rounded-blur
 
 # uupd handles automatic image + flatpak + homebrew updates
