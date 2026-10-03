@@ -92,7 +92,7 @@ dnf5 install -y --setopt=install_weak_deps=False niri noctalia
 # https://www.phoronix.com/review/fedora-pantherlake-thermald-tuned/4
 dnf5 swap -y tuned-ppd power-profiles-daemon
 
-TERRA_PACKAGES = (
+TERRA_PACKAGES=(
   dmemcg-booster
   ghostty
   steam
