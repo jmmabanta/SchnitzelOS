@@ -5,9 +5,9 @@ on:
     branches:
       - main
   schedule:
-    # 04:46 UTC (22:46 MDT prev day) every other day
-    # (randomized minute + actions usually 2 hours delayed :/)
-    - cron: '46 04 * * *'
+    # 03:46 UTC (21:46 MDT prev day) every other day
+    # (randomized minute + actions usually 4-5 hours delayed :/)
+    - cron: '46 03 * * *'
   push:
     branches:
       - main
