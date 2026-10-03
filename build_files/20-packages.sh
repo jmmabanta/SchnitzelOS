@@ -73,6 +73,7 @@ FEDORA_PACKAGES=(
   lshw
   nvtop
   wlr-randr
+  xdg-terminal-exec
 )
 
 PACKAGES=( "${FEDORA_PACKAGES[@]}" "${NEGATIVO_PACKAGES[@]}" )
