@@ -19,15 +19,18 @@ FEDORA_MAJOR_VERSION=44
 IMAGE_INFO="/usr/share/ublue-os/image-info.json"
 IMAGE_REF="ostree-unverified-registry:ghcr.io/$IMAGE_VENDOR/$IMAGE_NAME"
 
-# Get image version (date.revision)
+# Get image version (date.revision). Image tags still use the compact date;
+# VERSION uses a hyphenated date (YYYY-MM-DD) for readability.
 ver="$(date +%Y%m%d)"
+hyphen="$(date +%Y-%m-%d)"
 skopeo list-tags docker://ghcr.io/${IMAGE_VENDOR}/${IMAGE_NAME} > /tmp/repotags.json
 POINT="$(jq "[.Tags[] | select(contains(\"latest-${ver}-\"))] | length" < /tmp/repotags.json)"
 
 if [[ $POINT -gt 0 ]]; then
-  ver="${ver}.${POINT}"
+  VERSION="${hyphen}.${POINT}"
+else
+  VERSION="${hyphen}"
 fi
-VERSION="${ver:-00.00000000}"
 
 # Image Flavor
 image_flavor="main"
