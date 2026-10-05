@@ -101,11 +101,6 @@ dnf5 -y swap --repo terra-extras uresourced uresourced-dmemcg
 dnf5 -y config-manager setopt "terra".enabled=0
 dnf5 -y config-manager setopt "terra-extras".enabled=0
 
-# Helium > Firefox
-dnf5 -y copr enable imput/helium
-dnf5 -y install helium-bin
-dnf5 -y copr disable imput/helium
-
 # Allows for rounded dynamic blur on GNOME
 dnf5 -y copr enable aneagle/gnome-rounded-blur
 dnf5 -y install --setopt=install_weak_deps=False gnome-rounded-blur

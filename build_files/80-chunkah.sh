@@ -11,6 +11,7 @@ setfattr -n user.component -v "flatpak-tweaks" /usr/lib/systemd/system/flatpak-p
 setfattr -n user.component -v "flatpak-tweaks" /usr/lib/systemd/user/bazaar-daemon.service
 setfattr -n user.component -v "flatpak-tweaks" /usr/libexec/replace-fedora-flatpak
 setfattr -n user.component -v "flatpak-tweaks" /usr/share/flatpak/preinstall.d/bazaar.preinstall
+setfattr -n user.component -v "flatpak-tweaks" /usr/share/flatpak/preinstall.d/firefox.preinstall
 setfattr -n user.update-interval -v "yearly" /usr/lib/systemd/system/flatpak-add-fedora-repos.service
 
 setfattr -n user.component -v "nvidia-tweaks" /usr/lib/systemd/system/sync-nvidia-flatpak.service
