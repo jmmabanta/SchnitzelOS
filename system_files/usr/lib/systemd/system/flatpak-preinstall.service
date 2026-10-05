@@ -1,7 +1,7 @@
 # From https://github.com/get-aurora-dev/common/blob/main/system_files/shared/usr/lib/systemd/system/flatpak-preinstall.service
 [Unit]
 Description=Preinstall Flatpaks
-After=network-online.target
+After=network-online.target flatpak-add-fedora-repos.service
 Wants=network-online.target
 ConditionPathExists=/usr/bin/flatpak
 Documentation=man:flatpak-preinstall(1)
