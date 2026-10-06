@@ -78,8 +78,7 @@ TERRA_PACKAGES=(
   dmemcg-booster
   ghostty
   steam
-  terra-mangohud.x86_64
-  terra-mangohud.i686
+  terra-mangohud
 )
 dnf5 -y install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release{,-extras}
 dnf5 -y config-manager setopt "*terra*".priority=1 "*terra*".exclude="nerd-fonts scx-tools scx-scheds python3-protobuf zlib-devel uupd"
