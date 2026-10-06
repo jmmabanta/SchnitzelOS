@@ -4,7 +4,6 @@
 
 set -ouex pipefail
 
-# Copy the contents of system_files/ of the git repo to /
 rsync -rvKl "/ctx/system_files"/. /
 
 # create a shims to bypass kernel install triggering dracut/rpm-ostree
@@ -17,12 +16,10 @@ printf '%s\n' '#!/bin/sh' 'exit 0' > 50-dracut.install
 chmod +x  05-rpmostree.install 50-dracut.install
 popd
 
-# Remove Existing Kernel
 for pkg in kernel kernel{-core,-modules,-modules-core,-modules-extra,-tools-libs,-tools}; do
   rpm --erase "${pkg}" --nodeps
 done
 
-# Install OGC kernel
 rm -rf /usr/lib/modules
 dnf5 -y install \
   /tmp/kernel-rpms/kernel-[0-9]*.rpm \
