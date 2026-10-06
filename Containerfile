@@ -1,6 +1,5 @@
 ARG FEDORA_VERSION=44
 
-FROM ghcr.io/ublue-os/akmods:ogc-${FEDORA_VERSION} AS akmods
 FROM ghcr.io/ublue-os/akmods-nvidia-open:ogc-${FEDORA_VERSION} AS akmods-nvidia
 FROM ghcr.io/ublue-os/brew:latest AS brew
 
@@ -19,7 +18,7 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
   --mount=type=cache,dst=/var/cache \
   --mount=type=cache,dst=/var/log \
   --mount=type=tmpfs,dst=/tmp \
-  --mount=type=bind,from=akmods,src=/kernel-rpms,dst=/tmp/kernel-rpms \
+  --mount=type=bind,from=akmods-nvidia,src=/kernel-rpms,dst=/tmp/kernel-rpms \
   --mount=type=bind,from=akmods-nvidia,src=/rpms,dst=/tmp/rpms/nvidia \
   /ctx/10-ogc.sh && \
   /ctx/20-packages.sh && \
