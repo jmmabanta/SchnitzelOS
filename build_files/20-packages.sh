@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# Taken from https://github.com/ublue-os/bazzite/blob/main/build_files/install-kernel-akmods
-
 set -ouex pipefail
 
 # Add Flathub to the image for eventual application
@@ -22,7 +20,6 @@ dnf5 config-manager setopt fedora-multimedia.priority=90
 OVERRIDES=(
   intel-gmmlib
   intel-mediasdk
-  intel-vpl-gpu-rt
   libheif
   libva
   libva-intel-media-driver
@@ -34,12 +31,7 @@ OVERRIDES=(
   mesa-vulkan-drivers
 )
 
-# Remove libheif-ffmpeg from Fedora to avoid conflicts
-# https://github.com/ublue-os/aurora/pull/2904
-# TODO: remove workaround once https://github.com/negativo17/libheif/commit/ba4f9196ab68d151e6024382271dd27b5795039a
-dnf5 remove -y libheif-ffmpeg || true
-
-dnf5 distro-sync --skip-unavailable -y --repo='fedora-multimedia' "${OVERRIDES[@]}"
+dnf5 distro-sync --skip-unavailable --allowerasing -y --repo='fedora-multimedia' "${OVERRIDES[@]}"
 dnf5 versionlock add "${OVERRIDES[@]}"
 
 NEGATIVO_PACKAGES=(
