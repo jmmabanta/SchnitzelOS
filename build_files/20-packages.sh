@@ -88,10 +88,10 @@ dnf5 -y swap --repo terra-extras uresourced uresourced-dmemcg
 dnf5 -y config-manager setopt "terra".enabled=0
 dnf5 -y config-manager setopt "terra-extras".enabled=0
 
-# Allows BlurMyShell to apply dynamic blur with rounded corners
-# TODO: Update to proper package installation when Fedora 45 goes out of beta
-# See https://github.com/aunetx/blur-my-shell/blob/master/scripts/GUIDE.md
-curl https://raw.githubusercontent.com/aunetx/blur-my-shell/refs/heads/master/scripts/rounded_blur_build.sh | bash -s -- -i -f -e
+# TODO: Uncomment when F45 version comes out
+# dnf5 -y copr enable aneagle/gnome-rounded-blur
+# dnf5 -y install --setopt=install_weak_deps=False gnome-rounded-blur
+# dnf5 -y copr disable aneagle/gnome-rounded-blur
 
 # uupd handles automatic image + flatpak + homebrew updates
 dnf5 -y copr enable ublue-os/packages
