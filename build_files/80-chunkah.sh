@@ -25,7 +25,6 @@ setfattr -n user.component -v "misc-tweaks" /usr/lib/tmpfiles.d/swtpm-workaround
 setfattr -n user.component -v "misc-tweaks" /usr/lib/tmpfiles.d/libvirt-workarounds.conf
 setfattr -n user.component -v "misc-tweaks" /usr/lib/sysusers.d/libvirt-workarounds.conf
 setfattr -n user.component -v "misc-tweaks" /usr/local/bin/regenerate-grub
-setfattr -n user.component -v "misc-tweaks" /usr/local/bin/xdg-open
 setfattr -n user.component -v "misc-tweaks" /usr/share/plymouth/themes/spinner/watermark.png
 setfattr -n user.update-interval -v "yearly" /usr/lib/bootc/kargs.d/10-zswap.toml
 
