@@ -93,6 +93,7 @@ REMOVE=(
   firefox-langpacks
   kcharselect
   khelpcenter
+  kwrite
   plasma-discover-rpm-ostree
 )
 dnf5 remove -y "${REMOVE[@]}"
