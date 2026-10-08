@@ -28,10 +28,12 @@ for i in {1..10}; do
 done
 
 echo "Replacing Fedora Flatpaks with Flathub"
-TO_REPLACE=$(flatpak list --app --columns=application,origin | awk '$2 == "fedora" {print $1}')
-
-/usr/bin/flatpak uninstall -y --noninteractive "${TO_REPLACE[@]}" &>/dev/null </dev/null
-/usr/bin/flatpak install -y --noninteractive flathub "${TO_REPLACE[@]}" &>/dev/null </dev/null
+mapfile -t TO_REPLACE < <(
+  flatpak list --app --columns=application,origin |
+  awk '$2 == "fedora" {print $1}'
+)
+/usr/bin/flatpak uninstall -y --noninteractive "${TO_REPLACE[@]}"
+/usr/bin/flatpak install -y --noninteractive flathub "${TO_REPLACE[@]}"
 
 echo "Removing flatpaks that were only from fedora flatpak"
 /usr/bin/flatpak list --system --columns=ref,origin |
