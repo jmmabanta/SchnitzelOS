@@ -30,14 +30,8 @@ done
 echo "Replacing Fedora Flatpaks with Flathub"
 TO_REPLACE=$(flatpak list --app --columns=application,origin | awk '$2 == "fedora" {print $1}')
 
-for app in $TO_REPLACE; do
-  echo "Replacing $app with its Flathub version..."
-  /usr/bin/flatpak uninstall -y --noninteractive "$app" &>/dev/null </dev/null
-  if ! /usr/bin/flatpak install -y --noninteractive flathub "$app" &>/dev/null </dev/null; then
-    # Should ideally never be here
-    echo "$app cannot be found in Flathub!"
-  fi
-done
+/usr/bin/flatpak uninstall -y --noninteractive "${TO_REPLACE[@]}" &>/dev/null </dev/null
+/usr/bin/flatpak install -y --noninteractive flathub "${TO_REPLACE[@]}" &>/dev/null </dev/null
 
 echo "Removing flatpaks that were only from fedora flatpak"
 /usr/bin/flatpak list --system --columns=ref,origin |
