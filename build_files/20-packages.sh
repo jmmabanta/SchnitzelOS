@@ -69,9 +69,6 @@ FEDORA_PACKAGES=(
 PACKAGES=( "${FEDORA_PACKAGES[@]}" "${NEGATIVO_PACKAGES[@]}" )
 dnf5 install -y --enablerepo='fedora-multimedia' "${PACKAGES[@]}"
 
-# No need for the extra deps of niri (alactritty, rofi, etc.)
-dnf5 install -y --setopt=install_weak_deps=False niri noctalia
-
 TERRA_PACKAGES=(
   dmemcg-booster
   plasma-foreground-booster-dmemcg
