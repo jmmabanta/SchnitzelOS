@@ -64,15 +64,11 @@ FEDORA_PACKAGES=(
   libayatana-appindicator-gtk3
   lshw
   nvtop
-  wlr-randr
   xdg-terminal-exec
 )
 
 PACKAGES=( "${FEDORA_PACKAGES[@]}" "${NEGATIVO_PACKAGES[@]}" )
 dnf5 install -y --enablerepo='fedora-multimedia' "${PACKAGES[@]}"
-
-# No need for the extra deps of niri (alactritty, rofi, etc.)
-dnf5 install -y --setopt=install_weak_deps=False niri noctalia
 
 TERRA_PACKAGES=(
   dmemcg-booster
@@ -87,11 +83,6 @@ dnf5 -y install --exclude='mangohud*' "${TERRA_PACKAGES[@]}"
 dnf5 -y swap --repo terra-extras uresourced uresourced-dmemcg
 dnf5 -y config-manager setopt "terra".enabled=0
 dnf5 -y config-manager setopt "terra-extras".enabled=0
-
-# TODO: Uncomment when F45 version comes out
-# dnf5 -y copr enable aneagle/gnome-rounded-blur
-# dnf5 -y install --setopt=install_weak_deps=False gnome-rounded-blur
-# dnf5 -y copr disable aneagle/gnome-rounded-blur
 
 # uupd handles automatic image + flatpak + homebrew updates
 dnf5 -y copr enable ublue-os/packages

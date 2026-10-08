@@ -17,7 +17,6 @@ setfattr -n user.update-interval -v "yearly" /usr/lib/systemd/system/flatpak-add
 setfattr -n user.component -v "nvidia-tweaks" /usr/lib/systemd/system/sync-nvidia-flatpak.service
 setfattr -n user.component -v "nvidia-tweaks" /usr/lib/bootc/kargs.d/00-nvidia.toml
 setfattr -n user.component -v "nvidia-tweaks" /usr/libexec/sync-nvidia-flatpak
-setfattr -n user.component -v "nvidia-tweaks" /etc/nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool-in-wayland-compositors.json
 setfattr -n user.update-interval -v "yearly" /usr/lib/systemd/system/sync-nvidia-flatpak.service
 
 setfattr -n user.component -v "misc-tweaks" /usr/lib/bootc/kargs.d/10-zswap.toml
@@ -43,6 +42,3 @@ setfattr -n user.component -v "signing-files" /etc/containers/policy.json
 setfattr -n user.component -v "signing-files" /etc/containers/registries.d/schnitzel-os.yaml
 setfattr -n user.component -v "signing-files" /etc/pki/containers/schnitzel-os.pub
 setfattr -n user.update-interval -v "yearly" /etc/containers/policy.json
-
-setfattr -n user.component -v "niri-conf" /etc/niri/
-setfattr -n user.update-interval -v "yearly" /etc/niri/config.kdl
