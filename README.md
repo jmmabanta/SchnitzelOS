@@ -4,45 +4,21 @@ This is my personal Fedora Atomic image (using
 [Universal Blue's template](https://github.com/ublue-os/image-template/))
 that I use on my desktop. I found that the other Universal Blue images
 (Bluefin, Bazzite, Aurora) have too much stuff that I don't need that is
-preinstalled and so I'd prefer starting from a clean base, like Kinoite, and
+preinstalled and so I'd prefer starting from a clean base, like Silverblue, and
 add to it.
 
-## Changes
-
-It is basically standard Fedora Kinoite with [codecs](https://negativo17.org/multimedia/),
-virtualization, the latest [NVIDIA open drivers](https://negativo17.org/nvidia-driver/),
-and the [OGC Kernel](https://opengamingcollective.org/).
-
-The primary motivation for choosing the OGC Kernel over the standard Fedora
-kernel is that it has additional [VRAM Management](https://github.com/OpenGamingCollective/linux/pull/35)
-patches that makes 8GB GPUs more performant in VRAM-limited scenarios. The patch
-was initally for AMD but NVIDIA has (supposedly) added support for it
-[since 615.71.09](https://www.nvidia.com/en-us/drivers/details/278450/). The
-VRAM patches are expected to land in 7.3 so maybe I'll switch when that happens.
-
-### Why not [Bazzite](https://github.com/ublue-os/bazzite) or [Aurora](https://github.com/ublue-os/aurora)?
-
-I found that those included too much stuff that I didn't need and strayed too
-far from the "default" Fedora KDE experience. The goal of this custom image is
-to install just the bare essentials that are needed on the system level then
-install everything else as Flatpak (minus Steam).
-
-KDE Discover is also preserved over Bazaar. Although Bazaar is a great Flatpak
-store, it clashed with KDE's look and Discover wasn't *that* much slower than
-Bazaar (unlike GNOME Software).
-
-## Install
+## How to install
 
 Right now I'm not building any ISOs so to use it:
 
 1. Turn off secure boot (read [later section on how to re-enable
    it](#secure-boot))
 
-1. Install [Fedora Kinoite](https://fedoraproject.org/atomic-desktops/kinoite/)
+1. Install (or use existing) Fedora Silverblue or any Fedora Atomic distro that
+   uses GNOME (eg. Bluefin, Bazzite-GNOME).
 
-   Starting from a non-KDE image, like Silverblue, or other Fedora atomic
-   images, like Bazzite or Aurora, might still work but may introduce config
-   conflicts.
+   Starting from a non-GNOME image like Kinoite might still work but since this
+   image use GNOME some configuration files may be messed up.
 
 1. Rebase to SchnitzelOS with:
 
@@ -83,6 +59,20 @@ the key:
 1. After entering the key, continue to reboot and now the OS should be secure
    boot ready.
 1. Reboot back into bios and re-enable secure boot.
+
+## Niri
+
+By default, you will still boot into GNOME. If you want to switch to Niri then
+logout and choose Niri in the login screen by clicking the cog button on the
+bottom right.
+
+A starter Niri config is provided in `/etc/niri`. If you want to make your own
+Niri config then you should make your Niri config in `~/.config/niri`. You can
+also use the provided Niri config as a start:
+
+```bash
+cp -r /etc/niri/ ~/.config/niri/
+```
 
 ## ZSWAP
 

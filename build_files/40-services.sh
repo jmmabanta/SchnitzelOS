@@ -8,6 +8,7 @@ systemctl preset brew-setup.service
 sed -Ei "s/secure_path = (.*)/secure_path = \1:\/home\/linuxbrew\/.linuxbrew\/bin/" /etc/sudoers
 
 systemctl enable flatpak-preinstall.service
+systemctl --global enable bazaar-daemon.service
 
 systemctl enable sync-nvidia-flatpak.service
 
@@ -20,6 +21,8 @@ systemctl --global enable dmemcg-booster-user.service
 
 systemctl enable libvirtd.service
 systemctl enable libvirt-workarounds.service
+
+systemctl --global enable app-com.mitchellh.ghostty.service
 
 systemctl enable podman.socket
 

@@ -1,4 +1,4 @@
-ARG FEDORA_VERSION=44
+ARG FEDORA_VERSION=45
 
 FROM ghcr.io/ublue-os/akmods-nvidia-open:ogc-${FEDORA_VERSION} AS akmods-nvidia
 FROM ghcr.io/ublue-os/brew:latest AS brew
@@ -9,7 +9,10 @@ COPY --from=brew /system_files /system_files
 COPY system_files /system_files
 COPY build_files /
 
-FROM quay.io/fedora-ostree-desktops/kinoite:${FEDORA_VERSION}
+# Includes codecs + secureboot signing for akmods
+FROM quay.io/fedora-ostree-desktops/silverblue:${FEDORA_VERSION}
+# Helium needs access to /opt directly, not the symlink to /var/opt
+RUN rm /opt && mkdir /opt
 
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
   --mount=type=cache,dst=/var/cache \
@@ -26,5 +29,6 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
   /ctx/70-build-initramfs.sh && \
   /ctx/80-chunkah.sh
 
+### LINTING
 ## Verify final image and contents are correct.
 RUN bootc container lint

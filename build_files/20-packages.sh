@@ -29,7 +29,6 @@ OVERRIDES=(
   mesa-libGL
   mesa-libgbm
   mesa-vulkan-drivers
-  openh264
 )
 
 dnf5 distro-sync --skip-unavailable --allowerasing -y --repo='fedora-multimedia' "${OVERRIDES[@]}"
@@ -46,7 +45,9 @@ NEGATIVO_PACKAGES=(
 
 FEDORA_PACKAGES=(
   @virtualization
+  adw-gtk3-theme
   distrobox
+  ffmpegthumbnailer
   fish
   flatpak-spawn
   fuse{,-libs}
@@ -60,26 +61,37 @@ FEDORA_PACKAGES=(
   google-noto-sans-sundanese-fonts
   grub2-tools-extra
   gvfs{,-fuse,-nfs}
-  kate
   libayatana-appindicator-gtk3
   lshw
   nvtop
+  wlr-randr
+  xdg-terminal-exec
 )
 
 PACKAGES=( "${FEDORA_PACKAGES[@]}" "${NEGATIVO_PACKAGES[@]}" )
 dnf5 install -y --enablerepo='fedora-multimedia' "${PACKAGES[@]}"
 
+# No need for the extra deps of niri (alactritty, rofi, etc.)
+dnf5 install -y --setopt=install_weak_deps=False niri noctalia
+
 TERRA_PACKAGES=(
   dmemcg-booster
-  plasma-foreground-booster-dmemcg
+  ghostty
   steam
   terra-mangohud
 )
 dnf5 -y install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release{,-extras}
 dnf5 -y config-manager setopt "*terra*".priority=1 "*terra*".exclude="nerd-fonts scx-tools scx-scheds python3-protobuf zlib-devel uupd"
 dnf5 -y install --exclude='mangohud*' "${TERRA_PACKAGES[@]}"
+# VRAM Management for non-KDE DEs
+dnf5 -y swap --repo terra-extras uresourced uresourced-dmemcg
 dnf5 -y config-manager setopt "terra".enabled=0
 dnf5 -y config-manager setopt "terra-extras".enabled=0
+
+# TODO: Uncomment when F45 version comes out
+# dnf5 -y copr enable aneagle/gnome-rounded-blur
+# dnf5 -y install --setopt=install_weak_deps=False gnome-rounded-blur
+# dnf5 -y copr disable aneagle/gnome-rounded-blur
 
 # uupd handles automatic image + flatpak + homebrew updates
 dnf5 -y copr enable ublue-os/packages
@@ -87,16 +99,23 @@ dnf5 -y install uupd
 dnf5 -y copr disable ublue-os/packages
 
 REMOVE=(
-  akonadi-server{,-mysql}
   fedora-third-party
-  ffmpegthumbnailer
   firefox
   firefox-langpacks
-  kcharselect
-  khelpcenter
-  kwrite
-  plasma-discover-rpm-ostree
-  xwaylandvideobridge
+  gnome-classic-session
+  gnome-extensions-app
+  gnome-shell-extension-apps-menu
+  gnome-shell-extension-background-logo
+  gnome-shell-extension-launch-new-instance
+  gnome-shell-extension-places-menu
+  gnome-shell-extension-window-list
+  gnome-software
+  gnome-software-rpm-ostree
+  gnome-system-monitor
+  gnome-tour
+  ptyxis
+  totem-video-thumbnailer
+  yelp
 )
 dnf5 remove -y "${REMOVE[@]}"
 
