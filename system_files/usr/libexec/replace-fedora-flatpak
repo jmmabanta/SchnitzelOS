@@ -27,9 +27,11 @@ for i in {1..10}; do
   sleep 5
 done
 
+/usr/bin/flatpak remote-modify --enable flathub || ture
+
 echo "Replacing Fedora Flatpaks with Flathub"
 mapfile -t TO_REPLACE < <(
-  flatpak list --app --columns=application,origin |
+  /usr/bin/flatpak list --app --columns=application,origin |
   awk '$2 == "fedora" {print $1}'
 )
 /usr/bin/flatpak uninstall -y --noninteractive "${TO_REPLACE[@]}"
