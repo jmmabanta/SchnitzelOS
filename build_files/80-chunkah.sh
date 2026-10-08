@@ -34,7 +34,7 @@ setfattr -n user.component -v "base-conf" /etc/wireplumber/wireplumber.conf.d/90
 setfattr -n user.component -v "base-conf" /etc/uupd/config.json
 setfattr -n user.component -v "base-conf" /etc/udev/rules.d/99-powercap.rules
 setfattr -n user.component -v "base-conf" /etc/udev/rules.d/99-rapoo-vt3.rules
-setfattr -n user.component -v "base-conf" /etc/systemd/network/50-wired.link
+setfattr -n user.component -v "base-conf" /etc/udev/rules.d/81-wol.rules
 setfattr -n user.component -v "base-conf" /etc/polkit-1/rules.d/50-efibootmgr.rules
 setfattr -n user.update-interval -v "yearly" /etc/rpm-ostreed.conf
 
