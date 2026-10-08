@@ -7,7 +7,31 @@ that I use on my desktop. I found that the other Universal Blue images
 preinstalled and so I'd prefer starting from a clean base, like Kinoite, and
 add to it.
 
-## How to install
+## Changes
+
+It is basically standard Fedora Kinoite with [codecs](https://negativo17.org/multimedia/),
+virtualization, the latest [NVIDIA open drivers](https://negativo17.org/nvidia-driver/),
+and the [OGC Kernel](https://opengamingcollective.org/).
+
+The primary motivation for choosing the OGC Kernel over the standard Fedora
+kernel is that it has additional [VRAM Management](https://github.com/OpenGamingCollective/linux/pull/35)
+patches that makes 8GB GPUs more performant in VRAM-limited scenarios. The patch
+was initally for AMD but NVIDIA has (supposedly) added support for it
+[since 615.71.09](https://www.nvidia.com/en-us/drivers/details/278450/). The
+VRAM patches are expected to land in 7.3 so maybe I'll switch when that happens.
+
+### Why not [Bazzite](https://github.com/ublue-os/bazzite) or [Aurora](https://github.com/ublue-os/aurora)?
+
+I found that those included too much stuff that I didn't need and strayed too
+far from the "default" Fedora KDE experience. The goal of this custom image is
+to install just the bare essentials that are needed on the system level then
+install everything else as Flatpak (minus Steam).
+
+KDE Discover is also preserved over Bazaar. Although Bazaar is a great Flatpak
+store, it clashed with KDE's look and Discover wasn't *that* much slower than
+Bazaar (unlike GNOME Software).
+
+## Install
 
 Right now I'm not building any ISOs so to use it:
 
