@@ -7,18 +7,29 @@ that I use on my desktop. I found that the other Universal Blue images
 preinstalled and so I'd prefer starting from a clean base, like Silverblue, and
 add to it.
 
-## How to install
+## Changes
+
+It is basically just Fedora Silverblue with:
+
+- [Codecs](https://negativo17.org/multimedia/)
+- Latest [NVIDIA Open Driver](https://negativo17.org/nvidia-driver/)
+- [OGC Kernel](https://opengamingcollective.org/)
+  - Contains a patch for [better VRAM management](https://github.com/OpenGamingCollective/linux/pull/35)
+    that is set to be upstreamed in 7.3
+- Steam, Ghostty, and other smaller packages.
+  - For a full list, see this [script](build_files/20_packages.sh)
+
+## Install
 
 Right now I'm not building any ISOs so to use it:
 
 1. Turn off secure boot (read [later section on how to re-enable
    it](#secure-boot))
 
-1. Install (or use existing) Fedora Silverblue or any Fedora Atomic distro that
-   uses GNOME (eg. Bluefin, Bazzite-GNOME).
+1. Install (or use existing) [Fedora Silverblue](https://fedoraproject.org/atomic-desktops/silverblue/).
 
-   Starting from a non-GNOME image like Kinoite might still work but since this
-   image use GNOME some configuration files may be messed up.
+   Starting from other Fedora Atomic distros might work but I've only tested the
+   migration path from Silverblue.
 
 1. Rebase to SchnitzelOS with:
 
@@ -59,20 +70,6 @@ the key:
 1. After entering the key, continue to reboot and now the OS should be secure
    boot ready.
 1. Reboot back into bios and re-enable secure boot.
-
-## Niri
-
-By default, you will still boot into GNOME. If you want to switch to Niri then
-logout and choose Niri in the login screen by clicking the cog button on the
-bottom right.
-
-A starter Niri config is provided in `/etc/niri`. If you want to make your own
-Niri config then you should make your Niri config in `~/.config/niri`. You can
-also use the provided Niri config as a start:
-
-```bash
-cp -r /etc/niri/ ~/.config/niri/
-```
 
 ## ZSWAP
 
