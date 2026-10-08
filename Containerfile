@@ -9,10 +9,7 @@ COPY --from=brew /system_files /system_files
 COPY system_files /system_files
 COPY build_files /
 
-# Includes codecs + secureboot signing for akmods
 FROM quay.io/fedora-ostree-desktops/kinoite:${FEDORA_VERSION}
-# Helium needs access to /opt directly, not the symlink to /var/opt
-RUN rm /opt && mkdir /opt
 
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
   --mount=type=cache,dst=/var/cache \
@@ -29,6 +26,5 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
   /ctx/70-build-initramfs.sh && \
   /ctx/80-chunkah.sh
 
-### LINTING
 ## Verify final image and contents are correct.
 RUN bootc container lint
