@@ -34,8 +34,10 @@ mapfile -t TO_REPLACE < <(
   /usr/bin/flatpak list --app --columns=application,origin |
   awk '$2 == "fedora" {print $1}'
 )
-/usr/bin/flatpak uninstall -y --noninteractive "${TO_REPLACE[@]}"
-/usr/bin/flatpak install -y --noninteractive flathub "${TO_REPLACE[@]}"
+if ((${#TO_REPLACE[@]})); then
+  /usr/bin/flatpak uninstall -y --noninteractive "${TO_REPLACE[@]}"
+  /usr/bin/flatpak install -y --noninteractive flathub "${TO_REPLACE[@]}"
+fi
 
 echo "Removing flatpaks that were only from fedora flatpak"
 /usr/bin/flatpak list --system --columns=ref,origin |
