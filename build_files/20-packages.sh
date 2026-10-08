@@ -87,6 +87,7 @@ dnf5 -y install uupd
 dnf5 -y copr disable ublue-os/packages
 
 REMOVE=(
+  akonadi-server{,-mysql}
   fedora-third-party
   ffmpegthumbnailer
   firefox
@@ -95,6 +96,7 @@ REMOVE=(
   khelpcenter
   kwrite
   plasma-discover-rpm-ostree
+  xwaylandvideobridge
 )
 dnf5 remove -y "${REMOVE[@]}"
 
