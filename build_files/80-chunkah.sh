@@ -27,6 +27,7 @@ setfattr -n user.component -v "misc-tweaks" /usr/share/plymouth/themes/spinner/w
 setfattr -n user.update-interval -v "yearly" /usr/lib/bootc/kargs.d/10-zswap.toml
 
 setfattr -n user.component -v "base-conf" /etc/rpm-ostreed.conf
+setfattr -n user.component -v "base-conf" /etc/environment
 setfattr -n user.component -v "base-conf" /etc/wireplumber/wireplumber.conf.d/90-dualsense.conf
 setfattr -n user.component -v "base-conf" /etc/uupd/config.json
 setfattr -n user.component -v "base-conf" /etc/udev/rules.d/99-powercap.rules
