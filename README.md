@@ -17,7 +17,7 @@ It is basically just Fedora Silverblue with:
   - Contains a patch for [better VRAM management](https://github.com/OpenGamingCollective/linux/pull/35)
     that is set to be upstreamed in 7.3
 - Steam, Ghostty, and other smaller packages.
-  - For a full list, see this [script](build_files/20_packages.sh)
+  - For a full list, see this [script](build_files/20-packages.sh)
 
 ## Install
 
