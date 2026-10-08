@@ -8,16 +8,13 @@ set -ouex pipefail
 
 setfattr -n user.component -v "flatpak-tweaks" /usr/lib/systemd/system/flatpak-add-fedora-repos.service
 setfattr -n user.component -v "flatpak-tweaks" /usr/lib/systemd/system/flatpak-preinstall.service
-setfattr -n user.component -v "flatpak-tweaks" /usr/lib/systemd/user/bazaar-daemon.service
 setfattr -n user.component -v "flatpak-tweaks" /usr/libexec/replace-fedora-flatpak
-setfattr -n user.component -v "flatpak-tweaks" /usr/share/flatpak/preinstall.d/bazaar.preinstall
 setfattr -n user.component -v "flatpak-tweaks" /usr/share/flatpak/preinstall.d/firefox.preinstall
 setfattr -n user.update-interval -v "yearly" /usr/lib/systemd/system/flatpak-add-fedora-repos.service
 
 setfattr -n user.component -v "nvidia-tweaks" /usr/lib/systemd/system/sync-nvidia-flatpak.service
 setfattr -n user.component -v "nvidia-tweaks" /usr/lib/bootc/kargs.d/00-nvidia.toml
 setfattr -n user.component -v "nvidia-tweaks" /usr/libexec/sync-nvidia-flatpak
-setfattr -n user.component -v "nvidia-tweaks" /etc/nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool-in-wayland-compositors.json
 setfattr -n user.update-interval -v "yearly" /usr/lib/systemd/system/sync-nvidia-flatpak.service
 
 setfattr -n user.component -v "misc-tweaks" /usr/lib/bootc/kargs.d/10-zswap.toml
@@ -26,7 +23,6 @@ setfattr -n user.component -v "misc-tweaks" /usr/lib/tmpfiles.d/swtpm-workaround
 setfattr -n user.component -v "misc-tweaks" /usr/lib/tmpfiles.d/libvirt-workarounds.conf
 setfattr -n user.component -v "misc-tweaks" /usr/lib/sysusers.d/libvirt-workarounds.conf
 setfattr -n user.component -v "misc-tweaks" /usr/local/bin/regenerate-grub
-setfattr -n user.component -v "misc-tweaks" /usr/local/bin/xdg-open
 setfattr -n user.component -v "misc-tweaks" /usr/share/plymouth/themes/spinner/watermark.png
 setfattr -n user.update-interval -v "yearly" /usr/lib/bootc/kargs.d/10-zswap.toml
 
@@ -43,6 +39,3 @@ setfattr -n user.component -v "signing-files" /etc/containers/policy.json
 setfattr -n user.component -v "signing-files" /etc/containers/registries.d/schnitzel-os.yaml
 setfattr -n user.component -v "signing-files" /etc/pki/containers/schnitzel-os.pub
 setfattr -n user.update-interval -v "yearly" /etc/containers/policy.json
-
-setfattr -n user.component -v "niri-conf" /etc/niri/
-setfattr -n user.update-interval -v "yearly" /etc/niri/config.kdl
