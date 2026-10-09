@@ -75,7 +75,6 @@ dnf5 install -y --setopt=install_weak_deps=False niri noctalia
 
 TERRA_PACKAGES=(
   dmemcg-booster
-  ghostty
   steam
   terra-mangohud
 )
@@ -107,7 +106,6 @@ REMOVE=(
   gnome-software-rpm-ostree
   gnome-system-monitor
   gnome-tour
-  ptyxis
   totem-video-thumbnailer
   yelp
 )

@@ -22,8 +22,6 @@ systemctl --global enable dmemcg-booster-user.service
 systemctl enable libvirtd.service
 systemctl enable libvirt-workarounds.service
 
-systemctl --global enable app-com.mitchellh.ghostty.service
-
 systemctl enable podman.socket
 
 # Disable unneeded services that can slowdown boot
