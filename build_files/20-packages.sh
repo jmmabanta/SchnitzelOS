@@ -64,11 +64,14 @@ FEDORA_PACKAGES=(
   libayatana-appindicator-gtk3
   lshw
   nvtop
+  wlr-randr
   xdg-terminal-exec
 )
 
 PACKAGES=( "${FEDORA_PACKAGES[@]}" "${NEGATIVO_PACKAGES[@]}" )
 dnf5 install -y --enablerepo='fedora-multimedia' "${PACKAGES[@]}"
+
+dnf5 install -y --setopt=install_weak_deps=False niri noctalia
 
 TERRA_PACKAGES=(
   dmemcg-booster

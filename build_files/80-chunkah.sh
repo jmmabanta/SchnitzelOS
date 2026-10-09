@@ -16,6 +16,7 @@ setfattr -n user.update-interval -v "yearly" /usr/lib/systemd/system/flatpak-add
 setfattr -n user.component -v "nvidia-tweaks" /usr/lib/systemd/system/sync-nvidia-flatpak.service
 setfattr -n user.component -v "nvidia-tweaks" /usr/lib/bootc/kargs.d/00-nvidia.toml
 setfattr -n user.component -v "nvidia-tweaks" /usr/libexec/sync-nvidia-flatpak
+setfattr -n user.component -v "nvidia-tweaks" /etc/nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool-in-wayland-compositors.json
 setfattr -n user.update-interval -v "yearly" /usr/lib/systemd/system/sync-nvidia-flatpak.service
 
 setfattr -n user.component -v "misc-tweaks" /usr/lib/bootc/kargs.d/10-zswap.toml
