@@ -88,7 +88,7 @@ dnf5 -y config-manager setopt "terra-extras".enabled=0
 
 # uupd handles automatic image + flatpak + homebrew updates
 dnf5 -y copr enable ublue-os/packages
-dnf5 -y install --setopt=install_weak_deps=False uupd gnome-rounded-blur
+dnf5 -y install uupd
 dnf5 -y copr disable ublue-os/packages
 
 REMOVE=(
