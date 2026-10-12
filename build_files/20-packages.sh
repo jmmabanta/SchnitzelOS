@@ -64,6 +64,7 @@ FEDORA_PACKAGES=(
   libayatana-appindicator-gtk3
   lshw
   nvtop
+  podman-compose
   wlr-randr
   xdg-terminal-exec
 )
