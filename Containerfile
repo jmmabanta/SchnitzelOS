@@ -1,4 +1,5 @@
-ENV FEDORA_VERSION=45
+ARG FEDORA_VERSION=45
+ENV FEDORA_VERSION=${FEDORA_VERSION}
 
 FROM ghcr.io/ublue-os/akmods-nvidia-open:ogc-${FEDORA_VERSION} AS akmods-nvidia
 FROM ghcr.io/ublue-os/brew:latest AS brew
