@@ -74,23 +74,41 @@ dnf5 install -y --enablerepo='fedora-multimedia' "${PACKAGES[@]}"
 
 dnf5 install -y --setopt=install_weak_deps=False niri noctalia
 
+DOCKER_PACKAGES=(
+  containerd.io
+  docker-buildx-plugin
+  docker-ce
+  docker-ce-cli
+  docker-compose-plugin
+)
+dnf5 config-manager addrepo --from-repofile="https://download.docker.com/linux/fedora/docker-ce.repo"
+dnf5 install -y --from-repo="docker-ce-stable" "${DOCKER_PACKAGES[@]}"
+dnf5 config-manager setopt docker-ce-stable.enabled=0
+# Load iptable_nat module for docker-in-docker.
+# See:
+#   - https://github.com/ublue-os/bluefin/issues/2365
+#   - https://github.com/devcontainers/features/issues/1235
+mkdir -p /etc/modules-load.d && cat >>/etc/modules-load.d/ip_tables.conf <<EOF
+iptable_nat
+EOF
+
 TERRA_PACKAGES=(
   dmemcg-booster
   steam
   terra-mangohud
 )
-dnf5 -y install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release{,-extras}
-dnf5 -y config-manager setopt "*terra*".priority=1 "*terra*".exclude="nerd-fonts scx-tools scx-scheds python3-protobuf zlib-devel uupd"
-dnf5 -y install --exclude='mangohud*' "${TERRA_PACKAGES[@]}"
+dnf5 install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release{,-extras}
+dnf5 config-manager setopt "*terra*".priority=1 "*terra*".exclude="nerd-fonts scx-tools scx-scheds python3-protobuf zlib-devel uupd"
+dnf5 install -y --exclude='mangohud*' "${TERRA_PACKAGES[@]}"
 # VRAM Management for non-KDE DEs
-dnf5 -y swap --repo terra-extras uresourced uresourced-dmemcg
-dnf5 -y config-manager setopt "terra".enabled=0
-dnf5 -y config-manager setopt "terra-extras".enabled=0
+dnf5 swap -y --repo terra-extras uresourced uresourced-dmemcg
+dnf5 config-manager setopt "terra".enabled=0
+dnf5 config-manager setopt "terra-extras".enabled=0
 
 # uupd handles automatic image + flatpak + homebrew updates
-dnf5 -y copr enable ublue-os/packages
-dnf5 -y install uupd
-dnf5 -y copr disable ublue-os/packages
+dnf5 copr -y enable ublue-os/packages
+dnf5 install -y uupd
+dnf5 copr -y disable ublue-os/packages
 
 REMOVE=(
   fedora-third-party
