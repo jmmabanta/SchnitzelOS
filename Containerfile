@@ -1,5 +1,4 @@
 ARG FEDORA_VERSION=45
-ENV FEDORA_VERSION=${FEDORA_VERSION}
 
 FROM ghcr.io/ublue-os/akmods-nvidia-open:ogc-${FEDORA_VERSION} AS akmods-nvidia
 FROM ghcr.io/ublue-os/brew:latest AS brew
@@ -11,6 +10,9 @@ COPY system_files /system_files
 COPY build_files /
 
 FROM quay.io/fedora-ostree-desktops/silverblue:${FEDORA_VERSION}
+
+ARG FEDORA_VERSION
+ENV FEDORA_VERSION=${FEDORA_VERSION}
 
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
   --mount=type=cache,dst=/var/cache \
