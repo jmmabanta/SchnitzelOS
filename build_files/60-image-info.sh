@@ -14,7 +14,6 @@ SUPPORT_URL="$HOME_URL/issues/"
 BUG_SUPPORT_URL="$HOME_URL/issues/"
 CODE_NAME="Rada"
 BASE_IMAGE_NAME="latest"
-FEDORA_MAJOR_VERSION=44
 
 IMAGE_INFO="/usr/share/ublue-os/image-info.json"
 IMAGE_REF="ostree-unverified-registry:ghcr.io/$IMAGE_VENDOR/$IMAGE_NAME"
@@ -43,7 +42,7 @@ cat >$IMAGE_INFO <<EOF
   "image-ref": "$IMAGE_REF",
   "image-tag":"latest",
   "base-image-name": "$BASE_IMAGE_NAME",
-  "fedora-version": "$FEDORA_MAJOR_VERSION"
+  "fedora-version": "$FEDORA_VERSION"
 }
 EOF
 
