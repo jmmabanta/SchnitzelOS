@@ -94,6 +94,7 @@ EOF
 
 TERRA_PACKAGES=(
   dmemcg-booster
+  ghostty
   steam
   terra-mangohud
 )
@@ -125,6 +126,7 @@ REMOVE=(
   gnome-software-rpm-ostree
   gnome-system-monitor
   gnome-tour
+  ptyxis
   totem-video-thumbnailer
   yelp
 )
