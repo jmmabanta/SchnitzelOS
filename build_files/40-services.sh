@@ -27,6 +27,8 @@ systemctl enable libvirt-workarounds.service
 systemctl enable docker.socket
 systemctl enable podman.socket
 
+systemctl enable cockpit.socket
+
 # Disable unneeded services that can slowdown boot
 # https://github.com/ublue-os/bazzite/commit/d6334b34d3a75bd70082581d1337cbec849e695c
 systemctl mask iscsi

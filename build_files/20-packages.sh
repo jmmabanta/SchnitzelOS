@@ -46,6 +46,11 @@ NEGATIVO_PACKAGES=(
 FEDORA_PACKAGES=(
   @virtualization
   adw-gtk3-theme
+  cockpit
+  cockpit-files
+  cockpit-machines
+  cockpit-ostree
+  cockpit-podman
   distrobox
   ffmpegthumbnailer
   fish
