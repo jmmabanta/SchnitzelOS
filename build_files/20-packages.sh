@@ -7,10 +7,10 @@ mkdir -p /etc/flatpak/remotes.d/
 curl --retry 3 -Lo /etc/flatpak/remotes.d/flathub.flatpakrepo https://dl.flathub.org/repo/flathub.flatpakrepo
 
 # Setup Negativo17 multimedia repo for codecs
-# (should be me 'complete' than RPMFusion I think)
+# (should be more 'complete' than RPMFusion I think)
 if ! grep -q fedora-multimedia <(dnf5 repolist); then
   # Enable or Install Repofile
-  dnf5 config-manager setopt fedora-multimedia.enabled=1 ||
+  dnf5 config-manager enable fedora-multimedia ||
     dnf5 config-manager addrepo --from-repofile="https://negativo17.org/repos/fedora-multimedia.repo"
 fi
 # Set higher priority
@@ -78,6 +78,7 @@ dnf5 install -y \
   --exclude=cockpit-ostree \
   --enablerepo='fedora-multimedia' \
   "${PACKAGES[@]}"
+dnf5 config-manager disable fedora-multimedia
 
 dnf5 install -y --setopt=install_weak_deps=False niri noctalia
 
@@ -90,7 +91,7 @@ DOCKER_PACKAGES=(
 )
 dnf5 config-manager addrepo --from-repofile="https://download.docker.com/linux/fedora/docker-ce.repo"
 dnf5 install -y --from-repo="docker-ce-stable" "${DOCKER_PACKAGES[@]}"
-dnf5 config-manager setopt docker-ce-stable.enabled=0
+dnf5 config-manager disable docker-ce-stable
 # Load iptable_nat module for docker-in-docker.
 # See:
 #   - https://github.com/ublue-os/bluefin/issues/2365
@@ -110,8 +111,8 @@ dnf5 config-manager setopt "*terra*".priority=1 "*terra*".exclude="nerd-fonts sc
 dnf5 install -y --exclude='mangohud*' "${TERRA_PACKAGES[@]}"
 # VRAM Management for non-KDE DEs
 dnf5 swap -y --repo terra-extras uresourced uresourced-dmemcg
-dnf5 config-manager setopt "terra".enabled=0
-dnf5 config-manager setopt "terra-extras".enabled=0
+dnf5 config-manager disable terra
+dnf5 config-manager disable terra-extras
 
 # uupd handles automatic image + flatpak + homebrew updates
 dnf5 copr -y enable ublue-os/packages
