@@ -103,8 +103,9 @@ iptable_nat
 EOF
 
 # View and manage docker/podman composes (MC Server) in cockpit
-curl -LO https://github.com/RXTX4816/cockpit-compose/releases/latest/download/cockpit-compose-latest.rpm
-sudo rpm -i cockpit-compose-latest.rpm
+curl -o /tmp/cockpit-compose-latest.rpm \
+  -L https://github.com/RXTX4816/cockpit-compose/releases/latest/download/cockpit-compose-latest.rpm
+dnf5 install -y --nogpgcheck /tmp/cockpit-compose-latest.rpm
 
 TERRA_PACKAGES=(
   dmemcg-booster
