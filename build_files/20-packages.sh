@@ -49,7 +49,6 @@ FEDORA_PACKAGES=(
   cockpit
   cockpit-files
   cockpit-machines
-  cockpit-ostree
   cockpit-podman
   distrobox
   ffmpegthumbnailer
