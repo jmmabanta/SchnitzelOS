@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "::group:: ===$(basename "$0")==="
+
 set -ouex pipefail
 
 IMAGE_NAME="SKIP_PACKAGE_INSTALL" \
@@ -13,3 +15,5 @@ ln -sf libnvidia-ml.so.1 /usr/lib64/libnvidia-ml.so
 # See "Test SELinux Policy" in
 # https://copr.fedorainfracloud.org/coprs/g/ai-ml/nvidia-container-toolkit/
 setsebool -P container_use_xserver_devices 1
+
+echo "::endgroup::"

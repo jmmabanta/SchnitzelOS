@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "::group:: ===$(basename "$0")==="
+
 set -ouex pipefail
 
 systemctl preset brew-setup.service
@@ -36,3 +38,5 @@ systemctl mask iscsi
 systemctl mask systemd-remount-fs.service
 # https://github.com/ublue-os/bazzite/pull/5449
 systemctl mask fedora-atomic-desktop-appstream-cache-refresh
+
+echo "::endgroup::"

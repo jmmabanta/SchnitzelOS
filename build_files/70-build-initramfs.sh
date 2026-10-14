@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+echo "::group:: ===$(basename "$0")==="
+
 # This is taken from https://github.com/ublue-os/bazzite/blob/main/build_files/build-initramfs
 
 set -eoux pipefail
@@ -36,3 +38,5 @@ touch -a -m -d "1970-01-01T00:00:00Z" "${INITRAMFS}"
 
 # for debugging
 sha256sum "${INITRAMFS}"
+
+echo "::endgroup::"

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "::group:: ===$(basename "$0")==="
+
 # Taken from https://github.com/ublue-os/bazzite/blob/main/build_files/install-kernel-akmods
 
 set -ouex pipefail
@@ -37,3 +39,5 @@ popd
 # Download ublue secureboot signing key
 mkdir -p /etc/pki/akmods/certs
 curl -ssL https://github.com/ublue-os/akmods/raw/refs/heads/main/certs/public_key.der --retry 3 -Lo /etc/pki/akmods/certs/akmods-ublue.der
+
+echo "::endgroup::"

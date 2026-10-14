@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+echo "::group:: ===$(basename "$0")==="
+
 # This is taken straight from https://github.com/ublue-os/bazzite/blob/main/build_files/cleanup
 
 set -eoux pipefail
@@ -77,3 +79,5 @@ cat /usr/lib/os-release
 
 # Fix issues caused by ID no longer being fedora
 sed -i "s|^EFIDIR=.*|EFIDIR=\"fedora\"|" /usr/sbin/grub2-switch-to-blscfg
+
+echo "::endgroup::"

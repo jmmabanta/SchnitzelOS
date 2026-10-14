@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+echo "::group:: ===$(basename "$0")==="
+
 set -ouex pipefail
 
 # Here we mark certain system_files to better inform chunkah on
@@ -43,3 +45,5 @@ setfattr -n user.component -v "signing-files" /etc/containers/policy.json
 setfattr -n user.component -v "signing-files" /etc/containers/registries.d/schnitzel-os.yaml
 setfattr -n user.component -v "signing-files" /etc/pki/containers/schnitzel-os.pub
 setfattr -n user.update-interval -v "yearly" /etc/containers/policy.json
+
+echo "::endgroup::"
