@@ -74,7 +74,10 @@ FEDORA_PACKAGES=(
 )
 
 PACKAGES=( "${FEDORA_PACKAGES[@]}" "${NEGATIVO_PACKAGES[@]}" )
-dnf5 install -y --enablerepo='fedora-multimedia' "${PACKAGES[@]}"
+dnf5 install -y \
+  --exclude=cockpit-ostree \
+  --enablerepo='fedora-multimedia' \
+  "${PACKAGES[@]}"
 
 dnf5 install -y --setopt=install_weak_deps=False niri noctalia
 
