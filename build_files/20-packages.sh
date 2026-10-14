@@ -116,6 +116,11 @@ dnf5 copr -y enable ublue-os/packages
 dnf5 install -y uupd
 dnf5 copr -y disable ublue-os/packages
 
+# for gamestreaming
+dnf5 copr -y enable lizardbyte/stable
+dnf5 install -y Sunshine
+dnf5 copr -y disable lizardbyte/stable
+
 REMOVE=(
   fedora-third-party
   firefox
