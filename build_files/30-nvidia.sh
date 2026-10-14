@@ -2,7 +2,7 @@
 
 echo "::group:: ===$(basename "$0")==="
 
-set -ouex pipefail
+set -eoux pipefail
 
 IMAGE_NAME="SKIP_PACKAGE_INSTALL" \
 AKMODNV_PATH="/tmp/rpms/nvidia" \

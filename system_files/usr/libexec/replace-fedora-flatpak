@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -oue pipefail
+set -eou pipefail
 
 if ! /usr/bin/flatpak remotes --columns=name | grep -qx fedora; then
   echo "No fedora flatpak to be found!"

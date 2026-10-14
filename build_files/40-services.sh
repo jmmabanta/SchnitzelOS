@@ -2,7 +2,7 @@
 
 echo "::group:: ===$(basename "$0")==="
 
-set -ouex pipefail
+set -eoux pipefail
 
 systemctl preset brew-setup.service
 # Add linuxbrew to the list of paths usable by `sudo`

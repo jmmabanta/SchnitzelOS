@@ -3,7 +3,7 @@
 # From https://github.com/projectbluefin/common/blob/8df20e808636122f80d7fd583ccd1561f89b8eb8/system_files/nvidia/usr/libexec/ublue-nvidia-flatpak-runtime-sync
 
 # Workaround for: https://github.com/flatpak/flatpak/issues/3907
-set -euo pipefail
+set -eou pipefail
 
 # NVIDIA_VERSION_FILE: override in tests to avoid reading real /sys
 NVIDIA_VERSION_FILE="${NVIDIA_VERSION_FILE:-/sys/module/nvidia/version}"

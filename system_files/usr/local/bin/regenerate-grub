@@ -4,7 +4,7 @@
 # and https://github.com/ublue-os/bazzite/blob/6c108d6cb377d78c5e6484787180e7a741b58b84/system_files/desktop/shared/usr/share/ublue-os/just/80-bazzite.just#L138
 # You modify /etc/default/grub then you run regenerate-grub
 
-set -oue pipefail
+set -eou pipefail
 
 # Boolean variable to track if /boot was initially mounted as read-only
 # Ensure compatibility with rpm-ostree where /boot is rw but in bootc /boot is ro

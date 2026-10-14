@@ -4,7 +4,7 @@ echo "::group:: ===$(basename "$0")==="
 
 # Taken from https://github.com/ublue-os/bazzite/blob/main/build_files/install-kernel-akmods
 
-set -ouex pipefail
+set -eoux pipefail
 
 rsync -rvKl "/ctx/system_files"/. /
 

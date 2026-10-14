@@ -2,7 +2,7 @@
 
 echo "::group:: ===$(basename "$0")==="
 
-set -ouex pipefail
+set -eoux pipefail
 
 # Here we mark certain system_files to better inform chunkah on
 # how to package them

@@ -2,7 +2,7 @@
 
 echo "::group:: ===$(basename "$0")==="
 
-set -ouex pipefail
+set -eoux pipefail
 
 # Add Flathub to the image for eventual application
 mkdir -p /etc/flatpak/remotes.d/

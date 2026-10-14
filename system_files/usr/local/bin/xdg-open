@@ -4,7 +4,7 @@
 # would lead to a slow Nautilus launch + the terminal being locked to the
 # process until Nautilus exits.
 
-set -oue pipefail
+set -eou pipefail
 
 # On GNOME, xdg-open should be fine but on Niri it can be slow with
 # Nautilus
