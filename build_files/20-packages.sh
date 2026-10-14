@@ -102,6 +102,10 @@ mkdir -p /etc/modules-load.d && cat >>/etc/modules-load.d/ip_tables.conf <<EOF
 iptable_nat
 EOF
 
+# View and manage docker/podman composes (MC Server) in cockpit
+curl -LO https://github.com/RXTX4816/cockpit-compose/releases/latest/download/cockpit-compose-latest.rpm
+sudo rpm -i cockpit-compose-latest.rpm
+
 TERRA_PACKAGES=(
   dmemcg-booster
   ghostty
