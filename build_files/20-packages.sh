@@ -80,7 +80,6 @@ dnf5 install -y \
   --exclude=cockpit-ostree \
   --enablerepo='fedora-multimedia' \
   "${PACKAGES[@]}"
-dnf5 config-manager disable fedora-multimedia
 
 dnf5 install -y --setopt=install_weak_deps=False niri noctalia
 
