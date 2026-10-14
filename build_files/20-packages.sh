@@ -112,7 +112,6 @@ dnf5 install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/te
 dnf5 config-manager setopt "*terra*".priority=1 "*terra*".exclude="nerd-fonts scx-tools scx-scheds python3-protobuf zlib-devel uupd"
 dnf5 install -y \
   --exclude='mangohud*' \
-  --from-repo=terra,terra-extras \
   "${TERRA_PACKAGES[@]}"
 # VRAM Management for non-KDE DEs
 dnf5 swap -y --repo terra-extras uresourced uresourced-dmemcg
