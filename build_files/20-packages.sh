@@ -48,6 +48,7 @@ NEGATIVO_PACKAGES=(
 FEDORA_PACKAGES=(
   @virtualization
   adw-gtk3-theme
+  cava
   cockpit
   cockpit-files
   cockpit-machines
