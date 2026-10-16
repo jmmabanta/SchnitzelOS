@@ -1,1 +1,1 @@
-kargs = ["lockdown=integrity"]
+kargs = ["lockdown=integrity", "intel_iommu=on"]
