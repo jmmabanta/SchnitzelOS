@@ -5,6 +5,50 @@
 
 set -uo pipefail
 
+# Colours from https://github.com/ublue-os/packages/tree/main/packages/ublue-os-just/src/lib-ujust
+black=$'\033[30m'
+red=$'\033[31m'
+green=$'\033[32m'
+yellow=$'\033[33m'
+blue=$'\033[34m'
+magenta=$'\033[35m'
+purple="$magenta"
+cyan=$'\033[36m'
+lightgrey=$'\033[37m'
+lightgray="$lightgrey"
+
+darkgrey=$'\033[38;2;168;168;168m'
+darkgray="$darkgrey"
+lightred=$'\033[38;2;255;114;118m'
+lightgreen=$'\033[38;2;146;240;146m'
+lightyellow=$'\033[38;2;255;255;224m'
+lightblue=$'\033[38;2;172;215;230m'
+pink=$'\033[38;2;255;20;146m'
+lightmagenta="$pink"
+lightcyan=$'\033[38;2;224;255;255m'
+white=$'\033[38;2;250;235;215m'
+lightpink=$'\033[38;2;255;181;192m'
+darkorange=$'\033[38;2;255;129;3m'
+
+bold=$'\033[1m'
+b="$bold"
+dim=$'\033[2m'
+underline=$'\033[4m'
+u="$underline"
+blink=$'\033[5m'
+invert=$'\033[7m'
+highlight="$invert"
+hidden=$'\033[8m'
+
+normal=$'\033[0m'
+n="$normal"
+unbold=$'\033[22m'
+undim=$'\033[22m'
+nounderline=$'\033[24m'
+unblink=$'\033[25m'
+uninvert=$'\033[27m'
+unhide=$'\033[28m'
+
 # Requirements, and the signing keys EAC Linux v2 treats as well-known, come from:
 REQUIREMENTS_URL="https://onlineservices.epicgames.com/news/introducing-easy-anti-cheat-linux-v2"
 WELL_KNOWN_KEYS='Canonical Ltd\. Master Certificate Authority|Fedora Secure Boot CA|Universal Blue|Debian Secure Boot CA|openSUSE Secure Boot CA|SUSE Linux Enterprise Secure Boot CA|Rocky Linux Secure Boot Root CA|Microsoft (Corporation )?UEFI CA|AlmaLinux Secure Boot CA'
