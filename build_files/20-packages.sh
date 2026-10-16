@@ -156,6 +156,11 @@ REMOVE=(
 )
 dnf5 remove -y "${REMOVE[@]}"
 
+# https://www.phoronix.com/review/fedora-pantherlake-thermald-tuned
+dnf5 swap -y tuned-ppd power-profiles-daemon
+# https://my.devsuite.app/@chergert/117446918437204806
+dnf5 remove -y intel-lpmd
+
 # Patch grub2-mkconfig so it works with regenerate-grub
 # From https://github.com/ublue-os/bazzite/blob/6c108d6cb377d78c5e6484787180e7a741b58b84/Containerfile#L462
 # which might have something to do with https://github.com/ublue-os/bluefin/issues/2582#issuecomment-3476538251
