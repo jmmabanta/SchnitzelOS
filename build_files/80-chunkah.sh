@@ -47,4 +47,22 @@ setfattr -n user.component -v "signing-files" /etc/containers/registries.d/schni
 setfattr -n user.component -v "signing-files" /etc/pki/containers/schnitzel-os.pub
 setfattr -n user.update-interval -v "yearly" /etc/containers/policy.json
 
+# Additions from aurora pr 3028
+
+HOMEBREW_TARBALL=/usr/share/homebrew.tar.zst
+setfattr -n user.component -v "homebrew" "${HOMEBREW_TARBALL}"
+
+# rpm-ostree creates tmpfiles from packages having owned files in /{var,run}
+RPM_OSTREE_TMPFILES=/usr/lib/rpm-ostree/tmpfiles.d
+setfattr -n user.component -v "rpm-ostree-tmpfiles.d" "${RPM_OSTREE_TMPFILES}"
+# vibes, shouldn't change super often
+setfattr -n user.update-interval -v "quarterly" "${RPM_OSTREE_TMPFILES}"
+
+FONTCONFIG_CACHE=/usr/lib/fontconfig/cache
+setfattr -n user.component -v "fontconfig-cache" "${FONTCONFIG_CACHE}"
+# also vibes, no idea how often this changes, but it seems to change often
+setfattr -n user.update-interval -v "daily" "${FONTCONFIG_CACHE}"
+
+find /usr /etc /opt -exec touch -h -a -m -d '1970-01-01T00:00:00Z' {} +
+
 echo "::endgroup::"
