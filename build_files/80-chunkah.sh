@@ -22,6 +22,7 @@ setfattr -n user.component -v "nvidia-tweaks" /etc/nvidia/nvidia-application-pro
 setfattr -n user.update-interval -v "yearly" /usr/lib/systemd/system/sync-nvidia-flatpak.service
 
 setfattr -n user.component -v "misc-tweaks" /usr/lib/bootc/kargs.d/10-zswap.toml
+setfattr -n user.component -v "misc-tweaks" /usr/lib/bootc/kargs.d/20-eacv2.toml
 setfattr -n user.component -v "misc-tweaks" /usr/lib/systemd/system/libvirt-workarounds.service
 setfattr -n user.component -v "misc-tweaks" /usr/lib/systemd/user/niri-focused-booster.service
 setfattr -n user.component -v "misc-tweaks" /usr/lib/tmpfiles.d/swtpm-workaround.conf
@@ -29,8 +30,10 @@ setfattr -n user.component -v "misc-tweaks" /usr/lib/tmpfiles.d/libvirt-workarou
 setfattr -n user.component -v "misc-tweaks" /usr/lib/sysusers.d/libvirt-workarounds.conf
 setfattr -n user.component -v "misc-tweaks" /usr/local/bin/regenerate-grub
 setfattr -n user.component -v "misc-tweaks" /usr/local/bin/xdg-open
+setfattr -n user.component -v "misc-tweaks" /usr/local/bin/check-eacv2-reqs
 setfattr -n user.component -v "misc-tweaks" /usr/share/plymouth/themes/spinner/watermark.png
 setfattr -n user.component -v "misc-tweaks" /usr/lib/sysctl.d/99-splitlock.conf
+setfattr -n user.component -v "misc-tweaks" /usr/lib/sysctl.d/99-disable-kexec.conf
 setfattr -n user.component -v "misc-tweaks" /etc/xdg-desktop-portal/niri-portals.conf
 setfattr -n user.update-interval -v "yearly" /usr/lib/bootc/kargs.d/10-zswap.toml
 

@@ -72,6 +72,7 @@ FEDORA_PACKAGES=(
   lshw
   nvtop
   podman-compose
+  sbsigntools
   wlr-randr
   xdg-terminal-exec
 )
