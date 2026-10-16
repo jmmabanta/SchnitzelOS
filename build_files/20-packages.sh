@@ -126,8 +126,6 @@ dnf5 config-manager setopt "*terra*".priority=1 "*terra*".exclude="nerd-fonts sc
 dnf5 install -y \
   --exclude='mangohud*' \
   "${TERRA_PACKAGES[@]}"
-# VRAM Management for non-KDE DEs
-dnf5 swap -y --repo terra-extras uresourced uresourced-dmemcg
 dnf5 config-manager disable terra
 dnf5 config-manager disable terra-extras
 
