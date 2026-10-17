@@ -122,6 +122,7 @@ TERRA_PACKAGES=(
   ghostty
   steam
   terra-mangohud
+  umbriel-nightly
 )
 dnf5 install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release{,-extras}
 dnf5 config-manager setopt "*terra*".priority=1
