@@ -121,8 +121,6 @@ TERRA_PACKAGES=(
   dmemcg-booster
   ghostty
   steam
-  scx-scheds
-  scx-tools
   terra-mangohud
 )
 dnf5 install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release{,-extras}
