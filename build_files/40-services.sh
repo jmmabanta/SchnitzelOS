@@ -22,7 +22,7 @@ systemctl enable dmemcg-booster-system.service
 systemctl --global enable dmemcg-booster-user.service
 systemctl --global enable niri-focused-booster.service
 
-systemctl --global enable app-com.mitchellh.ghostty.service
+# systemctl --global enable app-com.mitchellh.ghostty.service
 
 systemctl enable libvirtd.service
 systemctl enable libvirt-workarounds.service
