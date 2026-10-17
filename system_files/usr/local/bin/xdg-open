@@ -8,7 +8,7 @@ set -eou pipefail
 
 # On GNOME, xdg-open should be fine but on Niri it can be slow with
 # Nautilus
-if ! [ "${XDG_CURRENT_DESKTOP,,}" = "niri" ]; then
+if [ "${XDG_CURRENT_DESKTOP,,}" = "gnome" ]; then
   exec /usr/bin/xdg-open "$@"
 fi
 
