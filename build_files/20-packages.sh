@@ -121,6 +121,8 @@ TERRA_PACKAGES=(
   dmemcg-booster
   ghostty
   steam
+  scx-scheds
+  scx-tools
   terra-mangohud
   umbriel-nightly
 )
