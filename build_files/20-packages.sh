@@ -57,6 +57,7 @@ FEDORA_PACKAGES=(
   ffmpegthumbnailer
   fish
   flatpak-spawn
+  foot
   fuse{,-libs}
   gamemode
   google-noto-sans-balinese-fonts
