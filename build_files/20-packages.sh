@@ -121,15 +121,14 @@ TERRA_PACKAGES=(
   dmemcg-booster
   ghostty
   steam
+  scx-scheds
+  scx-tools
   terra-mangohud
 )
 dnf5 install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release{,-extras}
-dnf5 config-manager setopt "*terra*".priority=1 "*terra*".exclude="nerd-fonts scx-tools scx-scheds python3-protobuf zlib-devel uupd"
-dnf5 install -y \
-  --exclude='mangohud*' \
-  "${TERRA_PACKAGES[@]}"
-dnf5 config-manager disable terra
-dnf5 config-manager disable terra-extras
+dnf5 config-manager setopt "*terra*".priority=1 "*terra*".exclude="mangohud"
+dnf5 install -y "${TERRA_PACKAGES[@]}"
+dnf5 config-manager disable terra terra-extras
 
 COPR_PREFIX="copr:copr.fedorainfracloud.org"
 
