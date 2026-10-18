@@ -136,7 +136,7 @@ dnf5 copr -y disable lizardbyte/stable
 
 dnf5 copr -y enable bieszczaders/kernel-cachyos-addons
 dnf5 install -y --from-repo="${COPR_PREFIX}:bieszczaders:kernel-cachyos-addons" \
-  scx-scheds scx-tools scx-manager
+  scx-scheds scx-tools
 dnf5 copr -y disable bieszczaders/kernel-cachyos-addons
 
 REMOVE=(
