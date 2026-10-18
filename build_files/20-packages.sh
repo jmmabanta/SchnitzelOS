@@ -83,6 +83,7 @@ PACKAGES=( "${FEDORA_PACKAGES[@]}" "${NEGATIVO_PACKAGES[@]}" )
 dnf5 install -y \
   --exclude=cockpit-ostree \
   --enablerepo='fedora-multimedia' \
+  --setopt=install_weak_deps=False \
   "${PACKAGES[@]}"
 
 DOCKER_PACKAGES=(
