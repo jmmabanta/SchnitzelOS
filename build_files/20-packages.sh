@@ -47,6 +47,7 @@ NEGATIVO_PACKAGES=(
 
 FEDORA_PACKAGES=(
   @virtualization
+  alacritty
   adw-gtk3-theme
   cava
   cockpit
@@ -57,7 +58,6 @@ FEDORA_PACKAGES=(
   ffmpegthumbnailer
   fish
   flatpak-spawn
-  foot
   fuse{,-libs}
   gamemode
   google-noto-sans-balinese-fonts
