@@ -16,8 +16,9 @@ It is basically just Fedora Silverblue with:
 - [OGC Kernel](https://opengamingcollective.org/)
   - Contains a patch for [better VRAM management](https://github.com/OpenGamingCollective/linux/pull/35)
     that is set to be upstreamed in 7.3
-- [Niri](https://github.com/niri-wm/niri) + [Noctalia](https://github.com/noctalia-dev/noctalia)
-- Steam, Ghostty, Virutalization, Docker, and other smaller packages.
+- [Niri](https://github.com/niri-wm/niri), [Umbriel](https://github.com/noctalia-dev/umbriel),
+  and [Noctalia](https://github.com/noctalia-dev/noctalia)
+- Steam, Alacritty, Virutalization, Docker, and other smaller packages.
   - For a full list, see this [script](build_files/20-packages.sh)
 
 ## Install
