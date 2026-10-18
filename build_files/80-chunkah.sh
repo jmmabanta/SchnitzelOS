@@ -70,6 +70,6 @@ setfattr -n user.component -v "fontconfig-cache" "${FONTCONFIG_CACHE}"
 # also vibes, no idea how often this changes, but it seems to change often
 setfattr -n user.update-interval -v "daily" "${FONTCONFIG_CACHE}"
 
-find /usr /etc /opt -exec touch -h -a -m -d '1970-01-01T00:00:00Z' {} +
+find /usr /etc /opt -newermt '1970-01-01T00:00:00Z' -exec touch -h -a -m -d '1970-01-01T00:00:00Z' {} +
 
 echo "::endgroup::"
