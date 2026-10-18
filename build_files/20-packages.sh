@@ -121,8 +121,6 @@ TERRA_PACKAGES=(
   dmemcg-booster
   ghostty
   steam
-  scx-scheds
-  scx-tools
   terra-mangohud
   umbriel-nightly
 )
@@ -142,6 +140,11 @@ dnf5 copr -y disable ublue-os/packages
 dnf5 copr -y enable lizardbyte/stable
 dnf5 install -y --from-repo="${COPR_PREFIX}:lizardbyte:stable" Sunshine
 dnf5 copr -y disable lizardbyte/stable
+
+dnf5 copr -y enable bieszczaders/kernel-cachyos-addons
+dnf5 install -y --from-repo="${COPR_PREFIX}:bieszczaders:kernel-cachyos-addons" \
+  scx-scheds scx-tools scx-manager
+dnf5 copr -y disable bieszczaders/kernel-cachyos-addons
 
 REMOVE=(
   fedora-third-party
