@@ -20,7 +20,6 @@ systemctl disable rpm-ostreed-automatic.timer
 
 systemctl enable dmemcg-booster-system.service
 systemctl --global enable dmemcg-booster-user.service
-systemctl --global enable niri-focused-booster.service
 
 # systemctl --global enable app-com.mitchellh.ghostty.service
 

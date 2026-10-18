@@ -127,6 +127,8 @@ TERRA_PACKAGES=(
 dnf5 install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release{,-extras}
 dnf5 config-manager setopt "*terra*".priority=1
 dnf5 install -y --exclude='mangohud*' "${TERRA_PACKAGES[@]}"
+# VRAM Management for non-KDE DEs
+dnf5 swap -y --repo terra-extras uresourced uresourced-dmemcg
 dnf5 config-manager disable terra terra-extras
 
 COPR_PREFIX="copr:copr.fedorainfracloud.org"
