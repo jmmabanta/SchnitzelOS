@@ -43,6 +43,7 @@ setfattr -n user.component -v "base-conf" /etc/uupd/config.json
 setfattr -n user.component -v "base-conf" /etc/udev/rules.d/99-powercap.rules
 setfattr -n user.component -v "base-conf" /etc/udev/rules.d/99-rapoo-vt3.rules
 setfattr -n user.component -v "base-conf" /etc/udev/rules.d/81-wol.rules
+setfattr -n user.component -v "base-conf" /etc/udev/rules.d/72-disable-dualsense-touchpad.rules
 setfattr -n user.component -v "base-conf" /etc/polkit-1/rules.d/50-efibootmgr.rules
 setfattr -n user.component -v "base-conf" /etc/xdg/niri-xdg-terminals.list
 setfattr -n user.component -v "base-conf" /etc/xdg/gnome-xdg-terminals.list
