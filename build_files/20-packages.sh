@@ -71,6 +71,7 @@ FEDORA_PACKAGES=(
   gvfs{,-fuse,-nfs}
   libayatana-appindicator-gtk3
   lshw
+  noctalia
   nvtop
   podman-compose
   sbsigntools
@@ -83,16 +84,6 @@ dnf5 install -y \
   --exclude=cockpit-ostree \
   --enablerepo='fedora-multimedia' \
   "${PACKAGES[@]}"
-
-# xwayland-satellite 0.8.2 is buggy 0.8.3 hasn't been
-# released yet, so were downgrading to 0.8.1
-# https://github.com/Supreeeme/xwayland-satellite/issues/481 (davinci resolve)
-# https://github.com/Supreeeme/xwayland-satellite/issues/468
-# TODO: Remove this when 0.8.3 comes out in Fedora 45 repos!
-dnf5 install -y --releasever=44 xwayland-satellite-0.8.1
-dnf5 versionlock add xwayland-satellite
-
-dnf5 install -y --setopt=install_weak_deps=False niri noctalia
 
 DOCKER_PACKAGES=(
   containerd.io
