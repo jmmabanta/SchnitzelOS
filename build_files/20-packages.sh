@@ -139,10 +139,6 @@ dnf5 install -y --from-repo="${COPR_PREFIX}:bieszczaders:kernel-cachyos-addons" 
   scx-scheds scx-tools
 dnf5 copr -y disable bieszczaders/kernel-cachyos-addons
 
-dnf5 copr -y enable lionheartp/Hyprland
-dnf5 install -y --from-repo="${COPR_PREFIX}:lionheartp:Hyprland" hyprland
-dnf5 copr -y disable lionheartp/Hyprland
-
 REMOVE=(
   fedora-third-party
   firefox
