@@ -71,7 +71,6 @@ FEDORA_PACKAGES=(
   gvfs{,-fuse,-nfs}
   libayatana-appindicator-gtk3
   lshw
-  noctalia
   nvtop
   podman-compose
   sbsigntools
@@ -81,7 +80,7 @@ FEDORA_PACKAGES=(
 
 PACKAGES=( "${FEDORA_PACKAGES[@]}" "${NEGATIVO_PACKAGES[@]}" )
 dnf5 install -y \
-  --exclude=cockpit-ostree,ddcutil,gnome-keyring,lsb_release,xrandr \
+  --exclude=cockpit-ostree \
   --enablerepo='fedora-multimedia' \
   "${PACKAGES[@]}"
 
@@ -111,6 +110,7 @@ dnf5 install -y --nogpgcheck /tmp/cockpit-compose-latest.rpm
 TERRA_PACKAGES=(
   dmemcg-booster
   ghostty
+  noctalia-nightly
   steam
   terra-mangohud
   umbriel-nightly
