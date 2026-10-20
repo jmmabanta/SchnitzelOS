@@ -1,0 +1,32 @@
+[Flatpak Preinstall io.github.kolunmi.Bazaar]
+Branch=stable
+IsRuntime=false
+
+[Flatpak Preinstall org.mozilla.firefox]
+Branch=stable
+IsRuntime=false
+
+[Flatpak Preinstall io.github.diegopvlk.Cine]
+Branch=stable
+IsRuntime=false
+
+[Flatpak Preinstall org.gnome.Decibels]
+Branch=stable
+IsRuntime=false
+
+[Flatpak Preinstall com.mattjakeman.ExtensionManager]
+Branch=stable
+IsRuntime=false
+
+[Flatpak Preinstall com.github.tchx84.Flatseal]
+Branch=stable
+IsRuntime=false
+
+[Flatpak Preinstall page.tesk.Refine]
+Branch=stable
+IsRuntime=false
+
+[Flatpak Preinstall ca.desrt.dconf-editor]
+Branch=stable
+IsRuntime=false
+
