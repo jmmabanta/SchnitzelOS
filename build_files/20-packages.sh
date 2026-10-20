@@ -69,6 +69,7 @@ FEDORA_PACKAGES=(
   google-noto-sans-sundanese-fonts
   grub2-tools-extra
   gvfs{,-fuse,-nfs}
+  kitty
   libayatana-appindicator-gtk3
   lshw
   noctalia
