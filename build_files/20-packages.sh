@@ -114,6 +114,7 @@ TERRA_PACKAGES=(
   steam
   terra-mangohud
   umbriel-nightly
+  uupd
 )
 dnf5 install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release{,-extras}
 dnf5 config-manager setopt "*terra*".priority=1
@@ -123,11 +124,6 @@ dnf5 swap -y --repo terra-extras uresourced uresourced-dmemcg
 dnf5 config-manager disable terra terra-extras
 
 COPR_PREFIX="copr:copr.fedorainfracloud.org"
-
-# uupd handles automatic image + flatpak + homebrew updates
-dnf5 copr -y enable ublue-os/packages
-dnf5 install -y --from-repo="${COPR_PREFIX}:ublue-os:packages" uupd
-dnf5 copr -y disable ublue-os/packages
 
 # for gamestreaming
 dnf5 copr -y enable lizardbyte/stable
