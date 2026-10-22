@@ -48,7 +48,6 @@ NEGATIVO_PACKAGES=(
 FEDORA_PACKAGES=(
   @virtualization
   adw-gtk3-theme
-  cava
   cockpit
   cockpit-files
   cockpit-machines
@@ -67,14 +66,11 @@ FEDORA_PACKAGES=(
   google-noto-sans-linear-a-fonts
   google-noto-sans-linear-b-fonts
   google-noto-sans-sundanese-fonts
-  grub2-tools-extra
   gvfs{,-fuse,-nfs}
   libayatana-appindicator-gtk3
   lshw
   nvtop
-  podman-compose
   sbsigntools
-  wlr-randr
   xdg-terminal-exec
 )
 
@@ -124,11 +120,6 @@ dnf5 swap -y --repo terra-extras uresourced uresourced-dmemcg
 dnf5 config-manager disable terra terra-extras
 
 COPR_PREFIX="copr:copr.fedorainfracloud.org"
-
-# for gamestreaming
-dnf5 copr -y enable lizardbyte/stable
-dnf5 install -y --from-repo="${COPR_PREFIX}:lizardbyte:stable" Sunshine
-dnf5 copr -y disable lizardbyte/stable
 
 dnf5 copr -y enable bieszczaders/kernel-cachyos-addons
 dnf5 install -y --from-repo="${COPR_PREFIX}:bieszczaders:kernel-cachyos-addons" \
