@@ -9,7 +9,7 @@ add to it.
 
 ## Changes
 
-It is basically just Fedora Silverblue with:
+It is basically just Fedora Kinoite with:
 
 - [Codecs](https://negativo17.org/multimedia/)
 - Latest [NVIDIA Open Driver](https://negativo17.org/nvidia-driver/)
@@ -17,7 +17,7 @@ It is basically just Fedora Silverblue with:
   - Contains a patch for [better VRAM management](https://github.com/OpenGamingCollective/linux/pull/35)
     that is set to be upstreamed in 7.3
 - [Umbriel](https://github.com/noctalia-dev/umbriel) + [Noctalia](https://github.com/noctalia-dev/noctalia)
-- Steam, Foot Terminal, Virutalization, Docker, and other smaller packages.
+- Steam, Virutalization, Docker, and other smaller packages.
   - For a full list, see this [script](build_files/20-packages.sh)
 
 ## Install
@@ -27,10 +27,10 @@ Right now I'm not building any ISOs so to use it:
 1. Turn off secure boot (read [later section on how to re-enable
    it](#secure-boot))
 
-1. Install (or use existing) [Fedora Silverblue](https://fedoraproject.org/atomic-desktops/silverblue/).
+1. Install (or use existing) [Fedora Kinoite](https://fedoraproject.org/atomic-desktops/kinoite/).
 
    Starting from other Fedora Atomic distros might work but I've only tested the
-   migration path from Silverblue.
+   migration path from Kinoite.
 
 1. Rebase to SchnitzelOS with:
 
