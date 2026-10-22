@@ -10,7 +10,6 @@ set -eoux pipefail
 
 setfattr -n user.component -v "flatpak-tweaks" /usr/lib/systemd/system/flatpak-add-fedora-repos.service
 setfattr -n user.component -v "flatpak-tweaks" /usr/lib/systemd/system/flatpak-preinstall.service
-setfattr -n user.component -v "flatpak-tweaks" /usr/lib/systemd/user/bazaar-daemon.service
 setfattr -n user.component -v "flatpak-tweaks" /usr/libexec/replace-fedora-flatpak
 setfattr -n user.component -v "flatpak-tweaks" /usr/share/flatpak/preinstall.d/default.preinstall
 setfattr -n user.update-interval -v "yearly" /usr/lib/systemd/system/flatpak-add-fedora-repos.service
@@ -35,15 +34,12 @@ setfattr -n user.component -v "misc-tweaks" /usr/lib/sysctl.d/99-disable-kexec.c
 setfattr -n user.update-interval -v "yearly" /usr/lib/bootc/kargs.d/10-zswap.toml
 
 setfattr -n user.component -v "base-conf" /etc/rpm-ostreed.conf
-setfattr -n user.component -v "base-conf" /etc/wireplumber/wireplumber.conf.d/90-dualsense.conf
 setfattr -n user.component -v "base-conf" /etc/uupd/config.json
 setfattr -n user.component -v "base-conf" /etc/udev/rules.d/99-powercap.rules
 setfattr -n user.component -v "base-conf" /etc/udev/rules.d/99-rapoo-vt3.rules
 setfattr -n user.component -v "base-conf" /etc/udev/rules.d/81-wol.rules
 setfattr -n user.component -v "base-conf" /etc/udev/rules.d/72-disable-dualsense-touchpad.rules
 setfattr -n user.component -v "base-conf" /etc/polkit-1/rules.d/50-efibootmgr.rules
-setfattr -n user.component -v "base-conf" /etc/xdg/gnome-xdg-terminals.list
-setfattr -n user.component -v "base-conf" /etc/xdg/umbriel-xdg-terminals.list
 setfattr -n user.component -v "base-conf" /etc/xdg-desktop-portal/umbriel-portals.conf
 setfattr -n user.update-interval -v "yearly" /etc/rpm-ostreed.conf
 

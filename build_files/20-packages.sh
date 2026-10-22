@@ -47,18 +47,14 @@ NEGATIVO_PACKAGES=(
 
 FEDORA_PACKAGES=(
   @virtualization
-  adw-gtk3-theme
   cockpit
   cockpit-files
   cockpit-machines
   cockpit-podman
   distrobox
-  ffmpegthumbnailer
   fish
   flatpak-spawn
-  foot
   fuse{,-libs}
-  gamemode
   google-noto-sans-balinese-fonts
   google-noto-sans-cham-fonts
   google-noto-sans-cjk-fonts
@@ -67,11 +63,11 @@ FEDORA_PACKAGES=(
   google-noto-sans-linear-b-fonts
   google-noto-sans-sundanese-fonts
   gvfs{,-fuse,-nfs}
+  kate
   libayatana-appindicator-gtk3
   lshw
   nvtop
   sbsigntools
-  xdg-terminal-exec
 )
 
 PACKAGES=( "${FEDORA_PACKAGES[@]}" "${NEGATIVO_PACKAGES[@]}" )
@@ -105,8 +101,8 @@ dnf5 install -y --nogpgcheck /tmp/cockpit-compose-latest.rpm
 
 TERRA_PACKAGES=(
   dmemcg-booster
-  ghostty
   noctalia-nightly
+  plasma-foreground-booster-dmemcg
   steam
   terra-mangohud
   umbriel-nightly
@@ -127,23 +123,15 @@ dnf5 install -y --from-repo="${COPR_PREFIX}:bieszczaders:kernel-cachyos-addons" 
 dnf5 copr -y disable bieszczaders/kernel-cachyos-addons
 
 REMOVE=(
+  akonadi-server{,-mysql}
   fedora-third-party
   firefox
   firefox-langpacks
-  gnome-classic-session
-  gnome-extensions-app
-  gnome-shell-extension-apps-menu
-  gnome-shell-extension-background-logo
-  gnome-shell-extension-launch-new-instance
-  gnome-shell-extension-places-menu
-  gnome-shell-extension-window-list
-  gnome-software
-  gnome-software-rpm-ostree
-  gnome-system-monitor
-  gnome-tour
-  ptyxis
-  totem-video-thumbnailer
-  yelp
+  kcharselect
+  khelpcenter
+  kwrite
+  plasma-discover-rpm-ostree
+  xwaylandvideobridge
 )
 dnf5 remove -y "${REMOVE[@]}"
 

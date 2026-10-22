@@ -1,32 +1,15 @@
-[Flatpak Preinstall io.github.kolunmi.Bazaar]
-Branch=stable
-IsRuntime=false
-
 [Flatpak Preinstall org.mozilla.firefox]
 Branch=stable
 IsRuntime=false
 
-[Flatpak Preinstall io.github.diegopvlk.Cine]
+[Flatpak Preinstall org.kde.haruna]
 Branch=stable
 IsRuntime=false
 
-[Flatpak Preinstall org.gnome.Decibels]
+[Flatpak Preinstall com.vysp3r.ProtonPlus]
 Branch=stable
 IsRuntime=false
 
-[Flatpak Preinstall com.mattjakeman.ExtensionManager]
+[Flatpak Preinstall io.github.ilya_zlobintsev.LACT]
 Branch=stable
 IsRuntime=false
-
-[Flatpak Preinstall com.github.tchx84.Flatseal]
-Branch=stable
-IsRuntime=false
-
-[Flatpak Preinstall page.tesk.Refine]
-Branch=stable
-IsRuntime=false
-
-[Flatpak Preinstall ca.desrt.dconf-editor]
-Branch=stable
-IsRuntime=false
-
