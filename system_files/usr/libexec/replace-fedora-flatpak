@@ -39,6 +39,10 @@ if ((${#TO_REPLACE[@]})); then
   /usr/bin/flatpak install -y --noninteractive flathub "${TO_REPLACE[@]}"
 fi
 
+# Let flatpaks use current gtk theme
+/usr/bin/flatpak override --filesystem=xdg-config/gtk-3.0:rw
+/usr/bin/flatpak override --filesystem=xdg-config/gtk-4.0:rw
+
 echo "Removing flatpaks that were only from fedora flatpak"
 /usr/bin/flatpak list --system --columns=ref,origin |
   /usr/bin/awk '$2 == "fedora" {print $1}' |
