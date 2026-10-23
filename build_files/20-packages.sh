@@ -132,6 +132,7 @@ REMOVE=(
   khelpcenter
   kwrite
   plasma-discover-rpm-ostree
+  plasma-login-manager
   xwaylandvideobridge
 )
 dnf5 remove -y "${REMOVE[@]}"
