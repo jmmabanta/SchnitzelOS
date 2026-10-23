@@ -101,6 +101,7 @@ dnf5 install -y --nogpgcheck /tmp/cockpit-compose-latest.rpm
 
 TERRA_PACKAGES=(
   dmemcg-booster
+  noctalia-greeter
   noctalia-nightly
   plasma-foreground-booster-dmemcg
   steam
