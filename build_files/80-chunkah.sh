@@ -48,6 +48,10 @@ setfattr -n user.component -v "signing-files" /etc/containers/registries.d/schni
 setfattr -n user.component -v "signing-files" /etc/pki/containers/schnitzel-os.pub
 setfattr -n user.update-interval -v "yearly" /etc/containers/policy.json
 
+setfattr -n user.component -v "greetd-config" /etc/greetd/config.toml
+setfattr -n user.component -v "greetd-config" /etc/pam.d/greetd
+setfattr -n user.update-interval -v "yearly" /etc/greetd/config.toml
+
 # Additions from aurora pr 3028
 
 HOMEBREW_TARBALL=/usr/share/homebrew.tar.zst
