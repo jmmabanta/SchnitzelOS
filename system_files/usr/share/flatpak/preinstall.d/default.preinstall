@@ -13,3 +13,7 @@ IsRuntime=false
 [Flatpak Preinstall io.github.ilya_zlobintsev.LACT]
 Branch=stable
 IsRuntime=false
+
+[Flatpak Preinstall it.mijorus.gearlever]
+Branch=stable
+IsRuntime=false
