@@ -100,6 +100,7 @@ curl -o /tmp/cockpit-compose-latest.rpm \
 dnf5 install -y --nogpgcheck /tmp/cockpit-compose-latest.rpm
 
 TERRA_PACKAGES=(
+  bpftune-gaming
   dmemcg-booster
   noctalia-greeter
   noctalia-nightly
