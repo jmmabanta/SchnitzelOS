@@ -14,7 +14,10 @@ systemctl enable flatpak-preinstall.service
 systemctl enable sync-nvidia-flatpak.service
 
 # Plasma Login is buggy (often black screen) so I replaced it with greetd
-systemctl enable greetd
+systemctl enable greetd.service
+
+# For better networking latency during gaming
+systemctl enable bpftune.service
 
 # Use ublue-os/uupd for automatic updates, not rpm-ostree
 systemctl enable uupd.timer
