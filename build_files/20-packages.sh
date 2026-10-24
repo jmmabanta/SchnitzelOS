@@ -72,7 +72,7 @@ FEDORA_PACKAGES=(
 
 PACKAGES=( "${FEDORA_PACKAGES[@]}" "${NEGATIVO_PACKAGES[@]}" )
 dnf5 install -y \
-  --exclude=cockpit-ostree \
+  --exclude=cockpit-ostree,dnf5daemon-server \
   --enablerepo='fedora-multimedia' \
   "${PACKAGES[@]}"
 
