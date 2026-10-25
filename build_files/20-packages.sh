@@ -67,14 +67,12 @@ FEDORA_PACKAGES=(
   libayatana-appindicator-gtk3
   lshw
   nvtop
+  plasma-firewall
   sbsigntools
 )
 
 PACKAGES=( "${FEDORA_PACKAGES[@]}" "${NEGATIVO_PACKAGES[@]}" )
-dnf5 install -y \
-  --exclude=cockpit-ostree,dnf5daemon-server \
-  --enablerepo='fedora-multimedia' \
-  "${PACKAGES[@]}"
+dnf5 install -y --enablerepo='fedora-multimedia' "${PACKAGES[@]}"
 
 DOCKER_PACKAGES=(
   containerd.io
@@ -126,9 +124,12 @@ dnf5 copr -y disable bieszczaders/kernel-cachyos-addons
 
 REMOVE=(
   akonadi-server{,-mysql}
+  fedora-bookmarks
+  fedora-chromium-config{,-kde}
   fedora-third-party
   firefox
   firefox-langpacks
+  intel-lpmd
   kcharselect
   khelpcenter
   kwrite
@@ -140,8 +141,6 @@ dnf5 remove -y "${REMOVE[@]}"
 
 # https://www.phoronix.com/review/fedora-pantherlake-thermald-tuned
 dnf5 swap -y tuned-ppd power-profiles-daemon
-# https://my.devsuite.app/@chergert/117446918437204806
-dnf5 remove -y intel-lpmd
 
 # Patch grub2-mkconfig so it works with regenerate-grub
 # From https://github.com/ublue-os/bazzite/blob/6c108d6cb377d78c5e6484787180e7a741b58b84/Containerfile#L462
