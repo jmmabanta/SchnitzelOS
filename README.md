@@ -43,12 +43,12 @@ Right now I'm not building any ISOs so to use it:
 
 1. After a reboot, you will then boot into SchnitzelOS!
 
-   > [!Important]
-   > Any installed Flatpaks from the Fedora remote will be uninstalled and
-   > replaced with its Flathub counterpart. This process can take a few minutes
-   > so don't panic if a bunch of applications go missing.
+> [!Important]
+> Any installed Flatpaks from the Fedora remote will be uninstalled and
+> replaced with its Flathub counterpart. This process can take a few minutes
+> so don't panic if a bunch of applications go missing.
 
-1. Once you have verified everything is working to your liking, rebase from the
+5. Once you have verified everything is working to your liking, rebase from the
    unsigned image to the signed image for better security, then reboot:
 
    ```bash
