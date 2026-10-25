@@ -43,7 +43,7 @@ Right now I'm not building any ISOs so to use it:
 
 1. After a reboot, you will then boot into SchnitzelOS!
 
-   > [!IMPORTANT]
+   > [!Important]
    > Any installed Flatpaks from the Fedora remote will be uninstalled and
    > replaced with its Flathub counterpart. This process can take a few minutes
    > so don't panic if a bunch of applications go missing.
