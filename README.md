@@ -37,23 +37,23 @@ Right now I'm not building any ISOs so to use it:
 
 1. Rebase to SchnitzelOS with:
 
-    ```bash
-    sudo bootc switch ghcr.io/jmmabanta/schnitzel-os
-    ```
+   ```bash
+   sudo bootc switch ghcr.io/jmmabanta/schnitzel-os
+   ```
 
 1. After a reboot, you will then boot into SchnitzelOS!
 
-    > [!IMPORTANT]
-    > Any installed Flatpaks from the Fedora remote will be uninstalled and
-    > replaced with its Flathub counterpart. This process can take a few minutes
-    > so don't panic if a bunch of applications go missing.
+   > [!IMPORTANT]
+   > Any installed Flatpaks from the Fedora remote will be uninstalled and
+   > replaced with its Flathub counterpart. This process can take a few minutes
+   > so don't panic if a bunch of applications go missing.
 
 1. Once you have verified everything is working to your liking, rebase from the
    unsigned image to the signed image for better security, then reboot:
 
-    ```bash
-    sudo bootc switch --enforce-container-sigpolicy ghcr.io/jmmabanta/schnitzel-os
-    ```
+   ```bash
+   sudo bootc switch --enforce-container-sigpolicy ghcr.io/jmmabanta/schnitzel-os
+   ```
 
 ## Secure Boot
 
@@ -63,9 +63,9 @@ the key:
 1. Disable secure boot in bios
 1. After rebase, enter:
 
-    ```bash
-    sudo mokutil --import /etc/pki/akmods/certs/akmods-ublue.der
-    ```
+   ```bash
+   sudo mokutil --import /etc/pki/akmods/certs/akmods-ublue.der
+   ```
 
 1. You will then be prompted to type a password. Type something simple like
    `1234`. It will only be temporary and you'll need to use it in the next step.
@@ -86,34 +86,34 @@ ZRAM).
 
 1. Create BTRFS subvolume for swap
 
-    ```bash
-    sudo btrfs subvolume create /var/swap
-    sudo semanage fcontext -a -t var_t /var/swap
-    sudo restorecon /var/swap
-    ```
+   ```bash
+   sudo btrfs subvolume create /var/swap
+   sudo semanage fcontext -a -t var_t /var/swap
+   sudo restorecon /var/swap
+   ```
 
 1. Create the swapfile itself
 
-    ```bash
-    SIZE=8G
-    sudo btrfs filesystem mkswapfile --size $SIZE /var/swap/swapfile
-    sudo semanage fcontext -a -t swapfile_t /var/swap/swapfile
-    sudo restorecon /var/swap/swapfile
+   ```bash
+   SIZE=8G
+   sudo btrfs filesystem mkswapfile --size $SIZE /var/swap/swapfile
+   sudo semanage fcontext -a -t swapfile_t /var/swap/swapfile
+   sudo restorecon /var/swap/swapfile
 
-    sudo swapon /var/swap/swapfile
-    ```
+   sudo swapon /var/swap/swapfile
+   ```
 
 1. Add the swapfile to `/etc/fstab` so it persists between reboots:
 
-    ```bash
-    echo "/var/swap/swapfile none swap defaults,nofail 0 0" | sudo tee -a /etc/fstab
-    ```
+   ```bash
+   echo "/var/swap/swapfile none swap defaults,nofail 0 0" | sudo tee -a /etc/fstab
+   ```
 
 1. Disable ZRAM:
 
-    ```bash
-    sudo touch /etc/systemd/zram-generator.conf
-    ```
+   ```bash
+   sudo touch /etc/systemd/zram-generator.conf
+   ```
 
 1. Reboot
 
