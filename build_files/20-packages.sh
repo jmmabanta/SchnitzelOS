@@ -69,6 +69,8 @@ FEDORA_PACKAGES=(
   lshw
   nvtop
   plasma-firewall
+  python3-websockets
+  qt6-qtwebsockets-devel
   sbsigntools
 )
 
