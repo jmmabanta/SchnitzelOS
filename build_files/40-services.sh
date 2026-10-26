@@ -34,6 +34,10 @@ systemctl enable podman.socket
 
 systemctl enable cockpit.socket
 
+# Regenerate CA trust and crypto policies.
+systemctl enable bootc-update-ca-trust.service
+systemctl enable bootc-update-crypto-policies.service
+
 # Disable unneeded services that can slowdown boot
 # https://github.com/ublue-os/bazzite/commit/d6334b34d3a75bd70082581d1337cbec849e695c
 systemctl mask iscsi
