@@ -129,7 +129,6 @@ REMOVE=(
   fedora-third-party
   firefox
   firefox-langpacks
-  intel-lpmd
   kcharselect
   khelpcenter
   kwrite
@@ -138,9 +137,6 @@ REMOVE=(
   xwaylandvideobridge
 )
 dnf5 remove -y "${REMOVE[@]}"
-
-# https://www.phoronix.com/review/fedora-pantherlake-thermald-tuned
-dnf5 swap -y tuned-ppd power-profiles-daemon
 
 # Patch grub2-mkconfig so it works with regenerate-grub
 # From https://github.com/ublue-os/bazzite/blob/6c108d6cb377d78c5e6484787180e7a741b58b84/Containerfile#L462
