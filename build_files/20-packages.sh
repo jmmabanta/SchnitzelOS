@@ -62,7 +62,6 @@ FEDORA_PACKAGES=(
   google-noto-sans-linear-a-fonts
   google-noto-sans-linear-b-fonts
   google-noto-sans-sundanese-fonts
-  gvfs{,-fuse,-nfs}
   kate
   libayatana-appindicator-gtk3
   lshw
