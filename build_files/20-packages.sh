@@ -103,6 +103,8 @@ TERRA_PACKAGES=(
   noctalia-greeter
   noctalia-nightly
   plasma-foreground-booster-dmemcg
+  scx_scheds
+  scx_tools
   steam
   terra-mangohud
   umbriel-nightly
@@ -112,13 +114,6 @@ dnf5 install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/te
 dnf5 config-manager setopt "*terra*".priority=1
 dnf5 install -y --exclude='mangohud*,gpu-screen-recorder' "${TERRA_PACKAGES[@]}"
 dnf5 config-manager disable terra terra-extras
-
-COPR_PREFIX="copr:copr.fedorainfracloud.org"
-
-dnf5 copr -y enable bieszczaders/kernel-cachyos-addons
-dnf5 install -y --from-repo="${COPR_PREFIX}:bieszczaders:kernel-cachyos-addons" \
-  scx-scheds scx-tools
-dnf5 copr -y disable bieszczaders/kernel-cachyos-addons
 
 REMOVE=(
   akonadi-server{,-mysql}
