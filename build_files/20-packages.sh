@@ -122,7 +122,7 @@ dnf5 copr -y enable lionheartp/Hyprland
 dnf5 install -y \
   --from-repo="${COPR_PREFIX}:lionheartp:Hyprland" \
   --releasever=44 \
-  hyprland-0.56.0
+  hyprland-0.56.0-1
 dnf5 copr -y disable lionheartp/Hyprland
 
 REMOVE=(
