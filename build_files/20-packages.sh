@@ -117,12 +117,7 @@ dnf5 config-manager disable terra terra-extras
 COPR_PREFIX="copr:copr.fedorainfracloud.org"
 
 dnf5 copr -y enable lionheartp/Hyprland
-# Later hyprland versions broke tearing on wine wayland
-# https://github.com/hyprwm/Hyprland/issues/16035
-dnf5 install -y \
-  --from-repo="${COPR_PREFIX}:lionheartp:Hyprland" \
-  --releasever=44 \
-  hyprland-0.56.0-1
+dnf5 install -y --from-repo="${COPR_PREFIX}:lionheartp:Hyprland" hyprland-git
 dnf5 copr -y disable lionheartp/Hyprland
 
 REMOVE=(
