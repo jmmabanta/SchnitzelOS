@@ -17,7 +17,7 @@ systemctl enable sync-nvidia-flatpak.service
 systemctl enable greetd.service
 
 # For better networking latency during gaming
-systemctl enable bpftune.service
+systemctl enable bpfrag.service
 
 # Use ublue-os/uupd for automatic updates, not rpm-ostree
 systemctl enable uupd.timer
