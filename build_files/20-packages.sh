@@ -54,6 +54,7 @@ FEDORA_PACKAGES=(
   distrobox
   fish
   flatpak-spawn
+  foot
   fuse{,-libs}
   google-noto-sans-balinese-fonts
   google-noto-sans-cham-fonts
@@ -68,6 +69,7 @@ FEDORA_PACKAGES=(
   nvtop
   plasma-firewall
   sbsigntools
+  xdg-terminal-exec
 )
 
 PACKAGES=( "${FEDORA_PACKAGES[@]}" "${NEGATIVO_PACKAGES[@]}" )
