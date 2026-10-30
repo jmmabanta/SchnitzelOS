@@ -131,6 +131,7 @@ REMOVE=(
   fedora-third-party
   firefox
   firefox-langpacks
+  gamemode
   kcharselect
   khelpcenter
   kwrite
