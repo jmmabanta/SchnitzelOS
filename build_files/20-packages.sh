@@ -103,8 +103,6 @@ TERRA_PACKAGES=(
   dmemcg-booster
   noctalia-greeter
   noctalia-nightly
-  scx-scheds
-  scx-tools
   steam
   terra-mangohud
   umbriel-nightly
