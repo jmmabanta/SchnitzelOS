@@ -117,6 +117,13 @@ dnf5 install -y --exclude='mangohud*,gpu-screen-recorder' "${TERRA_PACKAGES[@]}"
 dnf5 swap -y --repo terra-extras uresourced uresourced-dmemcg
 dnf5 config-manager disable terra terra-extras
 
+COPR_PREFIX="copr:copr.fedorainfracloud.org"
+# Sunshine Flatpak has too much jank so we need to resort to installing it
+# at the image level
+dnf5 copr -y enable lizardbyte/stable
+dnf5 install -y --from-repo="${COPR_PREFIX}:lizardbyte:stable" Sunshine
+dnf5 copr -y disable lizardbyte/stable
+
 REMOVE=(
   akonadi-server{,-mysql}
   fedora-bookmarks
