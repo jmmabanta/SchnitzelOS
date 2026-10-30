@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# A version of CachyOS's game-performance for tuned (Fedora, Bazzite)
+# Useful for Intel CPUs with E-Cores as the performance profile helps with
+# keeping game-related processes on the P-Cores
+
+tuned-adm profile throughput-performance
+"$@"
+tuned-adm profile balanced

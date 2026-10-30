@@ -30,6 +30,7 @@ setfattr -n user.component -v "misc-tweaks" /usr/lib/sysusers.d/libvirt-workarou
 setfattr -n user.component -v "misc-tweaks" /usr/local/bin/regenerate-grub
 setfattr -n user.component -v "misc-tweaks" /usr/local/bin/xdg-open
 setfattr -n user.component -v "misc-tweaks" /usr/local/bin/check-eacv2-reqs
+setfattr -n user.component -v "misc-tweaks" /usr/local/bin/game-perf
 setfattr -n user.component -v "misc-tweaks" /usr/share/plymouth/themes/spinner/watermark.png
 setfattr -n user.component -v "misc-tweaks" /usr/lib/sysctl.d/99-splitlock.conf
 setfattr -n user.component -v "misc-tweaks" /usr/lib/sysctl.d/99-disable-kexec.conf
