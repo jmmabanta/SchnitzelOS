@@ -101,7 +101,6 @@ dnf5 install -y --nogpgcheck /tmp/cockpit-compose-latest.rpm
 TERRA_PACKAGES=(
   bpfrag
   dmemcg-booster
-  mangowm
   noctalia-greeter
   noctalia-nightly
   scx-scheds
