@@ -56,13 +56,6 @@ FEDORA_PACKAGES=(
   flatpak-spawn
   foot
   fuse{,-libs}
-  google-noto-sans-balinese-fonts
-  google-noto-sans-cham-fonts
-  google-noto-sans-cjk-fonts
-  google-noto-sans-javanese-fonts
-  google-noto-sans-linear-a-fonts
-  google-noto-sans-linear-b-fonts
-  google-noto-sans-sundanese-fonts
   kate
   libayatana-appindicator-gtk3
   lshw
