@@ -64,7 +64,7 @@ FEDORA_PACKAGES=(
   nvtop
   plasma-firewall
   python3-websockets
-  qt6-qtwebsockets
+  qt6-qtwebsockets-devel
   sbsigntools
   twitter-twemoji-fonts
   xdg-terminal-exec
