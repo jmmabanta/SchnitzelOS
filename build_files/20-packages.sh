@@ -56,12 +56,14 @@ FEDORA_PACKAGES=(
   flatpak-spawn
   foot
   fuse{,-libs}
+  google-noto-sans-cjk-fonts
   kate
   libayatana-appindicator-gtk3
   lshw
   nvtop
   plasma-firewall
   sbsigntools
+  twitter-twemoji-fonts
   xdg-terminal-exec
 )
 
