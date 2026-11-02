@@ -36,8 +36,8 @@ setfattr -n user.component -v "custom-programs" /usr/local/bin/regenerate-grub
 setfattr -n user.component -v "custom-programs" /usr/local/bin/xdg-open
 setfattr -n user.component -v "custom-programs" /usr/local/bin/check-eacv2-reqs
 setfattr -n user.component -v "custom-programs" /usr/local/bin/game-perf
-setfattr -n user.component -v "custom-programs" /usr/local/bin/boot-windows
-setfattr -n user.component -v "custom-programs" /usr/share/applications/Boot_To_Windows.desktop
+setfattr -n user.component -v "custom-programs" /usr/local/bin/reboot-windows
+setfattr -n user.component -v "custom-programs" /usr/share/applications/Reboot_Windows.desktop
 setfattr -n user.update-interval -v "yearly" /usr/local/bin/regenerate-grub
 
 setfattr -n user.component -v "base-conf" /etc/rpm-ostreed.conf

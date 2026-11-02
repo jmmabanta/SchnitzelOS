@@ -1,6 +1,6 @@
 [Desktop Entry]
 Comment=Restarts the computer to boot into Windows
-Exec=/usr/local/bin/boot-windows
+Exec=/usr/local/bin/reboot-windows
 Icon=system-reboot
 Name=Reboot to Windows
 NoDisplay=false
