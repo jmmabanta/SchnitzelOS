@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# Modified from Bazzite's script
+# https://github.com/ublue-os/bazzite/blob/main/system_files/desktop/shared/usr/bin/boot-windows
+
+# Look up the boot number for Windows in the EFI records
+boot_number=$(echo $(efibootmgr) | grep -Po "(?<=Boot)\S{4}(?=( |\* )Windows)" | head -n1)
+
+if [ -z "$boot_number" ]; then
+  notify-send "Reboot to Windows Failed!" "No Windows install found!" -u critical -i dialog-error
+  exit 1
+fi
+
+if ! /usr/bin/env pkexec efibootmgr -n "${boot_number}"; then
+  notify-send "Reboot to Windows Failed!" "Ensure polkit rules are setup for efibootmgr" -u critical -i dialog-error
+  exit 1
+else
+  reboot
+fi
