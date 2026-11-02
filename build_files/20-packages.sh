@@ -120,6 +120,11 @@ dnf5 copr -y enable lizardbyte/stable
 dnf5 install -y --from-repo="${COPR_PREFIX}:lizardbyte:stable" Sunshine
 dnf5 copr -y disable lizardbyte/stable
 
+# TODO: When Fedora updates zig to 0.17, install ghostty from Terra instead
+dnf5 copr -y enable scottames/ghostty
+dnf5 install -y --from-repo="${COPR_PREFIX}:scottames:ghostty" ghostty
+dnf5 copr -y disable scottames/ghostty
+
 REMOVE=(
   akonadi-server{,-mysql}
   fedora-bookmarks
