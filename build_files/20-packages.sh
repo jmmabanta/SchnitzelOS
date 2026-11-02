@@ -55,7 +55,6 @@ FEDORA_PACKAGES=(
   distrobox
   fish
   flatpak-spawn
-  foot
   fuse{,-libs}
   google-noto-sans-cjk-fonts
   kate
