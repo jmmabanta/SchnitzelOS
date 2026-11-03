@@ -23,9 +23,6 @@ systemctl enable bpfrag.service
 systemctl enable uupd.timer
 systemctl disable rpm-ostreed-automatic.timer
 
-# Speeds up new ghostty window creations
-systemctl --global enable app-com.mitchellh.ghostty.service
-
 systemctl enable dmemcg-booster-system.service
 systemctl --global enable dmemcg-booster-user.service
 
