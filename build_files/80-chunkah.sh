@@ -42,6 +42,7 @@ setfattr -n user.component -v "custom-programs" /usr/share/applications/Reboot_W
 setfattr -n user.update-interval -v "yearly" /usr/local/bin/regenerate-grub
 
 setfattr -n user.component -v "base-conf" /etc/rpm-ostreed.conf
+setfattr -n user.component -v "base-conf" /etc/tuned/ppd.conf
 setfattr -n user.component -v "base-conf" /etc/uupd/config.json
 setfattr -n user.component -v "base-conf" /etc/udev/rules.d/99-powercap.rules
 setfattr -n user.component -v "base-conf" /etc/udev/rules.d/99-rapoo-vt3.rules
