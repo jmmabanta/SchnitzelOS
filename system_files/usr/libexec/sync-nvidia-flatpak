@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 # From https://github.com/projectbluefin/common/blob/8df20e808636122f80d7fd583ccd1561f89b8eb8/system_files/nvidia/usr/libexec/ublue-nvidia-flatpak-runtime-sync
 
