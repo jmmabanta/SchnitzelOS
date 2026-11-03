@@ -66,7 +66,6 @@ FEDORA_PACKAGES=(
   qt6-qtwebsockets-devel
   sbsigntools
   twitter-twemoji-fonts
-  xdg-terminal-exec
 )
 
 PACKAGES=( "${FEDORA_PACKAGES[@]}" "${NEGATIVO_PACKAGES[@]}" )
