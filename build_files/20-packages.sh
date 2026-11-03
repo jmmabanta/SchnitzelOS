@@ -47,7 +47,6 @@ NEGATIVO_PACKAGES=(
 
 FEDORA_PACKAGES=(
   @virtualization
-  cava
   cockpit
   cockpit-files
   cockpit-machines
@@ -62,8 +61,6 @@ FEDORA_PACKAGES=(
   lshw
   nvtop
   plasma-firewall
-  python3-websockets
-  qt6-qtwebsockets-devel
   sbsigntools
   twitter-twemoji-fonts
 )
