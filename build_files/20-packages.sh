@@ -99,6 +99,7 @@ TERRA_PACKAGES=(
   dmemcg-booster
   noctalia-greeter
   noctalia-nightly
+  plasma-foreground-booster-dmemcg
   steam
   terra-mangohud
   umbriel-nightly
@@ -107,8 +108,6 @@ TERRA_PACKAGES=(
 dnf5 install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release{,-extras}
 dnf5 config-manager setopt "*terra*".priority=1
 dnf5 install -y --exclude='mangohud*,gpu-screen-recorder' "${TERRA_PACKAGES[@]}"
-# VRAM Management
-dnf5 swap -y --repo terra-extras uresourced uresourced-dmemcg
 dnf5 config-manager disable terra terra-extras
 
 REMOVE=(
