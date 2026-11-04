@@ -7,6 +7,9 @@
 # Based on the Fedora 45 recipe from the image-builder docs:
 #   https://osbuild.org/docs/developer-guide/projects/image-builder/bootc-generic-iso/
 #   https://osbuild.org/docs/developer-guide/projects/image-builder/advanced/bootc/isos/
+#
+# Config files are written with printf rather than heredocs so this builds on
+# older podman/buildah (the CI runner uses ubuntu-24.04, podman 4.9).
 FROM quay.io/fedora/fedora-bootc:45
 
 # The bootc image Anaconda installs. The workflow overrides this with
@@ -39,22 +42,22 @@ RUN dnf5 install -qy \
 RUN mkdir -p /boot/efi && cp -ra /usr/lib/efi/*/*/EFI /boot/efi
 
 # ISO GRUB boot menu
-RUN mkdir -p /usr/lib/image-builder/bootc
-RUN cat <<EOF > /usr/lib/image-builder/bootc/iso.yaml
-label: "${ISO_LABEL}"
-grub2:
-  entries:
-    - name: "Install SchnitzelOS"
-      linux: "/images/pxeboot/vmlinuz inst.stage2=hd:LABEL=${ISO_LABEL} console=tty0 inst.graphical selinux=0 rhgb quiet"
-      initrd: "/images/pxeboot/initrd.img"
-EOF
+RUN mkdir -p /usr/lib/image-builder/bootc && \
+    printf '%s\n' \
+        "label: \"${ISO_LABEL}\"" \
+        "grub2:" \
+        "  entries:" \
+        "    - name: \"Install SchnitzelOS\"" \
+        "      linux: \"/images/pxeboot/vmlinuz inst.stage2=hd:LABEL=${ISO_LABEL} console=tty0 inst.graphical selinux=0 rhgb quiet\"" \
+        "      initrd: \"/images/pxeboot/initrd.img\"" \
+        > /usr/lib/image-builder/bootc/iso.yaml
 
 # Tell Anaconda to install the bootc image. --target-imgref makes the installed
 # system track the registry image for updates, so no `bootc switch` is needed in
 # a %post section (the old iso.toml needed one).
-RUN cat <<EOF > /usr/share/anaconda/interactive-defaults.ks
-bootc --source-imgref registry:${PAYLOAD_IMAGE} --target-imgref ${PAYLOAD_IMAGE}
-EOF
+RUN printf '%s\n' \
+        "bootc --source-imgref registry:${PAYLOAD_IMAGE} --target-imgref ${PAYLOAD_IMAGE}" \
+        > /usr/share/anaconda/interactive-defaults.ks
 
 # ---------------------------------------------------------------------------
 # The following is what `lorax` normally does to make Anaconda work as a live
@@ -72,11 +75,9 @@ RUN mv /usr/share/anaconda/list-harddrives-stub /usr/bin/list-harddrives && \
 
 RUN ln -s /usr/lib/systemd/system/anaconda-shell@.service /usr/lib/systemd/system/autovt@.service
 
-RUN mkdir -p /usr/lib/systemd/logind.conf.d
-COPY <<EOT /usr/lib/systemd/logind.conf.d/anaconda-shell.conf
-[Login]
-ReserveVT=2
-EOT
+RUN mkdir -p /usr/lib/systemd/logind.conf.d && \
+    printf '%s\n' '[Login]' 'ReserveVT=2' \
+        > /usr/lib/systemd/logind.conf.d/anaconda-shell.conf
 
 # Rebuild the initramfs with the anaconda dracut module
 RUN mkdir -p "$(realpath /root)" && \
@@ -86,14 +87,8 @@ RUN mkdir -p "$(realpath /root)" && \
         "/usr/lib/modules/${kernel}/initramfs.img" "${kernel}"
 
 # Let the root-run installer use pipewire
-RUN mkdir -p /etc/systemd/user/pipewire.service.d/
-COPY <<EOT /etc/systemd/user/pipewire.service.d/allowroot.conf
-[Unit]
-ConditionUser=
-EOT
-
-RUN mkdir -p /etc/systemd/user/pipewire.socket.d/
-COPY <<EOT /etc/systemd/user/pipewire.socket.d/allowroot.conf
-[Unit]
-ConditionUser=
-EOT
+RUN mkdir -p /etc/systemd/user/pipewire.service.d /etc/systemd/user/pipewire.socket.d && \
+    printf '%s\n' '[Unit]' 'ConditionUser=' \
+        > /etc/systemd/user/pipewire.service.d/allowroot.conf && \
+    printf '%s\n' '[Unit]' 'ConditionUser=' \
+        > /etc/systemd/user/pipewire.socket.d/allowroot.conf
