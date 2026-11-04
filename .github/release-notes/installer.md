@@ -15,6 +15,8 @@
 
 1. Once the installer boots, set your language and keyboard then hit done.
 
+   Note that due to file size restrictions, only English is supported. There may be missing glyphs from other languages.
+
 1. Click "Network and Host Name" to configure your internet connection if it has
    not been automatically configures (ie. WiFi, Ethernet)
 
