@@ -31,7 +31,7 @@ It is basically just Fedora Kinoite with:
 1. Turn off secure boot (read [later section on how to re-enable
    it](#secure-boot))
 
-1. Download the [latest ISO](https://github.com/jmmabanta/SchnitzelOS/releases/latest)
+1. Download the [latest ISO](https://github.com/jmmabanta/SchnitzelOS/releases/download/installer/SchnitzelOS-Installer.iso)
    and flash it to a USB Drive (>4GB).
 
    Use something like [Fedora Media Writer](https://fedoraproject.org/workstation/download/)
