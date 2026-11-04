@@ -13,7 +13,7 @@ on:
     branches:
       - main
     paths:
-      - 'disk_config/iso/**'
+      - 'disk_config/Containerfile'
       - '.github/workflows/build-iso.yml'
 
 env:
