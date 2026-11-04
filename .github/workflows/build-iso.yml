@@ -2,12 +2,16 @@
 name: Build installer ISO
 
 on:
+  schedule:
+    # Weekly, Sunday 08:23 UTC. Scheduled runs always publish a release.
+    # (Odd minute on purpose: top-of-the-hour slots are the most delayed.)
+    - cron: '23 8 * * 0'
   workflow_dispatch:
     inputs:
       publish-release:
-        description: "Publish the ISO as a GitHub Release (tag installer-<date>)"
+        description: "Publish the ISO as a GitHub Release (tag installer-<date>); scheduled runs always do"
         required: false
-        default: true
+        default: false
         type: boolean
   pull_request:
     branches:
@@ -30,7 +34,8 @@ env:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
-  cancel-in-progress: true
+  # Only supersede stale PR builds; never cancel a run that may be publishing.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   build:
@@ -114,8 +119,10 @@ jobs:
           ls -lh dist
           echo "output-directory=${PWD}/dist" >> "${GITHUB_OUTPUT}"
 
+      # Skipped when the ISO is going to a release (scheduled runs, or a manual run
+      # with publish-release ticked), so it isn't stored twice.
       - name: Upload ISO to Job Artifacts
-        if: github.event_name != 'pull_request'
+        if: github.event_name == 'workflow_dispatch' && inputs.publish-release != true
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: schnitzel-installer-iso
@@ -128,7 +135,7 @@ jobs:
       # Public, login-free download URL: the release page. GitHub caps each
       # release asset at 2 GiB, so fail early with a clear message if exceeded.
       - name: Publish GitHub Release
-        if: inputs.publish-release == true && github.event_name != 'pull_request'
+        if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.publish-release == true)
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
