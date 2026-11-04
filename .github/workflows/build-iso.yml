@@ -30,7 +30,11 @@ jobs:
   build:
     name: Build installer ISO
     # The installer image only includes x86_64 boot tooling (grub2-efi-x64-cdboot).
-    runs-on: ubuntu-26.04
+    # Deliberately NOT ubuntu-26.04: its 7.0 kernel makes osbuild fail at
+    # org.osbuild.container-deploy with "mount: /run/osbuild/containers/storage:
+    # permission denied" (https://github.com/osbuild/osbuild/issues/2579).
+    # ubuntu-24.04 (6.17 kernel) works. Revisit once that issue is fixed.
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
       packages: read
