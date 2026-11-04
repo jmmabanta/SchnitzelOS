@@ -57,6 +57,7 @@ FEDORA_PACKAGES=(
   fuse{,-libs}
   google-noto-sans-cjk-fonts
   kate
+  kontact
   libayatana-appindicator-gtk3
   lshw
   nvtop
@@ -107,7 +108,6 @@ dnf5 install -y --exclude='mangohud*,gpu-screen-recorder' "${TERRA_PACKAGES[@]}"
 dnf5 config-manager disable terra terra-extras
 
 REMOVE=(
-  akonadi-server{,-mysql}
   fedora-bookmarks
   fedora-chromium-config{,-kde}
   fedora-third-party
