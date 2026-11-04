@@ -27,6 +27,8 @@ ARG ISO_LABEL=SchnitzelOS-Installer
 # doesn't get them unless they are added here. If a name is ever renamed in a
 # future release, the build fails with "No match for argument".
 RUN dnf5 install -qy \
+        --setopt=install_weak_deps=0 \
+        --setopt=tsflags=nodocs \
         anaconda \
         anaconda-install-img-deps \
         anaconda-dracut \
@@ -37,7 +39,7 @@ RUN dnf5 install -qy \
         plymouth \
         default-fonts-core-sans \
         default-fonts-other-sans \
-        google-noto-sans-cjk-fonts \
+        google-noto-sans-cjk-vf-fonts \
         xorrisofs \
         squashfs-tools \
         isomd5sum \
@@ -95,7 +97,7 @@ RUN mkdir -p /usr/lib/systemd/logind.conf.d && \
 # Rebuild the initramfs with the anaconda dracut module
 RUN mkdir -p "$(realpath /root)" && \
     kernel=$(kernel-install list --json pretty | jq -r '.[] | select(.has_kernel == true) | .version') && \
-    DRACUT_NO_XATTR=1 dracut --force -v --zstd --reproducible --no-hostonly \
+    DRACUT_NO_XATTR=1 dracut --force -v --xz --reproducible --no-hostonly \
         --add "anaconda" \
         "/usr/lib/modules/${kernel}/initramfs.img" "${kernel}"
 
