@@ -5,6 +5,12 @@ on:
     # (randomly generated time)
     - cron: '14 12 * * 2'
   workflow_dispatch:
+    inputs:
+      dry-run:
+        description: "Dry run: list the old installer releases without deleting them"
+        required: false
+        default: false
+        type: boolean
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
@@ -24,3 +30,52 @@ jobs:
           delete-orphaned-images: true
           keep-n-tagged: 7
           keep-n-untagged: 7
+
+  # Separate job so that only this job holds `contents: write` (needed to delete
+  # releases and their tags), not the third-party action above.
+  clean-old-releases:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Delete installer releases older than 30 days
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          DRY_RUN: ${{ inputs.dry-run == true }}
+          MAX_AGE_DAYS: 30
+          # Never delete the newest N installer releases, however old they are,
+          # so a long stretch of failed builds can't leave you with no ISO.
+          # Set to 0 to disable.
+          KEEP_NEWEST: 2
+        run: |
+          releases="$(mktemp)"
+          gh release list --limit 1000 --json tagName,createdAt > "${releases}"
+
+          # Only releases tagged installer-* are considered; anything else in
+          # the repo's releases is never touched.
+          mapfile -t old_tags < <(python3 - "${releases}" <<'PY'
+          import datetime as dt, json, os, sys
+
+          keep = int(os.environ["KEEP_NEWEST"])
+          cutoff = dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=int(os.environ["MAX_AGE_DAYS"]))
+
+          releases = [r for r in json.load(open(sys.argv[1])) if r["tagName"].startswith("installer-")]
+          releases.sort(key=lambda r: r["createdAt"], reverse=True)   # newest first
+
+          for r in releases[keep:]:                                    # skip the newest N
+              created = dt.datetime.fromisoformat(r["createdAt"].replace("Z", "+00:00"))
+              if created < cutoff:
+                  print(r["tagName"])
+          PY
+          )
+
+          echo "Installer releases to delete: ${#old_tags[@]}"
+          for tag in "${old_tags[@]}"; do
+            if [ "${DRY_RUN}" = "true" ]; then
+              echo "[dry run] would delete ${tag}"
+              continue
+            fi
+            echo "Deleting ${tag}"
+            gh release delete "${tag}" --cleanup-tag --yes
+          done
