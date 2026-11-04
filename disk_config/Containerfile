@@ -53,11 +53,25 @@ RUN mkdir -p /usr/lib/image-builder/bootc && \
         > /usr/lib/image-builder/bootc/iso.yaml
 
 # Tell Anaconda to install the bootc image. --target-imgref makes the installed
-# system track the registry image for updates, so no `bootc switch` is needed in
-# a %post section (the old iso.toml needed one).
+# system track the registry image for updates.
 RUN printf '%s\n' \
         "bootc --source-imgref registry:${PAYLOAD_IMAGE} --target-imgref ${PAYLOAD_IMAGE}" \
         > /usr/share/anaconda/interactive-defaults.ks
+
+# The kickstart `bootc` command has no signature-verification option, so the
+# system is first recorded as an *unverified* registry origin. This %post then
+# rewrites the origin in place to the signed form (ostree-image-signed:docker://),
+# which is what a manual `bootc switch --enforce-container-sigpolicy` does. From
+# then on, `bootc upgrade` checks signatures against the policy.json shipped in
+# the installed image. --mutate-in-place does not pull anything. --erroronfail
+# makes the install fail loudly instead of leaving an unverified origin.
+# Anaconda also runs every *.ks in /usr/share/anaconda/post-scripts/.
+RUN mkdir -p /usr/share/anaconda/post-scripts && \
+    printf '%s\n' \
+        '%post --erroronfail' \
+        "bootc switch --mutate-in-place --enforce-container-sigpolicy --transport registry ${PAYLOAD_IMAGE}" \
+        '%end' \
+        > /usr/share/anaconda/post-scripts/schnitzel-signed-origin.ks
 
 # ---------------------------------------------------------------------------
 # The following is what `lorax` normally does to make Anaconda work as a live
