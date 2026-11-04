@@ -25,43 +25,57 @@ It is basically just Fedora Kinoite with:
 
 ## Install
 
-Right now I'm not building any ISOs so to use it:
+> [!IMPORTANT]
+> An active internet connection is required during installation.
 
 1. Turn off secure boot (read [later section on how to re-enable
    it](#secure-boot))
 
-1. Install (or use existing) [Fedora Kinoite](https://fedoraproject.org/atomic-desktops/kinoite/).
+1. Download the [latest ISO](https://github.com/jmmabanta/SchnitzelOS/releases/latest)
+   and flash it to a USB Drive (>4GB).
 
-   Starting from other Fedora Atomic distros might work but I've only tested the
-   migration path from Kinoite.
+   Use something like [Fedora Media Writer](https://fedoraproject.org/workstation/download/)
+   or [Balana Etcher](https://etcher.balena.io/) to flash it to a USB drive.
 
-1. Rebase to SchnitzelOS with:
+   (Optional) You should check the sha256sum of your downloaded ISO. On Linux,
+   download both the .iso and .sha256 file into the same directory and run:
+   `sha256sum -c SchnitzelOS-Installer.iso.sha256`.
 
-   ```bash
-   sudo bootc switch ghcr.io/jmmabanta/schnitzel-os
-   ```
+1. Plug USB into computer and boot into it (check BIOS/UEFI settings)
 
-1. After a reboot, you will then boot into SchnitzelOS!
+1. Once the installer boots, set your language and keyboard then hit done.
 
-> [!Important]
-> Any installed Flatpaks from the Fedora remote will be uninstalled and
-> replaced with its Flathub counterpart. This process can take a few minutes
-> so don't panic if a bunch of applications go missing.
+1. Click "Network and Host Name" to configure your internet connection if it has
+   not been automatically configures (ie. WiFi, Ethernet)
 
-5. Once you have verified everything is working to your liking, rebase from the
-   unsigned image to the signed image for better security, then reboot:
+1. Click "Installation Destination" and configure which drive you want to
+   install SchnitzelOS to.
 
-   ```bash
-   sudo bootc switch --enforce-container-sigpolicy ghcr.io/jmmabanta/schnitzel-os
-   ```
+   Dual booting on the same drive is not tested so I highly recommend installing
+   to a separate drive.
+
+1. Click "User Creation" and configure your user account.
+
+   I recommend keeping "Root Account" disabled.
+
+1. Once everything is set, click done to proceed with the installation. You
+   would then be prompted to reboot once finished.
+
+> [!NOTE]
+> Once you've booted into SchnitzelOS and logged in, wait a few minutes for
+> applications to install in the background (ie. Firefox, Video Player, etc.).
+> This occurs only on the first login and you can monitor its progress with:
+> `journalctl -u flatpak-preinstall.service -b -f`
 
 ## Secure Boot
 
-If after rebasing the OS fails to boot due to secureboot, here is how to enroll
-the key:
+If you want to enable secure boot after installation, follow these steps:
 
-1. Disable secure boot in bios
-1. After rebase, enter:
+> [!NOTE]
+> If you've enrolled Universal Blue's secure boot keys (eg. Aurora, Bazzite,
+> Bluefin Classic), then you don't need to follow these steps.
+
+1. After installation, enter:
 
    ```bash
    sudo mokutil --import /etc/pki/akmods/certs/akmods-ublue.der
