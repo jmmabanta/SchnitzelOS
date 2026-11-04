@@ -22,6 +22,7 @@ setfattr -n user.update-interval -v "yearly" /usr/lib/systemd/system/sync-nvidia
 setfattr -n user.component -v "misc-tweaks" /usr/lib/bootc/kargs.d/10-zswap.toml
 setfattr -n user.component -v "misc-tweaks" /usr/lib/bootc/kargs.d/20-eacv2.toml
 setfattr -n user.component -v "misc-tweaks" /usr/lib/systemd/system/libvirt-workarounds.service
+setfattr -n user.component -v "misc-tweaks" /usr/lib/systemd/system/bootc-enforce-sigpolicy.service
 setfattr -n user.component -v "misc-tweaks" /usr/lib/systemd/system/bootc-update-ca-trust.service
 setfattr -n user.component -v "misc-tweaks" /usr/lib/systemd/system/bootc-update-crypto-policies.service
 setfattr -n user.component -v "misc-tweaks" /usr/lib/systemd/user/plasma-foreground-booster.service.d/10-after-compositor.conf

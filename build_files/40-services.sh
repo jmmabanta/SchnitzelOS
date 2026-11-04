@@ -4,6 +4,8 @@ echo "::group:: ===$(basename "$0")==="
 
 set -eoux pipefail
 
+systemctl enable bootc-enforce-sigpolicy.service
+
 systemctl preset brew-setup.service
 # Add linuxbrew to the list of paths usable by `sudo`
 # not a sudoers.d override because we want to get updates from upstream and not break everything

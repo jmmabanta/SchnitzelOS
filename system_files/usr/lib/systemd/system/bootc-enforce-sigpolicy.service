@@ -1,0 +1,22 @@
+[Unit]
+Description=Switch to signature-verified schnitzel-os image (one-time)
+Documentation=https://bootc-dev.github.io/bootc/
+ConditionPathExists=/run/ostree-booted
+ConditionPathExists=!/var/lib/schnitzel-os/sigpolicy-enforced
+Wants=network-online.target
+After=network-online.target
+# Don't retry forever if something is persistently broken
+StartLimitIntervalSec=1h
+StartLimitBurst=5
+
+[Service]
+Type=oneshot
+StateDirectory=schnitzel-os
+ExecStart=/usr/bin/bootc switch --enforce-container-sigpolicy ghcr.io/jmmabanta/schnitzel-os
+# Only reached if the switch succeeded
+ExecStartPost=/usr/bin/touch /var/lib/schnitzel-os/sigpolicy-enforced
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
