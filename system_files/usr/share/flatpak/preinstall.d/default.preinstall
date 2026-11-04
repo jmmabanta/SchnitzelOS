@@ -2,6 +2,22 @@
 Branch=stable
 IsRuntime=false
 
+[Flatpak Preinstall org.kde.elisa]
+Branch=stable
+IsRuntime=false
+
+[Flatpak Preinstall org.kde.gwenview]
+Branch=stable
+IsRuntime=false
+
+[Flatpak Preinstall org.kde.kcalc]
+Branch=stable
+IsRuntime=false
+
+[Flatpak Preinstall org.kde.okular]
+Branch=stable
+IsRuntime=false
+
 [Flatpak Preinstall org.kde.haruna]
 Branch=stable
 IsRuntime=false
