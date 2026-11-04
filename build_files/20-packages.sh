@@ -94,7 +94,6 @@ dnf5 install -y --nogpgcheck /tmp/cockpit-compose-latest.rpm
 TERRA_PACKAGES=(
   bpfrag
   dmemcg-booster
-  noctalia-greeter
   noctalia-nightly
   plasma-foreground-booster-dmemcg
   steam
@@ -119,7 +118,6 @@ REMOVE=(
   khelpcenter
   kwrite
   plasma-discover-rpm-ostree
-  plasma-login-manager
   toolbox
   xwaylandvideobridge
 )
