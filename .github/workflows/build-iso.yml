@@ -81,6 +81,25 @@ jobs:
             -f disk_config/Containerfile \
             disk_config/
 
+      - name: Analyze installer package sizes
+        run: |
+          sudo podman run --rm \
+            --entrypoint /bin/bash \
+            localhost/schnitzel-installer:latest \
+            -c '
+              echo "Largest installed RPMs:"
+              rpm -qa --qf "%{SIZE}\t%{NAME}\n" |
+                sort -nr |
+                head -40 |
+                numfmt --field=1 --to=iec-i
+
+              echo
+              echo "Largest filesystem directories:"
+              du -x -h --max-depth=2 /usr |
+                sort -h |
+                tail -30
+            '
+
       - name: Build ISO
         id: build
         run: |
