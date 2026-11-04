@@ -49,9 +49,15 @@ RUN dnf5 install -qy \
         brcmfmac-firmware \
         mt7xxx-firmware \
         realtek-firmware \
-        nxpwireless-firmware \
-        qcom-firmware && \
+        nxpwireless-firmware && \
     dnf5 clean all
+
+# Only include english for glibc as including all languages bloats it
+RUN dnf5 swap -y \
+        glibc-all-langpacks \
+        glibc-langpack-en
+
+RUN dnf5 remove -y python3-botocore
 
 RUN mkdir -p /boot/efi && cp -ra /usr/lib/efi/*/*/EFI /boot/efi
 
