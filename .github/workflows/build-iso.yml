@@ -155,7 +155,7 @@ jobs:
           else
             gh release create "${TAG}" \
               --target "${GITHUB_SHA}" \
-              --title "SchnitzelOS installer" \
+              --title "SchnitzelOS Installer" \
               --latest \
               --notes-file "${NOTES}"
           fi
