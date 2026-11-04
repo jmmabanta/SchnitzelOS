@@ -5,15 +5,15 @@ on:
   workflow_dispatch:
     inputs:
       publish-release:
-        description: "Publish the ISO as a GitHub Release (tag installer-<date>)"
+        description: "Publish/Update the ISO on the GitHub Releases page"
         required: false
-        default: true
+        default: false
         type: boolean
   pull_request:
     branches:
       - main
     paths:
-      - 'disk_config/Containerfile'
+      - 'disk_config/iso/**'
       - '.github/workflows/build-iso.yml'
 
 env:
@@ -27,6 +27,11 @@ env:
   # (current docs, migration guide) and `bootc-generic-iso` (older F45 guide).
   # If the build says the type is unknown, switch this value.
   ISO_IMAGE_TYPE: "generic-iso"
+  # Fixed names, no dates: the release is updated in place, so the download URL
+  # never changes:
+  #   https://github.com/<owner>/<repo>/releases/download/installer/SchnitzelOS-Installer.iso
+  ISO_FILENAME: "SchnitzelOS-Installer.iso"
+  RELEASE_TAG: "installer"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
@@ -55,10 +60,6 @@ jobs:
         run: |
           # Lowercase the image uri (GHCR requires lowercase)
           echo "PAYLOAD_IMAGE=${IMAGE_REGISTRY,,}/${IMAGE_NAME,,}:${DEFAULT_TAG}" >> "${GITHUB_ENV}"
-          # ISO name: SchnitzelOS-installer-YYYY-MM-DD.iso (UTC date)
-          ISO_DATE="$(date -u +%Y-%m-%d)"
-          echo "ISO_DATE=${ISO_DATE}" >> "${GITHUB_ENV}"
-          echo "ISO_FILENAME=SchnitzelOS-installer-${ISO_DATE}.iso" >> "${GITHUB_ENV}"
 
       - name: Maximize build space
         uses: ublue-os/remove-unwanted-software@695eb75bc387dbcd9685a8e72d23439d8686cba6
@@ -136,19 +137,29 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
         run: |
-          TAG="installer-${ISO_DATE}"
+          TAG="${RELEASE_TAG}"
           SIZE="$(stat -c%s "dist/${ISO_FILENAME}")"
           if [ "${SIZE}" -ge 2147483648 ]; then
             echo "::error::${ISO_FILENAME} is ${SIZE} bytes; GitHub release assets must be under 2 GiB. Host the ISO elsewhere or shrink it."
             exit 1
           fi
-          if ! gh release view "${TAG}" >/dev/null 2>&1; then
+          # Release notes live in the repo so they can be edited like any other file.
+          NOTES=".github/release-notes/installer.md"
+          if [ ! -f "${NOTES}" ]; then
+            echo "::error::Release notes file ${NOTES} not found"
+            exit 1
+          fi
+          if gh release view "${TAG}" >/dev/null 2>&1; then
+            # Existing release: re-sync the notes with the file on every publish
+            gh release edit "${TAG}" --notes-file "${NOTES}"
+          else
             gh release create "${TAG}" \
               --target "${GITHUB_SHA}" \
-              --title "SchnitzelOS Installer ${ISO_DATE}" \
-              --notes "Online installer ISO. It downloads the current SchnitzelOS image during installation, so an internet connection is required. Verify the download with the attached .sha256 file."
+              --title "SchnitzelOS installer" \
+              --latest \
+              --notes-file "${NOTES}"
           fi
-          # --clobber lets a second run on the same day replace the assets
+          # Same tag and file names every time: --clobber replaces the existing assets
           gh release upload "${TAG}" \
             "dist/${ISO_FILENAME}" \
             "dist/${ISO_FILENAME}.sha256" \
