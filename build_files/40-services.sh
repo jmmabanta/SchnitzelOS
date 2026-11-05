@@ -25,6 +25,8 @@ systemctl disable rpm-ostreed-automatic.timer
 systemctl enable dmemcg-booster-system.service
 systemctl --global enable dmemcg-booster-user.service
 
+systemctl enable ananicy-cpp.service
+
 systemctl enable libvirtd.service
 systemctl enable libvirt-workarounds.service
 
