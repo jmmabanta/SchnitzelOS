@@ -109,13 +109,6 @@ dnf5 config-manager setopt "*terra*".priority=1
 dnf5 install -y --exclude='mangohud*,gpu-screen-recorder' "${TERRA_PACKAGES[@]}"
 dnf5 config-manager disable terra terra-extras
 
-COPR_PREFIX="copr:copr.fedorainfracloud.org"
-dnf5 copr -y enable infinality/kwin-effects-better-blur-dx
-dnf5 install -y \
-  --from-repo="${COPR_PREFIX}:infinality:kwin-effects-better-blur-dx" \
-  kwin-effects-better-blur-dx
-dnf5 copr -y disable infinality/kwin-effects-better-blur-dx
-
 REMOVE=(
   akonadi-server{,-mysql}
   fedora-bookmarks
