@@ -93,6 +93,25 @@ If you want to enable secure boot after installation, follow these steps:
    boot ready.
 1. Reboot back into bios and re-enable secure boot.
 
+## Autologin
+
+If you want to automatically login, add the following to
+`/etc/greetd/config.toml` (edit as sudo):
+
+```toml
+[initial_session]
+command = "startplasma-wayland"
+user = "your_username_here"
+```
+
+Set `command = "startplasma-wayland"` if you want to automatically login to KDE
+Plasma or `command = "start-umbriel"` to login to Umbriel.
+
+> [!TIP]
+> If you keep getting nagged about KWallet being locked, you can replace it with
+> a blank password by opening KWalletManager. Do note that this
+> (obviously) impacts security.
+
 ## ZSWAP
 
 According to Chris Down, [zswap is better than zram](https://chrisdown.name/2026/03/24/zswap-vs-zram-when-to-use-what.html)
