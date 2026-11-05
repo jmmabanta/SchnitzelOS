@@ -96,6 +96,8 @@ TERRA_PACKAGES=(
   noctalia-greeter
   noctalia-nightly
   plasma-foreground-booster-dmemcg
+  scx-scheds
+  scx-tools
   steam
   terra-mangohud
   umbriel-nightly
