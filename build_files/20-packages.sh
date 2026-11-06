@@ -53,6 +53,7 @@ FEDORA_PACKAGES=(
   distrobox
   fish
   flatpak-spawn
+  foot
   google-noto-sans-cjk-fonts
   kate
   libayatana-appindicator-gtk3
