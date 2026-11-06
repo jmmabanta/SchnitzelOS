@@ -46,7 +46,6 @@ NEGATIVO_PACKAGES=(
 )
 
 FEDORA_PACKAGES=(
-  @virtualization
   cockpit
   cockpit-files
   cockpit-machines

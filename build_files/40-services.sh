@@ -27,9 +27,6 @@ systemctl --global enable dmemcg-booster-user.service
 
 systemctl enable ananicy-cpp.service
 
-systemctl enable libvirtd.service
-systemctl enable libvirt-workarounds.service
-
 systemctl enable docker.socket
 systemctl enable podman.socket
 
