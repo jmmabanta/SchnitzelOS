@@ -91,13 +91,10 @@ curl -o /tmp/cockpit-compose-latest.rpm \
 dnf5 install -y --nogpgcheck /tmp/cockpit-compose-latest.rpm
 
 TERRA_PACKAGES=(
-  cachyos-ananicy-rules
   dmemcg-booster
   noctalia-greeter
   noctalia-nightly
   plasma-foreground-booster-dmemcg
-  scx-scheds
-  scx-tools
   steam
   terra-mangohud
   umbriel-nightly

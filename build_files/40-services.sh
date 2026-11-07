@@ -25,8 +25,6 @@ systemctl disable rpm-ostreed-automatic.timer
 systemctl enable dmemcg-booster-system.service
 systemctl --global enable dmemcg-booster-user.service
 
-systemctl enable ananicy-cpp.service
-
 systemctl enable docker.socket
 systemctl enable podman.socket
 
