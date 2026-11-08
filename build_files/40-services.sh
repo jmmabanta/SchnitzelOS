@@ -22,6 +22,10 @@ systemctl enable greetd.service
 systemctl enable uupd.timer
 systemctl disable rpm-ostreed-automatic.timer
 
+# Better gaming networking
+systemctl enable bpfrag.service
+systemctl enable bpftune.service
+
 systemctl enable dmemcg-booster-system.service
 systemctl --global enable dmemcg-booster-user.service
 
