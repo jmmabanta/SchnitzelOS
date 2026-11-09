@@ -86,11 +86,6 @@ mkdir -p /etc/modules-load.d && cat >>/etc/modules-load.d/ip_tables.conf <<EOF
 iptable_nat
 EOF
 
-# View and manage docker/podman composes (MC Server) in cockpit
-curl -o /tmp/cockpit-compose-latest.rpm \
-  -L https://github.com/RXTX4816/cockpit-compose/releases/latest/download/cockpit-compose-latest.rpm
-dnf5 install -y --nogpgcheck /tmp/cockpit-compose-latest.rpm
-
 TERRA_PACKAGES=(
   bpfrag
   bpftune
