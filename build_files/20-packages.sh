@@ -31,6 +31,7 @@ OVERRIDES=(
   mesa-libGL
   mesa-libgbm
   mesa-vulkan-drivers
+  openh264
 )
 
 dnf5 distro-sync --skip-unavailable --allowerasing -y --repo='fedora-multimedia' "${OVERRIDES[@]}"
