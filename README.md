@@ -70,6 +70,27 @@ It is basically just Fedora Kinoite with:
 > This occurs only on the first login and you can monitor its progress with:
 > `journalctl -u flatpak-preinstall.service -b -f`
 
+### Rebasing From Existing Fedora Atomic
+
+If you have an existing Fedora Atomic install using KDE (eg. Kinoite, Aurora,
+Bazzite), you can use the following commands to switch to SchnitzelOS:
+
+```bash
+sudo bootc switch ghcr.io/jmmabanta/schnitzel-os
+```
+
+After rebasing and verifying everything works to your liking, run the following
+command to ensure future updates are verified:
+
+```bash
+sudo bootc switch --enforce-container-sigpolicy ghcr.io/jmmabanta/schnitzel-os
+```
+
+> [!IMPORTANT]
+> I've only tested rebasing from Fedora Kinoite. Rebasing from other Fedora
+> Atomic distros (especially those using a different a desktop environment) may
+> cause complications.
+
 ## Secure Boot
 
 If you want to enable secure boot after installation, follow these steps:
