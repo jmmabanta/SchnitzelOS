@@ -123,9 +123,6 @@ command = "startplasma-wayland"
 user = "your_username_here"
 ```
 
-Set `command = "startplasma-wayland"` if you want to automatically login to KDE
-Plasma or `command = "start-umbriel"` to login to Umbriel.
-
 > [!TIP]
 > If you keep getting nagged about KWallet being locked, you can replace it with
 > a blank password by opening KWalletManager. Do note that this
