@@ -91,11 +91,11 @@ TERRA_PACKAGES=(
   bpftune
   dmemcg-booster
   noctalia-greeter
-  noctalia-nightly
+  # noctalia-nightly
   plasma-foreground-booster-dmemcg
   steam
   terra-mangohud
-  umbriel-nightly
+  # umbriel-nightly
   uupd
 )
 dnf5 install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release{,-extras}
@@ -125,5 +125,6 @@ dnf5 remove -y "${REMOVE[@]}"
 # From https://github.com/ublue-os/bazzite/blob/6c108d6cb377d78c5e6484787180e7a741b58b84/Containerfile#L462
 # which might have something to do with https://github.com/ublue-os/bluefin/issues/2582#issuecomment-3476538251
 sed -i "s|grub_probe\} --target=device /\`|grub_probe} --target=device /sysroot\`|g" /usr/bin/grub2-mkconfig
+sudo bootc switch ghcr
 
 echo "::endgroup::"

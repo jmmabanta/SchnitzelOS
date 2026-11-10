@@ -14,13 +14,11 @@ It is basically just Fedora Kinoite with:
 - [Codecs](https://negativo17.org/multimedia/)
 - Latest [NVIDIA Open Driver](https://negativo17.org/nvidia-driver/)
 - [OGC Kernel](https://opengamingcollective.org/)
-  - Contains a patch for [better VRAM management](https://github.com/OpenGamingCollective/linux/pull/35)
-    that is set to be upstreamed in 7.3
-- Full Noctalia Suite: [Umbriel](https://github.com/noctalia-dev/umbriel), [Noctalia](https://github.com/noctalia-dev/noctalia),
-  and [Noctalia Greeter](https://github.com/noctalia-dev/noctalia-greeter)
+  - *Should* have EAC-V2 support
+- [Noctalia Greeter](https://github.com/noctalia-dev/noctalia-greeter)
   - Plasma Login Manager often gives me a black screen on boot so I just
     replaced it with noctalia greeter (based on greetd).
-- Steam, Virutalization, Docker, and other smaller packages.
+- Steam, Docker, and other smaller packages.
   - For a full list, see this [script](build_files/20-packages.sh)
 
 ## Install
