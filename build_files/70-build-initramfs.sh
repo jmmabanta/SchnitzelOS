@@ -20,9 +20,7 @@ DRACUT_NO_XATTR=1 /usr/bin/dracut \
   --no-hostonly \
   --kver "${KERNEL_VERSION}" \
   --reproducible \
-  --zstd \
   --verbose \
-  --add "ostree bootc" \
   --add-drivers "lz4hc lz4hc_compress" \
   --force \
   "${INITRAMFS}"
