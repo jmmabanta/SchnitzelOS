@@ -4,22 +4,9 @@ echo "::group:: ===$(basename "$0")==="
 
 set -eoux pipefail
 
-# Add Flathub to the image for eventual application
-mkdir -p /etc/flatpak/remotes.d/
-curl --retry 3 -Lo /etc/flatpak/remotes.d/flathub.flatpakrepo https://dl.flathub.org/repo/flathub.flatpakrepo
+# ========= PACKAGES =========
 
-# Setup Negativo17 multimedia repo for codecs
-# (should be more 'complete' than RPMFusion I think)
-if ! grep -q fedora-multimedia <(dnf5 repolist); then
-  # Enable or Install Repofile
-  dnf5 config-manager enable fedora-multimedia ||
-    dnf5 config-manager addrepo --from-repofile="https://negativo17.org/repos/fedora-multimedia.repo"
-fi
-# Set higher priority
-dnf5 config-manager setopt fedora-multimedia.priority=90
-
-# Replace these with better ones from Negativo17
-OVERRIDES=(
+NEGATIVO_OVERRIDES=(
   intel-gmmlib
   intel-mediasdk
   libheif
@@ -33,9 +20,6 @@ OVERRIDES=(
   mesa-vulkan-drivers
   openh264
 )
-
-dnf5 distro-sync --skip-unavailable --allowerasing -y --repo='fedora-multimedia' "${OVERRIDES[@]}"
-dnf5 versionlock add "${OVERRIDES[@]}"
 
 NEGATIVO_PACKAGES=(
   ffmpeg
@@ -64,9 +48,6 @@ FEDORA_PACKAGES=(
   twitter-twemoji-fonts
 )
 
-PACKAGES=( "${FEDORA_PACKAGES[@]}" "${NEGATIVO_PACKAGES[@]}" )
-dnf5 install -y --enablerepo='fedora-multimedia' "${PACKAGES[@]}"
-
 DOCKER_PACKAGES=(
   containerd.io
   docker-buildx-plugin
@@ -74,33 +55,17 @@ DOCKER_PACKAGES=(
   docker-ce-cli
   docker-compose-plugin
 )
-dnf5 config-manager addrepo --from-repofile="https://download.docker.com/linux/fedora/docker-ce.repo"
-dnf5 install -y --from-repo="docker-ce-stable" "${DOCKER_PACKAGES[@]}"
-dnf5 config-manager disable docker-ce-stable
-# Load iptable_nat module for docker-in-docker.
-# See:
-#   - https://github.com/ublue-os/bluefin/issues/2365
-#   - https://github.com/devcontainers/features/issues/1235
-mkdir -p /etc/modules-load.d && cat >>/etc/modules-load.d/ip_tables.conf <<EOF
-iptable_nat
-EOF
 
 TERRA_PACKAGES=(
   bpfrag
   bpftune
   dmemcg-booster
   noctalia-greeter
-  # noctalia-nightly
   plasma-foreground-booster-dmemcg
   steam
   terra-mangohud
-  # umbriel-nightly
   uupd
 )
-dnf5 install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release{,-extras}
-dnf5 config-manager setopt "*terra*".priority=1
-dnf5 install -y --exclude='mangohud*,gpu-screen-recorder' "${TERRA_PACKAGES[@]}"
-dnf5 config-manager disable terra terra-extras
 
 REMOVE=(
   akonadi-server{,-mysql}
@@ -118,6 +83,54 @@ REMOVE=(
   toolbox
   xwaylandvideobridge
 )
+
+# ========= SETUP REPOS =========
+
+# Add Flathub to the image for eventual application
+mkdir -p /etc/flatpak/remotes.d/
+curl --retry 3 -Lo /etc/flatpak/remotes.d/flathub.flatpakrepo https://dl.flathub.org/repo/flathub.flatpakrepo
+
+# Setup Negativo17 multimedia repo for codecs
+# (should be more 'complete' than RPMFusion I think)
+if ! grep -q fedora-multimedia <(dnf5 repolist); then
+  dnf5 config-manager enable fedora-multimedia ||
+    dnf5 config-manager addrepo --from-repofile="https://negativo17.org/repos/fedora-multimedia.repo"
+fi
+dnf5 config-manager setopt fedora-multimedia.priority=90
+
+# Docker
+dnf5 config-manager addrepo --from-repofile="https://download.docker.com/linux/fedora/docker-ce.repo"
+dnf5 config-manager disable docker-ce-stable
+
+# Terra
+dnf5 install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release{,-extras}
+dnf5 config-manager setopt "*terra*".priority=1
+dnf5 config-manager disable terra terra-extras
+
+dnf5 makecache --refresh
+
+# ========= INSTALL PACKAGES =========
+
+dnf5 distro-sync --skip-unavailable --allowerasing -y --repo='fedora-multimedia' "${NEGATIVO_OVERRIDES[@]}"
+dnf5 versionlock add "${NEGATIVO_OVERRIDES[@]}"
+
+PACKAGES=( "${FEDORA_PACKAGES[@]}" "${NEGATIVO_PACKAGES[@]}" )
+dnf5 install -y --enablerepo='fedora-multimedia' "${PACKAGES[@]}"
+
+dnf5 install -y --from-repo="docker-ce-stable" "${DOCKER_PACKAGES[@]}"
+# Load iptable_nat module for docker-in-docker.
+# See:
+#   - https://github.com/ublue-os/bluefin/issues/2365
+#   - https://github.com/devcontainers/features/issues/1235
+mkdir -p /etc/modules-load.d && cat >>/etc/modules-load.d/ip_tables.conf <<EOF
+iptable_nat
+EOF
+
+dnf5 install -y \
+  --from-repo="terra,terra-extras" \
+  --exclude='mangohud*,gpu-screen-recorder' \
+  "${TERRA_PACKAGES[@]}"
+
 dnf5 remove -y "${REMOVE[@]}"
 
 # Patch grub2-mkconfig so it works with regenerate-grub
