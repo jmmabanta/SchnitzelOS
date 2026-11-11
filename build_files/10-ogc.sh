@@ -8,6 +8,10 @@ set -eoux pipefail
 
 rsync -rvKl "/ctx/system_files"/. /
 
+KERNEL_PKGS_ORIG=(kernel{,-core,-modules,-modules-core,-modules-extra,-tools-libs,-tools})
+rpm --erase --noscripts --nodeps "${KERNEL_PKGS_ORIG[@]}"
+rm -rf /usr/lib/modules
+
 # create a shims to bypass kernel install triggering dracut/rpm-ostree
 # seems to be minimal impact, but allows progress on build
 pushd /usr/lib/kernel/install.d
@@ -18,11 +22,6 @@ printf '%s\n' '#!/bin/sh' 'exit 0' > 50-dracut.install
 chmod +x  05-rpmostree.install 50-dracut.install
 popd
 
-for pkg in kernel kernel{-core,-modules,-modules-core,-modules-extra,-tools-libs,-tools}; do
-  rpm --erase "${pkg}" --nodeps
-done
-
-rm -rf /usr/lib/modules
 dnf5 -y install \
   /tmp/kernel-rpms/kernel-[0-9]*.rpm \
   /tmp/kernel-rpms/kernel-core-*.rpm \
