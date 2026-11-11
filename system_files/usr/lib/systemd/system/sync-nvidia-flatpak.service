@@ -5,7 +5,7 @@ After=network-online.target flatpak-system-helper.service
 Wants=network-online.target
 ConditionPathExists=/sys/module/nvidia/version
 # To not run on live ISO
-ConditionPathExists=/run/ostree-booted
+ConditionPathIsMountPoint=/sysroot
 
 [Service]
 Type=oneshot

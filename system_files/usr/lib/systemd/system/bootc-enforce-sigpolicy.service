@@ -1,7 +1,7 @@
 [Unit]
 Description=Switch to signature-verified schnitzel-os image (one-time)
 Documentation=https://bootc-dev.github.io/bootc/
-ConditionPathExists=/run/ostree-booted
+ConditionPathIsMountPoint=/sysroot
 ConditionPathExists=!/var/lib/schnitzel-os/sigpolicy-enforced
 Wants=network-online.target
 After=network-online.target
