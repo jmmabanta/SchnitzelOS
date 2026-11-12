@@ -128,7 +128,7 @@ EOF
 
 dnf5 install -y \
   --from-repo="terra,terra-extras" \
-  --exclude='mangohud*,gpu-screen-recorder' \
+  --exclude='mangohud*' \
   "${TERRA_PACKAGES[@]}"
 
 dnf5 remove -y "${REMOVE[@]}"
