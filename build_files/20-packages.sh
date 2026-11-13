@@ -33,7 +33,6 @@ NEGATIVO_PACKAGES=(
 FEDORA_PACKAGES=(
   cockpit
   cockpit-files
-  cockpit-machines
   cockpit-podman
   distrobox
   fish
