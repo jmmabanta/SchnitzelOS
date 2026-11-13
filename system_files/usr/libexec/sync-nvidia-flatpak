@@ -26,7 +26,9 @@ case "${1}" in
     flatpak install --system --noninteractive -y flathub "${GL}" "${GL32}"
 
     # Allow Flatpak to automatically clean up unused NVIDIA extensions.
-    flatpak pin --system --remove "${GL}" "${GL32}"
+    flatpak pin --system --remove \
+      "runtime/${GL}/x86_64/1.4" \
+      "runtime/${GL32}/x86_64/1.4"
     ;;
   *)
     echo "Usage: $0 {check|sync}"
