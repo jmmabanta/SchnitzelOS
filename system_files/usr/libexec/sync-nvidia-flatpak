@@ -1,21 +1,19 @@
 #!/usr/bin/env bash
 
-# From https://github.com/projectbluefin/common/blob/8df20e808636122f80d7fd583ccd1561f89b8eb8/system_files/nvidia/usr/libexec/ublue-nvidia-flatpak-runtime-sync
-
 # Workaround for: https://github.com/flatpak/flatpak/issues/3907
-set -eou pipefail
+set -euo pipefail
 
-# NVIDIA_VERSION_FILE: override in tests to avoid reading real /sys
-NVIDIA_VERSION_FILE="${NVIDIA_VERSION_FILE:-/sys/module/nvidia/version}"
-
-SYSTEM_NVIDIA_VERSION=$(cat "${NVIDIA_VERSION_FILE}")
+SYSTEM_NVIDIA_VERSION=$(cat /sys/module/nvidia/version)
 FLATPAK_NVIDIA_VERSION=$(echo "${SYSTEM_NVIDIA_VERSION}" | tr '.' '-')
 
-case "${1:-}" in
+GL="org.freedesktop.Platform.GL.nvidia-${FLATPAK_NVIDIA_VERSION}"
+GL32="org.freedesktop.Platform.GL32.nvidia-${FLATPAK_NVIDIA_VERSION}"
+
+case "${1}" in
   check)
     # Exit 0 if sync is needed (versions mismatch), exit 1 if already in sync
-    if flatpak info --system org.freedesktop.Platform.GL.nvidia-"${FLATPAK_NVIDIA_VERSION}" >/dev/null 2>&1 && \
-      flatpak info --system org.freedesktop.Platform.GL32.nvidia-"${FLATPAK_NVIDIA_VERSION}" >/dev/null 2>&1; then
+    if flatpak info --system "${GL}" >/dev/null 2>&1 && \
+     flatpak info --system "${GL32}" >/dev/null 2>&1; then
       echo "NVIDIA Flatpak runtime ${SYSTEM_NVIDIA_VERSION} already installed"
       exit 1
     fi
@@ -25,9 +23,10 @@ case "${1:-}" in
   sync)
     echo "Installing NVIDIA Flatpak runtime version ${SYSTEM_NVIDIA_VERSION}"
     flatpak remote-add --system --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    flatpak install --system --noninteractive -y flathub \
-    org.freedesktop.Platform.GL.nvidia-"${FLATPAK_NVIDIA_VERSION}" \
-    org.freedesktop.Platform.GL32.nvidia-"${FLATPAK_NVIDIA_VERSION}"
+    flatpak install --system --noninteractive -y flathub "${GL}" "${GL32}"
+
+    # Allow Flatpak to automatically clean up unused NVIDIA extensions.
+    flatpak pin --system --remove "${GL}" "${GL32}"
     ;;
   *)
     echo "Usage: $0 {check|sync}"
