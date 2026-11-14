@@ -28,6 +28,7 @@ setfattr -n user.component -v "misc-tweaks" /usr/lib/systemd/system/bootc-update
 setfattr -n user.component -v "misc-tweaks" /usr/share/plymouth/themes/spinner/watermark.png
 setfattr -n user.component -v "misc-tweaks" /usr/lib/sysctl.d/99-splitlock.conf
 setfattr -n user.component -v "misc-tweaks" /usr/lib/sysctl.d/99-disable-kexec.conf
+setfattr -n user.component -v "misc-tweaks" /usr/lib/tmpfiles.d/btrfs-reclaim.conf
 setfattr -n user.update-interval -v "yearly" /usr/lib/bootc/kargs.d/10-zswap.toml
 
 setfattr -n user.component -v "custom-programs" /usr/local/bin/regenerate-grub
