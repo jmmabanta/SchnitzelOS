@@ -38,7 +38,6 @@ FEDORA_PACKAGES=(
   fish
   flatpak-spawn
   google-noto-sans-cjk-fonts
-  kate
   libayatana-appindicator-gtk3
   lshw
   nvtop
