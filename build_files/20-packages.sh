@@ -37,14 +37,17 @@ FEDORA_PACKAGES=(
   distrobox
   fish
   flatpak-spawn
+  foot
   google-noto-sans-cjk-fonts
   kate
   libayatana-appindicator-gtk3
   lshw
+  noctalia
   nvtop
   plasma-firewall
   sbsigntools
   twitter-twemoji-fonts
+  xdg-terminal-exec
 )
 
 DOCKER_PACKAGES=(
@@ -63,6 +66,7 @@ TERRA_PACKAGES=(
   plasma-foreground-booster-dmemcg
   steam
   terra-mangohud
+  umbriel-nightly
   uupd
 )
 
