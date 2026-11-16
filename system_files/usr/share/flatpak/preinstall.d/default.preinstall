@@ -2,10 +2,6 @@
 Branch=stable
 IsRuntime=false
 
-[Flatpak Preinstall org.kde.kate]
-Branch=stable
-IsRuntime=false
-
 [Flatpak Preinstall org.kde.elisa]
 Branch=stable
 IsRuntime=false
