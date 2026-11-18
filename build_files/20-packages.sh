@@ -31,14 +31,15 @@ NEGATIVO_PACKAGES=(
 )
 
 FEDORA_PACKAGES=(
+  adw-gtk3-theme
   cockpit
   cockpit-files
   cockpit-podman
   distrobox
+  ffmpegthumbnailer
   fish
   flatpak-spawn
   google-noto-sans-cjk-fonts
-  kate
   libayatana-appindicator-gtk3
   lshw
   nvtop
@@ -59,28 +60,32 @@ TERRA_PACKAGES=(
   bpfrag
   bpftune
   dmemcg-booster
-  noctalia-greeter
-  plasma-foreground-booster-dmemcg
   steam
   terra-mangohud
   uupd
 )
 
 REMOVE=(
-  akonadi-server{,-mysql}
   fedora-bookmarks
-  fedora-chromium-config{,-kde}
+  fedora-chromium-config
   fedora-third-party
   firefox
   firefox-langpacks
+  gnome-classic-session
+  gnome-extensions-app
+  gnome-shell-extension-apps-menu
+  gnome-shell-extension-background-logo
+  gnome-shell-extension-launch-new-instance
+  gnome-shell-extension-places-menu
+  gnome-shell-extension-window-list
   gamemode
-  kcharselect
-  khelpcenter
-  kwrite
-  plasma-discover-rpm-ostree
-  plasma-login-manager
+  gnome-software
+  gnome-software-rpm-ostree
+  gnome-system-monitor
+  gnome-tour
   toolbox
-  xwaylandvideobridge
+  totem-video-thumbnailer
+  yelp
 )
 
 # ========= SETUP REPOS =========
@@ -104,6 +109,12 @@ dnf5 config-manager disable docker-ce-stable
 # Terra
 dnf5 install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release{,-extras}
 dnf5 config-manager setopt "*terra*".priority=1
+
+# For VRAM Management
+dnf5 -y swap \
+  --repo terra-extras \
+  uresourced uresourced-dmemcg
+
 dnf5 config-manager disable terra terra-extras
 
 dnf5 makecache --refresh
