@@ -41,6 +41,7 @@ FEDORA_PACKAGES=(
   flatpak-spawn
   google-noto-sans-cjk-fonts
   libayatana-appindicator-gtk3
+  libXScrnSaver
   lshw
   nvtop
   plasma-firewall
