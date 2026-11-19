@@ -142,6 +142,12 @@ dnf5 install -y \
   --exclude='mangohud*' \
   "${TERRA_PACKAGES[@]}"
 
+COPR_PREFIX="copr:copr.fedorainfracloud.org"
+# TODO: When Fedora updates zig to 0.17, install ghostty from Terra instead
+dnf5 copr -y enable scottames/ghostty
+dnf5 install -y --from-repo="${COPR_PREFIX}:scottames:ghostty" ghostty
+dnf5 copr -y disable scottames/ghostty
+
 dnf5 remove -y "${REMOVE[@]}"
 
 # Patch grub2-mkconfig so it works with regenerate-grub

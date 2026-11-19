@@ -26,6 +26,9 @@ systemctl enable bpftune.service
 systemctl enable dmemcg-booster-system.service
 systemctl --global enable dmemcg-booster-user.service
 
+# Speeds up new ghostty window creations
+systemctl --global enable app-com.mitchellh.ghostty.service
+
 systemctl enable docker.socket
 systemctl enable podman.socket
 
