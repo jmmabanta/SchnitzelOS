@@ -84,6 +84,7 @@ REMOVE=(
   gnome-software-rpm-ostree
   gnome-system-monitor
   gnome-tour
+  ptyxis
   toolbox
   totem-video-thumbnailer
   yelp
