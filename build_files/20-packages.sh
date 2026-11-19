@@ -43,10 +43,12 @@ FEDORA_PACKAGES=(
   libayatana-appindicator-gtk3
   libXScrnSaver
   lshw
+  nautilus-python
   nvtop
   plasma-firewall
   sbsigntools
   twitter-twemoji-fonts
+  xdg-terminal-exec
 )
 
 DOCKER_PACKAGES=(
