@@ -137,4 +137,10 @@ dnf5 remove -y "${REMOVE[@]}"
 # which might have something to do with https://github.com/ublue-os/bluefin/issues/2582#issuecomment-3476538251
 sed -i "s|grub_probe\} --target=device /\`|grub_probe} --target=device /sysroot\`|g" /usr/bin/grub2-mkconfig
 
+
+# Fixes from https://github.com/89luca89/distrobox/pull/2086 and https://github.com/89luca89/distrobox/pull/2256
+# TODO: Remove once there is a fixed release of podman (either 1.8.x or 2.0.x)
+sed -i 's/:ro\${rslave}/:ro,rslave/' /usr/bin/distrobox-create
+sed -i 's#${container_manager} info 2> /dev/null | grep -q runc#${container_manager} info --format "{{.Host.OCIRuntime.Name}}" 2> /dev/null | grep -q runc#' /usr/bin/distrobox-create
+
 echo "::endgroup::"
