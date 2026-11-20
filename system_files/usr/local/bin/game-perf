@@ -3,5 +3,5 @@
 # Useful for Intel CPUs with E-Cores as the performance profile helps with
 # keeping game-related processes on the P-Cores
 tuned-adm profile throughput-performance
-"$@"
+systemd-inhibit --what=idle:sleep --who="game-perf" --why="Game running" "$@"
 tuned-adm profile desktop
