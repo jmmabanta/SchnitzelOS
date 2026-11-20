@@ -15,7 +15,7 @@ on:
       - '**/README.md'
       - '.editorconfig'
       - 'assets/**'
-      - 'disk_config/Containerfile'
+      - 'iso.Containerfile'
       - '.github/workflows/build-iso.yml'
       - '.github/release-notes/installer.md'
   workflow_dispatch:

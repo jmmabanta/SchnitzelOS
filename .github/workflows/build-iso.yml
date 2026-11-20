@@ -13,7 +13,7 @@ on:
     branches:
       - main
     paths:
-      - 'disk_config/Containerfile'
+      - 'iso.Containerfile'
       - '.github/workflows/build-iso.yml'
 
 env:
@@ -78,8 +78,7 @@ jobs:
           sudo podman build \
             --build-arg PAYLOAD_IMAGE="${PAYLOAD_IMAGE}" \
             -t localhost/schnitzel-installer:latest \
-            -f disk_config/Containerfile \
-            disk_config/
+            -f iso.Containerfile .
 
       - name: Analyze installer package sizes
         run: |
