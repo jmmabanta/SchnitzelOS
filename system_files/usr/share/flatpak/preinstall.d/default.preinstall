@@ -2,35 +2,23 @@
 Branch=stable
 IsRuntime=false
 
-[Flatpak Preinstall io.github.kolunmi.Bazaar]
+[Flatpak Preinstall org.kde.elisa]
 Branch=stable
 IsRuntime=false
 
-[Flatpak Preinstall com.mattjakeman.ExtensionManager]
+[Flatpak Preinstall org.kde.gwenview]
 Branch=stable
 IsRuntime=false
 
-[Flatpak Preinstall io.missioncenter.MissionCenter]
+[Flatpak Preinstall org.kde.kcalc]
 Branch=stable
 IsRuntime=false
 
-[Flatpak Preinstall page.codeberg.libre_menu_editor.LibreMenuEditor]
+[Flatpak Preinstall org.kde.okular]
 Branch=stable
 IsRuntime=false
 
-[Flatpak Preinstall page.tesk.Refine]
-Branch=stable
-IsRuntime=false
-
-[Flatpak Preinstall ca.desrt.dconf-editor]
-Branch=stable
-IsRuntime=false
-
-[Flatpak Preinstall com.github.tchx84.Flatseal]
-Branch=stable
-IsRuntime=false
-
-[Flatpak Preinstall io.github.diegopvlk.Cine]
+[Flatpak Preinstall org.kde.haruna]
 Branch=stable
 IsRuntime=false
 

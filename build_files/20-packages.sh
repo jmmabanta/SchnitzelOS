@@ -31,24 +31,20 @@ NEGATIVO_PACKAGES=(
 )
 
 FEDORA_PACKAGES=(
-  adw-gtk3-theme
   cockpit
   cockpit-files
   cockpit-podman
   distrobox
-  ffmpegthumbnailer
   fish
   flatpak-spawn
   google-noto-sans-cjk-fonts
+  kate
   libayatana-appindicator-gtk3
-  libXScrnSaver
   lshw
-  nautilus-python
   nvtop
   plasma-firewall
   sbsigntools
   twitter-twemoji-fonts
-  xdg-terminal-exec
 )
 
 DOCKER_PACKAGES=(
@@ -63,33 +59,28 @@ TERRA_PACKAGES=(
   bpfrag
   bpftune
   dmemcg-booster
+  noctalia-greeter
+  plasma-foreground-booster-dmemcg
   steam
   terra-mangohud
   uupd
 )
 
 REMOVE=(
+  akonadi-server{,-mysql}
   fedora-bookmarks
-  fedora-chromium-config
+  fedora-chromium-config{,-kde}
   fedora-third-party
   firefox
   firefox-langpacks
-  gnome-classic-session
-  gnome-extensions-app
-  gnome-shell-extension-apps-menu
-  gnome-shell-extension-background-logo
-  gnome-shell-extension-launch-new-instance
-  gnome-shell-extension-places-menu
-  gnome-shell-extension-window-list
   gamemode
-  gnome-software
-  gnome-software-rpm-ostree
-  gnome-system-monitor
-  gnome-tour
-  ptyxis
+  kcharselect
+  khelpcenter
+  kwrite
+  plasma-discover-rpm-ostree
+  plasma-login-manager
   toolbox
-  totem-video-thumbnailer
-  yelp
+  xwaylandvideobridge
 )
 
 # ========= SETUP REPOS =========
@@ -113,12 +104,6 @@ dnf5 config-manager disable docker-ce-stable
 # Terra
 dnf5 install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release{,-extras}
 dnf5 config-manager setopt "*terra*".priority=1
-
-# For VRAM Management
-dnf5 -y swap \
-  --repo terra-extras \
-  uresourced uresourced-dmemcg
-
 dnf5 config-manager disable terra terra-extras
 
 dnf5 makecache --refresh
@@ -145,22 +130,11 @@ dnf5 install -y \
   --exclude='mangohud*' \
   "${TERRA_PACKAGES[@]}"
 
-COPR_PREFIX="copr:copr.fedorainfracloud.org"
-# TODO: When Fedora updates zig to 0.17, install ghostty from Terra instead
-dnf5 copr -y enable scottames/ghostty
-dnf5 install -y --from-repo="${COPR_PREFIX}:scottames:ghostty" ghostty
-dnf5 copr -y disable scottames/ghostty
-
 dnf5 remove -y "${REMOVE[@]}"
 
 # Patch grub2-mkconfig so it works with regenerate-grub
 # From https://github.com/ublue-os/bazzite/blob/6c108d6cb377d78c5e6484787180e7a741b58b84/Containerfile#L462
 # which might have something to do with https://github.com/ublue-os/bluefin/issues/2582#issuecomment-3476538251
 sed -i "s|grub_probe\} --target=device /\`|grub_probe} --target=device /sysroot\`|g" /usr/bin/grub2-mkconfig
-
-# Fixes from https://github.com/89luca89/distrobox/pull/2086 and https://github.com/89luca89/distrobox/pull/2256
-# TODO: Remove once there is a fixed release of podman (either 1.8.x or 2.0.x)
-sed -i 's/:ro\${rslave}/:ro,rslave/' /usr/bin/distrobox-create
-sed -i 's#${container_manager} info 2> /dev/null | grep -q runc#${container_manager} info --format "{{.Host.OCIRuntime.Name}}" 2> /dev/null | grep -q runc#' /usr/bin/distrobox-create
 
 echo "::endgroup::"

@@ -9,7 +9,7 @@ COPY --from=brew /system_files /system_files
 COPY system_files /system_files
 COPY build_files /
 
-FROM quay.io/fedora-ostree-desktops/silverblue:${FEDORA_VERSION}
+FROM quay.io/fedora-ostree-desktops/kinoite:${FEDORA_VERSION}
 
 ARG FEDORA_VERSION
 ENV FEDORA_VERSION=${FEDORA_VERSION}

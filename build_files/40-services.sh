@@ -15,6 +15,9 @@ systemctl enable flatpak-preinstall.service
 
 systemctl enable sync-nvidia-flatpak.service
 
+# Plasma Login is buggy (often black screen) so I replaced it with greetd
+systemctl enable greetd.service
+
 # Use ublue-os/uupd for automatic updates, not rpm-ostree
 systemctl enable uupd.timer
 systemctl disable rpm-ostreed-automatic.timer
@@ -25,9 +28,6 @@ systemctl enable bpftune.service
 
 systemctl enable dmemcg-booster-system.service
 systemctl --global enable dmemcg-booster-user.service
-
-# Speeds up new ghostty window creations
-systemctl --global enable app-com.mitchellh.ghostty.service
 
 systemctl enable docker.socket
 systemctl enable podman.socket

@@ -9,12 +9,15 @@ add to it.
 
 ## Changes
 
-It is basically just Fedora Silverblue with:
+It is basically just Fedora Kinoite with:
 
 - [Codecs](https://negativo17.org/multimedia/)
 - Latest [NVIDIA Open Driver](https://negativo17.org/nvidia-driver/)
 - [OGC Kernel](https://opengamingcollective.org/)
   - *Should* have EAC-V2 support
+- [Noctalia Greeter](https://github.com/noctalia-dev/noctalia-greeter)
+  - Plasma Login Manager often gives me a black screen on boot so I just
+    replaced it with noctalia greeter (based on greetd).
 - Steam, Docker, and other smaller packages.
   - For a full list, see this [script](build_files/20-packages.sh)
 
@@ -67,9 +70,8 @@ It is basically just Fedora Silverblue with:
 
 ### Rebasing From Existing Fedora Atomic
 
-If you have an existing Fedora Atomic install using GNOME (eg. Silverblue,
-Bluefin Classic, Bazzite), you can use the following commands to switch to
-SchnitzelOS:
+If you have an existing Fedora Atomic install using KDE (eg. Kinoite, Aurora,
+Bazzite), you can use the following commands to switch to SchnitzelOS:
 
 ```bash
 sudo bootc switch ghcr.io/jmmabanta/schnitzel-os
@@ -83,7 +85,7 @@ sudo bootc switch --enforce-container-sigpolicy ghcr.io/jmmabanta/schnitzel-os
 ```
 
 > [!IMPORTANT]
-> I've only tested rebasing from Fedora Silverblue. Rebasing from other Fedora
+> I've only tested rebasing from Fedora Kinoite. Rebasing from other Fedora
 > Atomic distros (especially those using a different a desktop environment) may
 > cause complications.
 
@@ -109,6 +111,22 @@ If you want to enable secure boot after installation, follow these steps:
 1. After entering the key, continue to reboot and now the OS should be secure
    boot ready.
 1. Reboot back into bios and re-enable secure boot.
+
+## Autologin
+
+If you want to automatically login, add the following to
+`/etc/greetd/config.toml` (edit as sudo):
+
+```toml
+[initial_session]
+command = "startplasma-wayland"
+user = "your_username_here"
+```
+
+> [!TIP]
+> If you keep getting nagged about KWallet being locked, you can replace it with
+> a blank password by opening KWalletManager. Do note that this
+> (obviously) impacts security.
 
 ## ZSWAP
 
