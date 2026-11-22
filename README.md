@@ -13,8 +13,6 @@ It is basically just Fedora Kinoite with:
 
 - [Codecs](https://negativo17.org/multimedia/)
 - Latest [NVIDIA Open Driver](https://negativo17.org/nvidia-driver/)
-- [OGC Kernel](https://opengamingcollective.org/)
-  - *Should* have EAC-V2 support
 - [Noctalia Greeter](https://github.com/noctalia-dev/noctalia-greeter)
   - Plasma Login Manager often gives me a black screen on boot so I just
     replaced it with noctalia greeter (based on greetd).

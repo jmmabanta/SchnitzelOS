@@ -1,6 +1,6 @@
 ARG FEDORA_VERSION=45
 
-FROM ghcr.io/ublue-os/akmods-nvidia-open:ogc-${FEDORA_VERSION} AS akmods-nvidia
+FROM ghcr.io/ublue-os/akmods-nvidia-open:main-${FEDORA_VERSION} AS akmods-nvidia
 FROM ghcr.io/ublue-os/brew:latest AS brew
 
 # Allow build scripts to be referenced without being copied into the final image
@@ -20,7 +20,7 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
   --mount=type=tmpfs,dst=/tmp \
   --mount=type=bind,from=akmods-nvidia,src=/kernel-rpms,dst=/tmp/kernel-rpms \
   --mount=type=bind,from=akmods-nvidia,src=/rpms,dst=/tmp/rpms/nvidia \
-  /ctx/10-ogc.sh && \
+  /ctx/10-kernel.sh && \
   /ctx/20-packages.sh && \
   /ctx/30-nvidia.sh && \
   /ctx/40-services.sh && \
