@@ -154,6 +154,7 @@ rechunk $target_image=image_name $tag=default_tag:
       --verbose \
       --max-layers 400 \
       --prune /sysroot/ \
+      --prune /run/ \
       --label ostree.commit- --label ostree.final-diffid- \
       --config /chunkah-config.json \
       --output oci:/run/out/chunked
