@@ -26,6 +26,9 @@ systemctl disable rpm-ostreed-automatic.timer
 systemctl enable bpfrag.service
 systemctl enable bpftune.service
 
+# Auto-sets niceness of games
+systemctl enable ananicy-cpp.service
+
 systemctl enable dmemcg-booster-system.service
 systemctl --global enable dmemcg-booster-user.service
 

@@ -58,9 +58,12 @@ DOCKER_PACKAGES=(
 TERRA_PACKAGES=(
   bpfrag
   bpftune
+  cachyos-ananicy-rules
   dmemcg-booster
   noctalia-greeter
   plasma-foreground-booster-dmemcg
+  scx-scheds
+  scx-tools
   steam
   terra-mangohud
   uupd
