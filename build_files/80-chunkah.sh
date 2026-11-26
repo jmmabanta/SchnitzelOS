@@ -8,12 +8,6 @@ set -eoux pipefail
 # how to package them
 # https://github.com/coreos/chunkah#customizing-the-layers
 
-setfattr -n user.component -v "plasma-booster" /usr/bin/foreground_booster
-setfattr -n user.component -v "plasma-booster" /usr/lib/systemd/user/plasma-foreground-booster.service
-setfattr -n user.component -v "plasma-booster" /usr/share/applications/org.kde.foreground-booster.desktop
-setfattr -n user.component -v "plasma-booster" /etc/xdg/autostart/org.kde.foreground-booster.desktop
-setfattr -n user.update-interval -v "yearly" /usr/bin/foreground_booster
-
 setfattr -n user.component -v "flatpak-tweaks" /usr/lib/systemd/system/flatpak-add-fedora-repos.service
 setfattr -n user.component -v "flatpak-tweaks" /usr/lib/systemd/system/flatpak-preinstall.service
 setfattr -n user.component -v "flatpak-tweaks" /usr/libexec/replace-fedora-flatpak
