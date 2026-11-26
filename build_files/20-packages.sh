@@ -61,7 +61,6 @@ TERRA_PACKAGES=(
   cachyos-ananicy-rules
   dmemcg-booster
   noctalia-greeter
-  plasma-foreground-booster-dmemcg
   scx-scheds
   scx-tools
   steam
