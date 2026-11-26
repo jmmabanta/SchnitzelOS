@@ -1,0 +1,7 @@
+[Flatpak Preinstall com.vysp3r.ProtonPlus]
+Branch=stable
+IsRuntime=false
+
+[Flatpak Preinstall io.github.ilya_zlobintsev.LACT]
+Branch=stable
+IsRuntime=false

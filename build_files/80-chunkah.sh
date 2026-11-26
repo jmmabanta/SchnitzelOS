@@ -11,8 +11,12 @@ set -eoux pipefail
 setfattr -n user.component -v "flatpak-tweaks" /usr/lib/systemd/system/flatpak-add-fedora-repos.service
 setfattr -n user.component -v "flatpak-tweaks" /usr/lib/systemd/system/flatpak-preinstall.service
 setfattr -n user.component -v "flatpak-tweaks" /usr/libexec/replace-fedora-flatpak
-setfattr -n user.component -v "flatpak-tweaks" /usr/share/flatpak/preinstall.d/default.preinstall
 setfattr -n user.update-interval -v "yearly" /usr/lib/systemd/system/flatpak-add-fedora-repos.service
+
+setfattr -n user.component -v "flatpak-preinstall" /usr/share/flatpak/preinstall.d/gaming.preinstall
+setfattr -n user.component -v "flatpak-preinstall" /usr/share/flatpak/preinstall.d/kde.preinstall
+setfattr -n user.component -v "flatpak-preinstall" /usr/share/flatpak/preinstall.d/utilities.preinstall
+setfattr -n user.update-interval -v "monthly" /usr/share/flatpak/preinstall.d/gaming.preinstall
 
 setfattr -n user.component -v "nvidia-tweaks" /usr/lib/systemd/system/sync-nvidia-flatpak.service
 setfattr -n user.component -v "nvidia-tweaks" /usr/lib/bootc/kargs.d/00-nvidia.toml

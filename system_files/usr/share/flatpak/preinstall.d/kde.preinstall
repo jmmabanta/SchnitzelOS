@@ -1,7 +1,3 @@
-[Flatpak Preinstall org.mozilla.firefox]
-Branch=stable
-IsRuntime=false
-
 [Flatpak Preinstall org.kde.elisa]
 Branch=stable
 IsRuntime=false
@@ -22,14 +18,6 @@ IsRuntime=false
 Branch=stable
 IsRuntime=false
 
-[Flatpak Preinstall com.vysp3r.ProtonPlus]
-Branch=stable
-IsRuntime=false
-
-[Flatpak Preinstall io.github.ilya_zlobintsev.LACT]
-Branch=stable
-IsRuntime=false
-
-[Flatpak Preinstall it.mijorus.gearlever]
+[Flatpak Preinstall org.kde.kolourpaint]
 Branch=stable
 IsRuntime=false
