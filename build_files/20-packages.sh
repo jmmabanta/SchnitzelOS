@@ -60,7 +60,6 @@ TERRA_PACKAGES=(
   bpftune
   cachyos-ananicy-rules
   dmemcg-booster
-  kcgroups-dmemcg
   noctalia-greeter
   scx-scheds
   scx-tools
