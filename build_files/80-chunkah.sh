@@ -50,6 +50,7 @@ setfattr -n user.component -v "base-conf" /etc/udev/rules.d/99-powercap.rules
 setfattr -n user.component -v "base-conf" /etc/udev/rules.d/99-rapoo-vt3.rules
 setfattr -n user.component -v "base-conf" /etc/udev/rules.d/81-wol.rules
 setfattr -n user.component -v "base-conf" /etc/udev/rules.d/72-disable-dualsense-touchpad.rules
+setfattr -n user.component -v "base-conf" /etc/greetd/config.toml
 setfattr -n user.component -v "base-conf" /etc/polkit-1/rules.d/50-efibootmgr.rules
 setfattr -n user.component -v "base-conf" /etc/xdg-desktop-portal/umbriel-portals.conf
 setfattr -n user.update-interval -v "yearly" /etc/rpm-ostreed.conf

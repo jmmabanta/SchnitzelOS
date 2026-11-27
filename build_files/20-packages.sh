@@ -60,7 +60,7 @@ TERRA_PACKAGES=(
   bpftune
   cachyos-ananicy-rules
   dmemcg-booster
-  # noctalia-greeter
+  noctalia-greeter
   plasma-foreground-booster-dmemcg
   scx-scheds
   scx-tools
@@ -81,7 +81,7 @@ REMOVE=(
   khelpcenter
   kwrite
   plasma-discover-rpm-ostree
-  # plasma-login-manager
+  plasma-login-manager
   toolbox
   xwaylandvideobridge
 )

@@ -13,6 +13,9 @@ It is basically just Fedora Kinoite with:
 
 - [Codecs](https://negativo17.org/multimedia/)
 - Latest [NVIDIA Open Driver](https://negativo17.org/nvidia-driver/)
+- [Noctalia Greeter](https://github.com/noctalia-dev/noctalia-greeter)
+  - Plasma Login Manager often gives me a black screen on boot so I just
+    replaced it with noctalia greeter (based on greetd).
 - Steam, Docker, and other smaller packages.
   - For a full list, see this [script](build_files/20-packages.sh)
 
@@ -106,6 +109,22 @@ If you want to enable secure boot after installation, follow these steps:
 1. After entering the key, continue to reboot and now the OS should be secure
    boot ready.
 1. Reboot back into bios and re-enable secure boot.
+
+## Autologin
+
+If you want to automatically login, add the following to
+`/etc/greetd/config.toml` (edit as sudo):
+
+```toml
+[initial_session]
+command = "startplasma-wayland"
+user = "your_username_here"
+```
+
+> [!TIP]
+> If you keep getting nagged about KWallet being locked, you can replace it with
+> a blank password by opening KWalletManager. Do note that this
+> (obviously) impacts security.
 
 ## ZSWAP
 
