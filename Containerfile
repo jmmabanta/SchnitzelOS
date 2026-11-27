@@ -26,7 +26,13 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
   /ctx/30-nvidia.sh && \
   /ctx/40-services.sh && \
   /ctx/50-image-info.sh && \
-  /ctx/60-build-initramfs.sh && \
+  /ctx/60-build-initramfs.sh
+
+RUN --network=none \
+  --mount=type=bind,from=ctx,source=/,target=/ctx \
+  --mount=type=cache,dst=/var/cache \
+  --mount=type=cache,dst=/var/log \
+  --mount=type=tmpfs,dst=/tmp \
   /ctx/70-cleanup.sh && \
   /ctx/80-chunkah.sh
 
