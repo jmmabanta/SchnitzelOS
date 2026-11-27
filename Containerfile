@@ -20,6 +20,7 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
   --mount=type=tmpfs,dst=/tmp \
   --mount=type=bind,from=akmods-nvidia,src=/kernel-rpms,dst=/tmp/kernel-rpms \
   --mount=type=bind,from=akmods-nvidia,src=/rpms,dst=/tmp/rpms/nvidia \
+  /ctx/00-versionlock.sh && \
   /ctx/10-kernel.sh && \
   /ctx/20-packages.sh && \
   /ctx/30-nvidia.sh && \
