@@ -7,8 +7,6 @@ echo "::group:: ===$(basename "$0")==="
 
 set -eoux pipefail
 
-# Revert back to upstream defaults
-mv /etc/dnf/dnf.conf.bak /etc/dnf/dnf.conf
 dnf versionlock clear
 
 # this invalidates libdnf5 package (chunkah)
