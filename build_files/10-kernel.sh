@@ -29,7 +29,7 @@ KERNEL_PKGS=(
 )
 dnf5 -y install "${KERNEL_PKGS[@]}"
 
-KERNEL_VERSIONLOCK=( "${KERNEL_PKGS[@]}" kernel-devel{,-matched})
+KERNEL_VERSIONLOCK=( "${KERNEL_PKGS_ORIG[@]}" kernel-devel{,-matched})
 dnf5 versionlock add "${KERNEL_VERSIONLOCK[@]}"
 
 pushd /usr/lib/kernel/install.d
