@@ -25,9 +25,9 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
   /ctx/20-packages.sh && \
   /ctx/30-nvidia.sh && \
   /ctx/40-services.sh && \
-  /ctx/50-cleanup.sh && \
-  /ctx/60-image-info.sh && \
-  /ctx/70-build-initramfs.sh && \
+  /ctx/50-image-info.sh && \
+  /ctx/60-build-initramfs.sh && \
+  /ctx/70-cleanup.sh && \
   /ctx/80-chunkah.sh
 
 ### LINTING
