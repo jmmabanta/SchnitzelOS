@@ -22,13 +22,15 @@ printf '%s\n' '#!/bin/sh' 'exit 0' > 50-dracut.install
 chmod +x  05-rpmostree.install 50-dracut.install
 popd
 
-dnf5 -y install \
-  /tmp/kernel-rpms/kernel-[0-9]*.rpm \
-  /tmp/kernel-rpms/kernel-core-*.rpm \
-  /tmp/kernel-rpms/kernel-modules-*.rpm \
-  /tmp/kernel-rpms/kernel-devel-*.rpm
+KERNEL_PKGS=(
+  /tmp/kernel-rpms/kernel-[0-9]*.rpm
+  /tmp/kernel-rpms/kernel-core-*.rpm
+  /tmp/kernel-rpms/kernel-modules-*.rpm
+)
+dnf5 -y install "${KERNEL_PKGS[@]}"
 
-dnf5 versionlock add kernel kernel-devel kernel-devel-matched kernel-core kernel-modules
+KERNEL_VERSIONLOCK=( "${KERNEL_PKGS[@]}" kernel-devel{,-matched})
+dnf5 versionlock add "${KERNEL_VERSIONLOCK[@]}"
 
 pushd /usr/lib/kernel/install.d
 mv -f 05-rpmostree.install.bak 05-rpmostree.install
