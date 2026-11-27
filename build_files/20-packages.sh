@@ -42,6 +42,7 @@ FEDORA_PACKAGES=(
   libayatana-appindicator-gtk3
   lshw
   nvtop
+  plasma-browser-integration
   plasma-firewall
   sbsigntools
   twitter-twemoji-fonts
